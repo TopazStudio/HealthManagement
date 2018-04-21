@@ -1,3 +1,61 @@
 <resources>
-    <string name="app_name">Health Bloom</string>
+    <string name="app_name">Health Upgrade</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="next">Next</string>
+    <string name="prev">Prev</string>
+    <string name="btn_add_later">ADD LATER</string>
+    <string name="finish">FINISH</string>
+
+    <!--Personal Details-->
+    <string name="personal_details_heading">Lets get a few details.</string>
+    <string name="personal_details_subtitle">Personal Details</string>
+    <string name="activity_gauge_subtitle">Activity Gauge</string>
+    <string name="activity_gauge_explanation">The activity gauge us how active you are
+    in your daily routines. By setting your activity gauge you help us adjust to your needs</string>
+    <string name="fullname_txt">Your full name</string>
+    <string name="DOB_txt">Date of birth</string>
+    <string name="day">Day</string>
+    <string name="month">Month</string>
+    <string name="year">Year</string>
+    <string name="gender_txt">Gender</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="actvity_gauge_hint">Choose how active you are:</string>
+
+    <!--Weight Details-->
+    <string name="weight_details_heading">What about your current weight?</string>
+    <string name="weight_details_subtitle">Weight Details</string>
+    <string name="your_weight">Your weight</string>
+    <string name="weight_goals_subtitle">Weight Goals</string>
+    <string name="weight_goal_explanation">Weight goals help keep track of your weight goals and enrich the apps usage</string>
+    <string name="weight_goal_choice_hint">Choose a Goal:</string>
+    <string name="weight_target_hint">Add a weight target:</string>
+    <string name="weight_target_explanation">Set a target for a more enriching experience</string>
+    <string name="weight_height_hint">0</string>
+    <string name="kg_s">kg(s)</string>
+    <string name="weight_input_hint">Add your weight:</string>
+
+    <!--Height Details-->
+    <string name="height_details_heading">Add your height too.</string>
+    <string name="height_details_subtitle">Height Details</string>
+    <string name="height_input_hint">Add your height:</string>
+    <string name="ft">ft</string>
+
+    <!--Details Overview-->
+    <string name="details_overview_heading">Is this correct?</string>
+    <string name="details_overview_subheading">Details Overview</string>
+    <string name="fullname_test">ERICK NJIRU KIRABUI</string>
+    <string name="full_name">Full name</string>
+    <string name="DOB_test">2000–11–11</string>
+    <string name="weight_test">120 lb</string>
+    <string name="height_test">120 ft</string>
+    <string name="curent_weight">Current Weight</string>
+    <string name="current_height">Current Height</string>
+    <string name="gender_test">Male</string>
+    <string name="gender">Gender</string>
+    <string name="age_test">24</string>
+    <string name="age">Age</string>
+    <string name="date_of_birth">Date of Birth</string>
 </resources>

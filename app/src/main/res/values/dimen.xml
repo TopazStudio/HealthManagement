@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="viewPager_btn_dimen">50dp</dimen>
+
+    <!--APP INIT MODULE-->
+    <dimen name="app_init_padding">20sp</dimen>
+    <dimen name="app_init_normal_input_height">40dp</dimen>
+    <dimen name="lower_nav_height">80dp</dimen>
+    <dimen name="units_label_size">15sp</dimen>
+    <dimen name="details_overview_text_size">20sp</dimen>
+
+        <!--font-->
+    <dimen name="app_init_headings">25sp</dimen>
+    <dimen name="app_init_subheadings">18sp</dimen>
+    <dimen name="app_init_text">15sp</dimen>
+    <dimen name="app_init_fieldHintTitles">12sp</dimen>
+</resources>

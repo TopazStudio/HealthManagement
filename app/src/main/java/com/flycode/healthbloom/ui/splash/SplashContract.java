@@ -13,6 +13,6 @@ public interface SplashContract {
     }
 
     interface SplashMvpPresenter<V extends SplashMvpView> extends MvpPresenter<V> {
-
+        void startCounting();
     }
 }

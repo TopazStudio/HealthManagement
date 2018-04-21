@@ -1,5 +1,6 @@
 package com.flycode.healthbloom;
 
+import com.flycode.healthbloom.di.component.ApplicationComponent;
 import com.flycode.healthbloom.di.component.DaggerApplicationComponent;
 
 import dagger.android.AndroidInjector;
@@ -13,6 +14,8 @@ public class HealthBloomApplication extends DaggerApplication {
 
     @Override
     protected AndroidInjector<? extends DaggerApplication> applicationInjector() {
-        return DaggerApplicationComponent.builder().application(this).build();
+        ApplicationComponent appComponent =  DaggerApplicationComponent.builder().application(this).build();
+        appComponent.inject(this);
+        return appComponent;
     }
 }
