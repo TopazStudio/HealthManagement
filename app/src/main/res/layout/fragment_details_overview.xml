@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/app_init_padding"
+    android:orientation="vertical"
+    android:background="@color/bg_dark"
+    tools:context=".ui.appInitialization.DetailsOverview.DetailsOverviewFragment">
+
+    <!--TITLE-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/details_overview_heading"
+        android:textSize="@dimen/app_init_headings"
+        android:textColor="@color/app_init_titles"
+        android:layout_gravity="start"
+        android:paddingBottom="20dp"/>
+
+    <!--DETAILS OVERVIEW-->
+    <!--SUBTITLE-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/details_overview_subheading"
+        android:textSize="@dimen/app_init_subheadings"
+        android:textColor="@color/app_init_titles"
+        android:layout_gravity="start"/>
+    <View
+        android:layout_width="100dp"
+        android:layout_height="1dp"
+        android:background="@color/lightGray_txt"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="@dimen/app_init_padding"/>
+
+    <!--OVERVIEW-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="start"
+            android:contentDescription="@string/your_weight"
+            android:paddingEnd="20dp"
+            android:paddingStart="0dp"
+            android:src="@drawable/ic_male_player" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical">
+
+            <!--Full name-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:text="@string/full_name"
+                    android:textColor="@color/Primary"
+                    android:textSize="@dimen/app_init_fieldHintTitles"/>
+                <TextView
+                    android:id="@+id/tv_full_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginBottom="5dp"
+                    android:text="@string/fullname_test"
+                    android:textColor="@color/app_init_input_txt"
+                    android:textSize="@dimen/details_overview_text_size" />
+            </LinearLayout>
+
+            <!--Date of birth-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <!--Date of birth-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginStart="0dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:text="@string/date_of_birth"
+                        android:textColor="@color/Primary"
+                        android:textSize="@dimen/app_init_fieldHintTitles"/>
+                    <TextView
+                        android:id="@+id/tv_dob"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_marginBottom="5dp"
+                        android:text="@string/DOB_test"
+                        android:textColor="@color/app_init_input_txt"
+                        android:textSize="@dimen/details_overview_text_size" />
+                </LinearLayout>
+
+                <!--Age-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:text="@string/age"
+                        android:textColor="@color/Primary"
+                        android:textSize="@dimen/app_init_fieldHintTitles"/>
+                    <TextView
+                        android:id="@+id/tv_age"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_marginBottom="5dp"
+                        android:text="@string/age_test"
+                        android:textColor="@color/app_init_input_txt"
+                        android:textSize="@dimen/details_overview_text_size" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!--Weight/Height-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <!--Weight-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginStart="0dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:text="@string/curent_weight"
+                        android:textColor="@color/Primary"
+                        android:textSize="@dimen/app_init_fieldHintTitles" />
+
+                    <TextView
+                        android:id="@+id/tv_weight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_marginBottom="5dp"
+                        android:text="@string/weight_test"
+                        android:textColor="@color/app_init_input_txt"
+                        android:textSize="@dimen/details_overview_text_size" />
+                </LinearLayout>
+
+                <!--Height-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:text="@string/current_height"
+                        android:textColor="@color/Primary"
+                        android:textSize="@dimen/app_init_fieldHintTitles"/>
+                    <TextView
+                        android:id="@+id/tv_height"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_marginBottom="5dp"
+                        android:text="@string/height_test"
+                        android:textColor="@color/app_init_input_txt"
+                        android:textSize="@dimen/details_overview_text_size" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!--Gender-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:text="@string/gender"
+                    android:textColor="@color/Primary"
+                    android:textSize="@dimen/app_init_fieldHintTitles" />
+
+                <TextView
+                    android:id="@+id/tv_gender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginBottom="5dp"
+                    android:text="@string/gender_test"
+                    android:textColor="@color/app_init_input_txt"
+                    android:textSize="@dimen/details_overview_text_size" />
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

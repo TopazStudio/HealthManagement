@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_pressed="true">
+        <layer-list>
+            <item>
+                <shape android:shape="oval">
+                    <solid android:color="@color/PrimaryDark"/>
+                    <padding
+                        android:top="10dp"
+                        android:bottom="10dp"
+                        android:left="10dp"
+                        android:right="10dp"/>
+                </shape>
+            </item>
+            <item android:drawable="@drawable/ic_chevron_left_24dp"/>
+        </layer-list>
+    </item>
+
+    <item android:state_enabled="false">
+        <layer-list>
+            <item>
+                <shape android:shape="oval">
+                    <solid android:color="@color/PrimaryDisabled" android:shape="oval" />
+                    <padding android:bottom="10dp" android:left="10dp" android:right="10dp" android:top="10dp" />
+                </shape>
+            </item>
+            <item android:drawable="@drawable/ic_chevron_left_24dp"/>
+        </layer-list>
+    </item>
+
+    <item android:state_pressed="false">
+        <layer-list>
+            <item>
+                <shape android:shape="oval">
+                    <solid
+                        android:color="@color/Primary"/>
+                    <padding
+                        android:top="10dp"
+                        android:bottom="10dp"
+                        android:left="10dp"
+                        android:right="10dp"/>
+                </shape>
+            </item>
+            <item android:drawable="@drawable/ic_chevron_left_24dp"/>
+        </layer-list>
+
+    </item>
+</selector>

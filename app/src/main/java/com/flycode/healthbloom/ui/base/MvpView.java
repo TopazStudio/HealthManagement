@@ -10,7 +10,7 @@ public interface MvpView {
     /**
      * Navigate to another activity and exit the current one
      * */
-    void finishAndGoTo(Class<Activity> next);
+    void finishAndGoTo(Class<? extends Activity> next);
 
     /**
      * Show loading animation. Loading animation can be customized

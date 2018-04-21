@@ -1,6 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="colorAccent">#FFFFFF</color>
+
     <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimaryDark">#3F51B5</color>
+
+    <!--App Main colors-->
+    <color name="Primary">#5c9cfe</color>
+    <color name="PrimaryLight">#97a7ff</color>
+    <color name="PrimaryDisabled">#626a94</color>
+    <color name="PrimaryDark">#5252c1</color>
+    <color name="PrimaryAccent">#00dcff</color>
+
+    <!--Colourful tints-->
+    <color name="red">#ff4141</color>
+    <color name="redDark">#b1212b</color>
+    <color name="yellow">#ffc400</color>
+    <color name="yellowDark">#a39625</color>
+    <color name="green">#09f366</color>
+    <color name="greenDark">#40a65d</color>
+
+    <!--Dark tints-->
+    <color name="bg_dark">#2d2d2d</color>
+    <color name="lightGray_txt">#afafaf</color>
+    <color name="lightGray_inputs_focused">#616161</color>
+    <color name="lightGray_inputs_unfocused">#424242</color>
+
+    <!--font color-->
+    <color name="app_init_text">#afafaf</color>
+    <color name="app_init_titles">#ffffff</color>
+    <color name="app_init_input_txt">#ffffff</color>
+
+
 </resources>

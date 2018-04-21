@@ -5,10 +5,11 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
-public class BaseView extends AppCompatActivity implements MvpView{
+import dagger.android.support.DaggerAppCompatActivity;
+
+public class BaseView extends DaggerAppCompatActivity implements MvpView{
     private Dialog progressDialog;
 
     @Override
@@ -18,7 +19,7 @@ public class BaseView extends AppCompatActivity implements MvpView{
 
 
     @Override
-    public void finishAndGoTo(Class<Activity> next) {
+    public void finishAndGoTo(Class<? extends Activity> next) {
         startActivity(new Intent(this,next));
         finish();
     }
