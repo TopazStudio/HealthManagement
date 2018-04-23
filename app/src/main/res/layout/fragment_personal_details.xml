@@ -1,277 +1,272 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="@color/bg_dark"
+    android:padding="@dimen/app_init_padding"
     tools:context=".ui.appInitialization.PersonalDetails.PersonalDetailsFragment">
 
+    <!--TITLE-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/personal_details_heading"
+        android:textSize="@dimen/app_init_headings"
+        android:textColor="@color/app_init_titles"
+        android:layout_gravity="start"
+        android:paddingBottom="20dp"/>
+
+    <!--PERSONAL DETAILS-->
+    <!--SUBTITLE-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/personal_details_subtitle"
+        android:textSize="@dimen/app_init_subheadings"
+        android:textColor="@color/app_init_titles"
+        android:layout_gravity="start"/>
+    <View
+        android:layout_width="100dp"
+        android:layout_height="1dp"
+        android:background="@color/lightGray_txt"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="@dimen/app_init_padding"/>
+
+    <!--FULL NAME INPUT-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="@dimen/app_init_padding"
-        android:layout_marginBottom="@dimen/lower_nav_height">
+        android:orientation="horizontal"
+        android:layout_marginBottom="30dp">
 
-        <!--TITLE-->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/personal_details_heading"
-            android:textSize="@dimen/app_init_headings"
-            android:textColor="@color/app_init_titles"
-            android:layout_gravity="start"
-            android:paddingBottom="20dp"/>
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="60dp"
+            android:contentDescription="@string/fullname_txt"
+            android:src="@drawable/ic_name_tag" />
 
-        <!--PERSONAL DETAILS-->
-        <!--SUBTITLE-->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/personal_details_subtitle"
-            android:textSize="@dimen/app_init_subheadings"
-            android:textColor="@color/app_init_titles"
-            android:layout_gravity="start"/>
-        <View
-            android:layout_width="100dp"
-            android:layout_height="1dp"
-            android:background="@color/lightGray_txt"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="@dimen/app_init_padding"/>
-
-        <!--FULL NAME INPUT-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="30dp">
+            android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="80dp"
-                android:layout_height="60dp"
-                android:contentDescription="@string/fullname_txt"
-                android:src="@drawable/ic_name_tag" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_gravity="start"
+                android:text="@string/fullname_txt"
+                android:textColor="@color/Primary"
+                android:textSize="@dimen/app_init_fieldHintTitles"
+                android:visibility="visible"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="start"
-                    android:text="@string/fullname_txt"
-                    android:textColor="@color/Primary"
-                    android:textSize="@dimen/app_init_fieldHintTitles"
-                    android:visibility="visible"/>
-
-                <EditText
-                    android:id="@+id/txt_full_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/app_init_normal_input_height"
-                    android:inputType="text"
-                    android:textColor="@color/app_init_input_txt"
-                    android:textSize="@dimen/app_init_text"
-                    android:background="@drawable/app_init_inputfields"/>
-            </LinearLayout>
+            <EditText
+                android:id="@+id/txt_full_name"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/app_init_normal_input_height"
+                android:inputType="text"
+                android:textColor="@color/app_init_input_txt"
+                android:textSize="@dimen/app_init_text"
+                android:background="@drawable/app_init_inputfields"/>
         </LinearLayout>
+    </LinearLayout>
 
-        <!--DATE INPUT-->
+    <!--DATE INPUT-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="30dp">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="60dp"
+            android:contentDescription="@string/DOB_txt"
+            android:src="@drawable/ic_calendar" />
+
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="30dp">
+            android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="80dp"
-                android:layout_height="60dp"
-                android:contentDescription="@string/DOB_txt"
-                android:src="@drawable/ic_calendar" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:text="@string/DOB_txt"
+                android:textColor="@color/Primary"
+                android:textSize="@dimen/app_init_fieldHintTitles"
+                android:visibility="visible"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="start"
-                    android:text="@string/DOB_txt"
-                    android:textColor="@color/Primary"
-                    android:textSize="@dimen/app_init_fieldHintTitles"
-                    android:visibility="visible"/>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <EditText
-                        android:id="@+id/dt_day"
-                        android:layout_width="50dp"
-                        android:layout_height="@dimen/app_init_normal_input_height"
-                        android:hint="@string/day"
-                        android:textColorHint="@color/lightGray_txt"
-                        android:inputType="number"
-                        android:textColor="@color/app_init_titles"
-                        android:textSize="@dimen/app_init_text"
-                        android:background="@drawable/app_init_inputfields"
-                        android:layout_marginRight="@dimen/app_init_padding"/>
-                    <EditText
-                        android:id="@+id/dt_month"
-                        android:layout_width="70dp"
-                        android:layout_height="@dimen/app_init_normal_input_height"
-                        android:hint="@string/month"
-                        android:textColorHint="@color/lightGray_txt"
-                        android:inputType="number"
-                        android:textColor="@color/app_init_titles"
-                        android:textSize="@dimen/app_init_text"
-                        android:background="@drawable/app_init_inputfields"
-                        android:layout_marginRight="@dimen/app_init_padding"/>
-                    <EditText
-                        android:id="@+id/dt_year"
-                        android:layout_width="80dp"
-                        android:layout_height="@dimen/app_init_normal_input_height"
-                        android:hint="@string/year"
-                        android:textColorHint="@color/lightGray_txt"
-                        android:inputType="number"
-                        android:textColor="@color/app_init_titles"
-                        android:textSize="@dimen/app_init_text"
-                        android:background="@drawable/app_init_inputfields"
-                        android:layout_marginRight="@dimen/app_init_padding"/>
-                </LinearLayout>
-
+                <EditText
+                    android:id="@+id/dt_day"
+                    android:layout_width="50dp"
+                    android:layout_height="@dimen/app_init_normal_input_height"
+                    android:hint="@string/day"
+                    android:textColorHint="@color/lightGray_txt"
+                    android:inputType="number"
+                    android:textColor="@color/app_init_titles"
+                    android:textSize="@dimen/app_init_text"
+                    android:background="@drawable/app_init_inputfields"
+                    android:layout_marginEnd="@dimen/app_init_padding"
+                    android:layout_marginStart="0dp"/>
+                <EditText
+                    android:id="@+id/dt_month"
+                    android:layout_width="70dp"
+                    android:layout_height="@dimen/app_init_normal_input_height"
+                    android:hint="@string/month"
+                    android:textColorHint="@color/lightGray_txt"
+                    android:inputType="number"
+                    android:textColor="@color/app_init_titles"
+                    android:textSize="@dimen/app_init_text"
+                    android:background="@drawable/app_init_inputfields"
+                    android:layout_marginEnd="@dimen/app_init_padding"
+                    android:layout_marginStart="0dp"/>
+                <EditText
+                    android:id="@+id/dt_year"
+                    android:layout_width="80dp"
+                    android:layout_height="@dimen/app_init_normal_input_height"
+                    android:hint="@string/year"
+                    android:textColorHint="@color/lightGray_txt"
+                    android:inputType="number"
+                    android:textColor="@color/app_init_titles"
+                    android:textSize="@dimen/app_init_text"
+                    android:background="@drawable/app_init_inputfields"
+                    android:layout_marginEnd="@dimen/app_init_padding"
+                    android:layout_marginStart="0dp"/>
             </LinearLayout>
+
         </LinearLayout>
-
-        <!--GENDER INPUT-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="30dp">
-
-            <ImageView
-                android:layout_width="80dp"
-                android:layout_height="60dp"
-                android:contentDescription="@string/DOB_txt"
-                android:src="@drawable/ic_gender" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="start"
-                    android:text="@string/gender_txt"
-                    android:textColor="@color/Primary"
-                    android:textSize="@dimen/app_init_fieldHintTitles"
-                    android:visibility="visible"/>
-
-                <RadioGroup
-                    android:id="@+id/gender_radio_group"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <RadioButton
-                        android:id="@+id/male_radio_btn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:buttonTint="@color/app_init_text"
-                        android:textColor="@color/app_init_text"
-                        android:text="@string/male" />
-
-                    <RadioButton
-                        android:id="@+id/female_radio_btn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:buttonTint="@color/app_init_text"
-                        android:textColor="@color/app_init_text"
-                        android:text="@string/female" />
-                </RadioGroup>
-            </LinearLayout>
-        </LinearLayout>
-
-        <!--ACTIVITY GAUGE-->
-
-        <!--SUBTITLE-->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/activity_gauge_subtitle"
-            android:textSize="@dimen/app_init_subheadings"
-            android:textColor="@color/app_init_titles"
-            android:layout_gravity="start"/>
-        <View
-            android:layout_width="100dp"
-            android:layout_height="1dp"
-            android:background="@color/lightGray_txt"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="@dimen/app_init_padding"/>
-
-        <!--INFO-->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/activity_gauge_explanation"
-            android:textSize="@dimen/app_init_text"
-            android:textColor="@color/app_init_text"
-            android:layout_gravity="start"
-            android:layout_marginBottom="@dimen/app_init_padding"/>
-
-        <!--SELECTION-->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:text="@string/actvity_gauge_hint"
-            android:textColor="@color/Primary"
-            android:textSize="@dimen/app_init_fieldHintTitles"
-            android:layout_marginBottom="5dp"
-            android:visibility="visible"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="110dp"
-            android:orientation="horizontal"
-            android:layout_marginBottom="@dimen/app_init_padding">
-
-            <Button
-                android:id="@+id/btn_lazy_activityGauge"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginRight="5dp"
-                android:layout_weight="1"
-                android:background="@color/green" />
-
-            <Button
-                android:id="@+id/btn_medium_actvityGauge"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_weight="1"
-                android:background="@color/yellow" />
-
-            <Button
-                android:id="@+id/btn_hyper_activityGauge"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="5dp"
-                android:layout_weight="1"
-                android:background="@color/red" />
-        </LinearLayout>
-
     </LinearLayout>
 
-</ScrollView>
+    <!--GENDER INPUT-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="30dp">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="60dp"
+            android:contentDescription="@string/DOB_txt"
+            android:src="@drawable/ic_gender" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:text="@string/gender_txt"
+                android:textColor="@color/Primary"
+                android:textSize="@dimen/app_init_fieldHintTitles"
+                android:visibility="visible"/>
+
+            <RadioGroup
+                android:id="@+id/gender_radio_group"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/male_radio_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/app_init_text"
+                    android:textColor="@color/app_init_text"
+                    android:text="@string/male" />
+
+                <RadioButton
+                    android:id="@+id/female_radio_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/app_init_text"
+                    android:textColor="@color/app_init_text"
+                    android:text="@string/female" />
+            </RadioGroup>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!--ACTIVITY GAUGE-->
+
+    <!--SUBTITLE-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/activity_gauge_subtitle"
+        android:textSize="@dimen/app_init_subheadings"
+        android:textColor="@color/app_init_titles"
+        android:layout_gravity="start"/>
+    <View
+        android:layout_width="100dp"
+        android:layout_height="1dp"
+        android:background="@color/lightGray_txt"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="@dimen/app_init_padding"/>
+
+    <!--INFO-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/activity_gauge_explanation"
+        android:textSize="@dimen/app_init_text"
+        android:textColor="@color/app_init_text"
+        android:layout_gravity="start"
+        android:layout_marginBottom="@dimen/app_init_padding"/>
+
+    <!--SELECTION-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:text="@string/actvity_gauge_hint"
+        android:textColor="@color/Primary"
+        android:textSize="@dimen/app_init_fieldHintTitles"
+        android:layout_marginBottom="5dp"
+        android:visibility="visible"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:orientation="horizontal"
+        android:layout_marginBottom="@dimen/app_init_padding">
+
+        <Button
+            android:id="@+id/btn_lazy_activityGauge"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="@color/green" />
+
+        <Button
+            android:id="@+id/btn_medium_actvityGauge"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="@color/yellow" />
+
+        <Button
+            android:id="@+id/btn_hyper_activityGauge"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:background="@color/red" />
+    </LinearLayout>
+
+</LinearLayout>

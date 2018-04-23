@@ -3,7 +3,7 @@
     <dimen name="viewPager_btn_dimen">50dp</dimen>
 
     <!--APP INIT MODULE-->
-    <dimen name="app_init_padding">20sp</dimen>
+    <dimen name="app_init_padding">20dp</dimen>
     <dimen name="app_init_normal_input_height">40dp</dimen>
     <dimen name="lower_nav_height">80dp</dimen>
     <dimen name="units_label_size">15sp</dimen>

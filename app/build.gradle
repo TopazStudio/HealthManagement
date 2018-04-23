@@ -55,4 +55,5 @@ dependencies {
     //UI
 //    implementation 'com.mcxiaoke.viewpagerindicator:library:2.4.1'
     implementation 'com.romandanylyk:pageindicatorview:1.0.0@aar'
+    implementation 'com.eftimoff:android-pathview:1.0.8@aar'
 }

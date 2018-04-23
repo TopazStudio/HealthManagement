@@ -1,6 +1,5 @@
 package com.flycode.healthbloom.ui.appInitialization;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.MotionEvent;
@@ -14,6 +13,8 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnPageChange;
+import butterknife.OnTouch;
 
 public class AppInitActivity
         extends BaseView
@@ -41,55 +42,40 @@ public class AppInitActivity
         init();
     }
 
-    @SuppressLint("ClickableViewAccessibility")
     private void init(){
         viewPager.setOffscreenPageLimit(3);
         viewPager.setAdapter(viewPagerAdapter);
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                currentPage = position;
-
-                if (currentPage == 0){
-                    //if the fast page
-
-                    btn_prev.setVisibility(View.INVISIBLE);
-                    btn_add_later.setVisibility(View.GONE);
-                }else if(currentPage == (viewPagerAdapter.getCount() - 1)){
-                    //if the last page
-
-                    btn_next.setVisibility(View.INVISIBLE);
-                    btn_add_later.setText(R.string.finish);
-                }else {
-                    //if any other page
-
-                    btn_prev.setVisibility(View.VISIBLE);
-                    btn_next.setVisibility(View.VISIBLE);
-                    btn_add_later.setVisibility(View.VISIBLE);
-                    btn_add_later.setText(R.string.btn_add_later);
-                }
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
-
-        viewPager.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                return true;
-            }
-        });
-
     }
 
+    @OnPageChange(R.id.view_pager)
+    public void onPageSelected(int position){
+        currentPage = position;
+
+        if (currentPage == 0){
+            //if the fast page
+
+            btn_prev.setVisibility(View.INVISIBLE);
+            btn_add_later.setVisibility(View.GONE);
+        }else if(currentPage == (viewPagerAdapter.getCount() - 1)){
+            //if the last page
+
+            btn_next.setVisibility(View.INVISIBLE);
+            btn_add_later.setText(R.string.finish);
+        }else {
+            //if any other page
+
+            btn_prev.setVisibility(View.VISIBLE);
+            btn_next.setVisibility(View.VISIBLE);
+            btn_add_later.setVisibility(View.VISIBLE);
+            btn_add_later.setText(R.string.btn_add_later);
+        }
+    }
+
+    //Stop swiping of views using touch
+    @OnTouch(R.id.view_pager)
+    public boolean onTouch(View v,MotionEvent event){
+        return true;
+    }
 
     public void onNext(View view){
         viewPager.setCurrentItem(currentPage + 1);

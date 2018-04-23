@@ -5,18 +5,28 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.flycode.healthbloom.R;
+import com.flycode.healthbloom.models.User;
 
+import javax.inject.Inject;
+
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
 public class HeightDetailsFragment extends Fragment {
 
+    @Inject
+    User user;
+
+    @BindView(R.id.txt_height)
+    EditText txt_height;
+
     public HeightDetailsFragment() {
         // Required empty public constructor
     }
-
 
     public static HeightDetailsFragment newInstance() {
         HeightDetailsFragment fragment = new HeightDetailsFragment();
@@ -32,5 +42,9 @@ public class HeightDetailsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_height_details, container, false);
         ButterKnife.bind(this,view);
         return view;
+    }
+
+    public void commitChanges(){
+        user.setInitHeight(Integer.parseInt(txt_height.getText().toString()));
     }
 }

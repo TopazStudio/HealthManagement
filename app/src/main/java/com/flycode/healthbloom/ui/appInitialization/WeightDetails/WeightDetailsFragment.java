@@ -5,12 +5,23 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.flycode.healthbloom.R;
+import com.flycode.healthbloom.models.User;
 
+import javax.inject.Inject;
+
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class WeightDetailsFragment extends Fragment {
+
+    @Inject
+    User user;
+
+    @BindView(R.id.txt_weight)
+    EditText txt_weight;
 
     public WeightDetailsFragment(){
 
@@ -30,5 +41,9 @@ public class WeightDetailsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_weight_details, container, false);
         ButterKnife.bind(this,view);
         return view;
+    }
+
+    public void commitChanges(){
+        user.setInitWeight(Integer.parseInt(txt_weight.getText().toString()));
     }
 }

@@ -1,239 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/bg_dark"
     android:orientation="vertical"
+    android:padding="@dimen/app_init_padding"
     tools:context=".ui.appInitialization.WeightDetails.WeightDetailsFragment">
 
+    <!--TITLE-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:paddingBottom="20dp"
+        android:text="@string/weight_details_heading"
+        android:textColor="@color/app_init_titles"
+        android:textSize="@dimen/app_init_headings" />
+
+    <!--WEIGHT DETAILS-->
+    <!--SUBTITLE-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:text="@string/weight_details_subtitle"
+        android:textColor="@color/app_init_titles"
+        android:textSize="@dimen/app_init_subheadings" />
+    <View
+        android:layout_width="100dp"
+        android:layout_height="1dp"
+        android:layout_marginBottom="@dimen/app_init_padding"
+        android:layout_marginTop="5dp"
+        android:background="@color/lightGray_txt" />
+
+    <!--WEIGHT INPUT-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="@dimen/app_init_padding"
-        android:layout_marginBottom="@dimen/lower_nav_height">
+        android:layout_marginBottom="30dp"
+        android:orientation="horizontal">
 
-        <!--TITLE-->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:paddingBottom="20dp"
-            android:text="@string/weight_details_heading"
-            android:textColor="@color/app_init_titles"
-            android:textSize="@dimen/app_init_headings" />
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="start|center_vertical"
+            android:contentDescription="@string/your_weight"
+            android:paddingEnd="20dp"
+            android:paddingStart="0dp"
+            android:src="@drawable/ic_weight_scale" />
 
-        <!--WEIGHT DETAILS-->
-        <!--SUBTITLE-->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:text="@string/weight_details_subtitle"
-            android:textColor="@color/app_init_titles"
-            android:textSize="@dimen/app_init_subheadings" />
-        <View
-            android:layout_width="100dp"
-            android:layout_height="1dp"
-            android:layout_marginBottom="@dimen/app_init_padding"
-            android:layout_marginTop="5dp"
-            android:background="@color/lightGray_txt" />
-
-        <!--WEIGHT INPUT-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
-            android:orientation="horizontal"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp">
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_gravity="start|center_vertical"
-                android:contentDescription="@string/your_weight"
-                android:paddingEnd="20dp"
-                android:paddingStart="0dp"
-                android:src="@drawable/ic_weight_scale" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginBottom="5dp"
+                android:text="@string/weight_input_hint"
+                android:textColor="@color/Primary"
+                android:textSize="@dimen/app_init_fieldHintTitles"
+                android:visibility="visible" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="start"
-                    android:layout_marginBottom="5dp"
-                    android:text="@string/weight_input_hint"
-                    android:textColor="@color/Primary"
-                    android:textSize="@dimen/app_init_fieldHintTitles"
-                    android:visibility="visible" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <EditText
-                        android:id="@+id/txt_weight"
-                        android:layout_width="90dp"
-                        android:layout_height="60dp"
-                        android:background="@drawable/app_init_inputfields"
-                        android:hint="@string/weight_height_hint"
-                        android:inputType="number"
-                        android:textAlignment="textEnd"
-                        android:textColor="@color/app_init_input_txt"
-                        android:textColorHint="@color/app_init_input_txt"
-                        android:textSize="40sp" />
-                    <!--TODO: implement scrollable unit selector-->
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginEnd="5dp"
-                        android:layout_marginStart="5dp"
-                        android:text="@string/kg_s"
-                        android:textColor="#fff"
-                        android:textSize="@dimen/units_label_size" />
-                </LinearLayout>
-            </LinearLayout>
-        </LinearLayout>
-
-        <!--WEIGHT GOALS-->
-        <!--SUBTITLE-->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:text="@string/weight_goals_subtitle"
-            android:textColor="@color/app_init_titles"
-            android:textSize="@dimen/app_init_subheadings" />
-        <View
-            android:layout_width="100dp"
-            android:layout_height="1dp"
-            android:layout_marginBottom="@dimen/app_init_padding"
-            android:layout_marginTop="5dp"
-            android:background="@color/lightGray_txt" />
-
-        <!--INFO-->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:layout_marginBottom="@dimen/app_init_padding"
-            android:text="@string/weight_goal_explanation"
-            android:textColor="@color/app_init_text"
-            android:textSize="@dimen/app_init_text" />
-
-        <!--WEIGHT GOAL SELECTION-->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:layout_marginBottom="5dp"
-            android:text="@string/weight_goal_choice_hint"
-            android:textColor="@color/Primary"
-            android:textSize="@dimen/app_init_fieldHintTitles"
-            android:visibility="visible" />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="110dp"
-            android:layout_marginBottom="@dimen/app_init_padding"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/btn_lose_weight"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="5dp"
-                android:layout_marginStart="0dp"
-                android:layout_weight="1"
-                android:background="@color/red"
-                android:textAppearance="@style/TextAppearance.AppCompat" />
-
-            <Button
-                android:id="@+id/btn_maintain_weight"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_weight="1"
-                android:background="@color/yellow" />
-
-            <Button
-                android:id="@+id/btn_gain_weight"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="0dp"
-                android:layout_marginStart="5dp"
-                android:layout_weight="1"
-                android:background="@color/green" />
-        </LinearLayout>
-
-        <!--WEIGH TARGET INPUT-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:baselineAligned="false"
-            android:orientation="horizontal"
-            android:weightSum="100">
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="65"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="start"
-                    android:layout_marginBottom="5dp"
-                    android:text="@string/weight_target_hint"
-                    android:textColor="@color/Primary"
-                    android:textSize="@dimen/app_init_fieldHintTitles"
-                    android:visibility="visible" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="start"
-                    android:layout_marginBottom="@dimen/app_init_padding"
-                    android:text="@string/weight_target_explanation"
-                    android:textColor="@color/app_init_text"
-                    android:textSize="@dimen/app_init_text" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="35"
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/txt_weight_target"
-                    android:layout_width="60dp"
-                    android:layout_height="40dp"
+                    android:id="@+id/txt_weight"
+                    android:layout_width="90dp"
+                    android:layout_height="60dp"
                     android:background="@drawable/app_init_inputfields"
                     android:hint="@string/weight_height_hint"
                     android:inputType="number"
                     android:textAlignment="textEnd"
                     android:textColor="@color/app_init_input_txt"
-                    android:textColorHint="@color/app_init_text"
-                    android:textSize="20sp" />
-
+                    android:textColorHint="@color/app_init_input_txt"
+                    android:textSize="40sp" />
                 <!--TODO: implement scrollable unit selector-->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginEnd="0dp"
+                    android:layout_marginEnd="5dp"
                     android:layout_marginStart="5dp"
                     android:text="@string/kg_s"
                     android:textColor="#fff"
@@ -241,4 +95,142 @@
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-</ScrollView>
+
+    <!--WEIGHT GOALS-->
+    <!--SUBTITLE-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:text="@string/weight_goals_subtitle"
+        android:textColor="@color/app_init_titles"
+        android:textSize="@dimen/app_init_subheadings" />
+    <View
+        android:layout_width="100dp"
+        android:layout_height="1dp"
+        android:layout_marginBottom="@dimen/app_init_padding"
+        android:layout_marginTop="5dp"
+        android:background="@color/lightGray_txt" />
+
+    <!--INFO-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginBottom="@dimen/app_init_padding"
+        android:text="@string/weight_goal_explanation"
+        android:textColor="@color/app_init_text"
+        android:textSize="@dimen/app_init_text" />
+
+    <!--WEIGHT GOAL SELECTION-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginBottom="5dp"
+        android:text="@string/weight_goal_choice_hint"
+        android:textColor="@color/Primary"
+        android:textSize="@dimen/app_init_fieldHintTitles"
+        android:visibility="visible" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:layout_marginBottom="@dimen/app_init_padding"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_lose_weight"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="5dp"
+            android:layout_marginStart="0dp"
+            android:layout_weight="1"
+            android:background="@color/red"
+            android:textAppearance="@style/TextAppearance.AppCompat" />
+
+        <Button
+            android:id="@+id/btn_maintain_weight"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="@color/yellow" />
+
+        <Button
+            android:id="@+id/btn_gain_weight"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="0dp"
+            android:layout_marginStart="5dp"
+            android:layout_weight="1"
+            android:background="@color/green" />
+    </LinearLayout>
+
+    <!--WEIGH TARGET INPUT-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:weightSum="100">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="65"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginBottom="5dp"
+                android:text="@string/weight_target_hint"
+                android:textColor="@color/Primary"
+                android:textSize="@dimen/app_init_fieldHintTitles"
+                android:visibility="visible" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginBottom="@dimen/app_init_padding"
+                android:text="@string/weight_target_explanation"
+                android:textColor="@color/app_init_text"
+                android:textSize="@dimen/app_init_text" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="35"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/txt_weight_target"
+                android:layout_width="60dp"
+                android:layout_height="40dp"
+                android:background="@drawable/app_init_inputfields"
+                android:hint="@string/weight_height_hint"
+                android:inputType="number"
+                android:textAlignment="textEnd"
+                android:textColor="@color/app_init_input_txt"
+                android:textColorHint="@color/app_init_text"
+                android:textSize="20sp" />
+
+            <!--TODO: implement scrollable unit selector-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="0dp"
+                android:layout_marginStart="5dp"
+                android:text="@string/kg_s"
+                android:textColor="#fff"
+                android:textSize="@dimen/units_label_size" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

@@ -11,6 +11,7 @@ import dagger.android.support.DaggerAppCompatActivity;
 
 public class BaseView extends DaggerAppCompatActivity implements MvpView{
     private Dialog progressDialog;
+    private static final String TAG = BaseView.class.getSimpleName();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -28,23 +29,14 @@ public class BaseView extends DaggerAppCompatActivity implements MvpView{
     @Override
     public void showLoading() {
         hideLoading();
-        progressDialog = new Dialog(this);
-        progressDialog.show();
+        //TODO: implement activity loading
 
-        /*if (progressDialog.getWindow() != null) {
-            progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        }*/
 
-//        progressDialog.setContentView(R.layout.progress_dialog);
-        progressDialog.setCancelable(false);
-        progressDialog.setCanceledOnTouchOutside(false);
     }
 
     @Override
     public void hideLoading() {
-        if (progressDialog != null && progressDialog.isShowing()) {
-            progressDialog.cancel();
-        }
+        //TODO: implement activity loading
     }
 
     @Override

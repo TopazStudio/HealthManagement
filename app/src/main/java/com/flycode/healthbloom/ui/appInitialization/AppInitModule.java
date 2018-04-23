@@ -2,6 +2,8 @@ package com.flycode.healthbloom.ui.appInitialization;
 
 import android.content.Context;
 
+import com.flycode.healthbloom.models.User;
+
 import dagger.Module;
 import dagger.Provides;
 
@@ -22,4 +24,11 @@ public class AppInitModule {
     provideAppInitPresenter() {
         return new AppInitPresenter<>();
     }
+
+    /**
+     * Provide a user to be used in fragments when user is
+     * adding details.
+     * */
+    @Provides
+    User provideUser(){ return new User(); }
 }
