@@ -12,7 +12,6 @@ import dagger.android.ContributesAndroidInjector;
 
 @Module
 public abstract class ActivityBindingsModule {
-
     @PerActivity
     @ContributesAndroidInjector(modules = SplashActivityModule.class)
     abstract SplashActivity splashActivity();

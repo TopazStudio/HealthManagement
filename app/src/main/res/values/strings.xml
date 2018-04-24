@@ -15,10 +15,7 @@
     <string name="activity_gauge_explanation">The activity gauge us how active you are
     in your daily routines. By setting your activity gauge you help us adjust to your needs</string>
     <string name="fullname_txt">Your full name</string>
-    <string name="DOB_txt">Date of birth</string>
-    <string name="day">Day</string>
-    <string name="month">Month</string>
-    <string name="year">Year</string>
+    <string name="Age_txt">Your age</string>
     <string name="gender_txt">Gender</string>
     <string name="male">Male</string>
     <string name="female">Female</string>

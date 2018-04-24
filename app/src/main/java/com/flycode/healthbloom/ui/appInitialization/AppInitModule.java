@@ -2,6 +2,7 @@ package com.flycode.healthbloom.ui.appInitialization;
 
 import android.content.Context;
 
+import com.flycode.healthbloom.di.scope.PerActivity;
 import com.flycode.healthbloom.models.User;
 
 import dagger.Module;
@@ -29,6 +30,7 @@ public class AppInitModule {
      * Provide a user to be used in fragments when user is
      * adding details.
      * */
+    @PerActivity
     @Provides
     User provideUser(){ return new User(); }
 }

@@ -9,6 +9,6 @@ public interface AppInitContract {
     }
 
     interface AppInitPresenter<V extends AppInitView> extends MvpPresenter<V> {
-
+        void onFinish();
     }
 }
