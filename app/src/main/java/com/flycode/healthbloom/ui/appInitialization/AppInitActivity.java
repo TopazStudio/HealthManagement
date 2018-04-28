@@ -32,8 +32,8 @@ public class AppInitActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        presenter.onAttach(this);
         binding = DataBindingUtil.setContentView(this,R.layout.activity_app_initialization);
+        presenter.onAttach(this);
         init();
     }
 

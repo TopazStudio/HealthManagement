@@ -11,7 +11,7 @@ import dagger.Provides;
 @Module
 public class AppInitModule {
     @Provides
-    Context provideHomeActivityContext(AppInitActivity appInitActivity){
+    Context provideAppInitActivityContext(AppInitActivity appInitActivity){
         return appInitActivity;
     }
 
