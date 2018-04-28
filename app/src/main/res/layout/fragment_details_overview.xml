@@ -4,7 +4,7 @@
         <import type="java.lang.String"/>
         <variable
             name="user"
-            type="com.flycode.healthbloom.models.User"/>
+            type="com.flycode.healthbloom.data.models.User"/>
     </data>
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -56,7 +56,7 @@
                 android:contentDescription="@string/your_weight"
                 android:paddingEnd="20dp"
                 android:paddingStart="0dp"
-                android:src="@{user.isMale.get()? @drawable/ic_male_player : @drawable/ic_female_player}" />
+                android:src="@{user.Gender.get() == `Male`? @drawable/ic_male_player : @drawable/ic_female_player}" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -190,7 +190,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="start"
                         android:layout_marginBottom="5dp"
-                        android:text="@{user.isMale.get()? `Male` : `Female`}"
+                        android:text="@{user.Gender}"
                         android:textColor="@color/app_init_input_txt"
                         android:textSize="@dimen/details_overview_text_size" />
                 </LinearLayout>

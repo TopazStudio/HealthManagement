@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.flycode.healthbloom.di.module.ActivityBindingsModule;
 import com.flycode.healthbloom.di.module.AppModule;
+import com.flycode.healthbloom.di.module.DatabaseModule;
 
 import javax.inject.Singleton;
 
@@ -17,7 +18,8 @@ import dagger.android.support.AndroidSupportInjectionModule;
 @Component(modules = {
         AndroidSupportInjectionModule.class,
         ActivityBindingsModule.class,
-        AppModule.class
+        AppModule.class,
+        DatabaseModule.class
 })
 public interface ApplicationComponent extends AndroidInjector<DaggerApplication> {
     @Override

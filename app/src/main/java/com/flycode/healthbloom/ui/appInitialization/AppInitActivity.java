@@ -9,7 +9,7 @@ import android.view.View;
 
 import com.flycode.healthbloom.R;
 import com.flycode.healthbloom.databinding.AppInitBinding;
-import com.flycode.healthbloom.models.User;
+import com.flycode.healthbloom.data.models.User;
 import com.flycode.healthbloom.ui.base.BaseView;
 
 import javax.inject.Inject;
@@ -32,6 +32,7 @@ public class AppInitActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        presenter.onAttach(this);
         binding = DataBindingUtil.setContentView(this,R.layout.activity_app_initialization);
         init();
     }
@@ -115,10 +116,16 @@ public class AppInitActivity
     public void onMiddleBtn(View view){
         if (currentPage == (viewPagerAdapter.getCount() - 1)){
             //if this is the last page.
-            presenter.onFinish();
+            presenter.onFinish(user);
         }else {
             //if not then just go to the next page.
             onNext(null);
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        presenter.onDetach();
     }
 }

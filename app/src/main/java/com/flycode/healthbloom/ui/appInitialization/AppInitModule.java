@@ -2,8 +2,8 @@ package com.flycode.healthbloom.ui.appInitialization;
 
 import android.content.Context;
 
+import com.flycode.healthbloom.data.models.User;
 import com.flycode.healthbloom.di.scope.PerActivity;
-import com.flycode.healthbloom.models.User;
 
 import dagger.Module;
 import dagger.Provides;

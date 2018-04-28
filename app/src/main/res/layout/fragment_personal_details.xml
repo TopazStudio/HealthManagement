@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data class="PersonalDetailsBinding">
         <import type="android.view.View"/>
         <variable
             name="user"
-            type="com.flycode.healthbloom.models.User"/>
+            type="com.flycode.healthbloom.data.models.User"/>
 
     </data>
     <LinearLayout
@@ -158,7 +158,8 @@
                     android:id="@+id/gender_radio_group"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    app:gender="@={user.Gender}">
 
                     <RadioButton
                         android:id="@+id/male_radio_btn"
@@ -167,8 +168,7 @@
                         android:layout_weight="1"
                         android:buttonTint="@color/app_init_text"
                         android:textColor="@color/app_init_text"
-                        android:text="@string/male"
-                        android:checked="@={user.isMale}"/>
+                        android:text="@string/male"/>
 
                     <RadioButton
                         android:id="@+id/female_radio_btn"
@@ -177,8 +177,7 @@
                         android:layout_weight="1"
                         android:buttonTint="@color/app_init_text"
                         android:textColor="@color/app_init_text"
-                        android:text="@string/female"
-                        android:checked="@={user.isFemale}"/>
+                        android:text="@string/female"/>
                 </RadioGroup>
             </LinearLayout>
         </LinearLayout>

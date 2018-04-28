@@ -2,6 +2,7 @@ package com.flycode.healthbloom;
 
 import com.flycode.healthbloom.di.component.ApplicationComponent;
 import com.flycode.healthbloom.di.component.DaggerApplicationComponent;
+import com.raizlabs.android.dbflow.config.FlowManager;
 
 import dagger.android.AndroidInjector;
 import dagger.android.DaggerApplication;
@@ -10,6 +11,8 @@ public class HealthBloomApplication extends DaggerApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+        //Initialize DBFlow
+        FlowManager.init(this);
     }
 
     @Override

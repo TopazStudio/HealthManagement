@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 
 import com.flycode.healthbloom.R;
 import com.flycode.healthbloom.databinding.WeightDetailsBinding;
-import com.flycode.healthbloom.models.User;
+import com.flycode.healthbloom.data.models.User;
 
 import javax.inject.Inject;
 
