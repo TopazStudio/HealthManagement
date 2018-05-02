@@ -126,8 +126,15 @@ public class BMIGraphFragment
         BMIDataSet.setDrawFilled(true);
         BMIDataSet.setFillColor(Color.argb(154,255,255,255));
 
+
         //SET CHART DATA
-        chart.setData(new LineData(BMIDataSet));
+        if(chart.isEmpty()){
+            chart.setData(new LineData(BMIDataSet));
+            chart.invalidate();
+        }else {
+            chart.clear();
+            chart.setData(new LineData(BMIDataSet));
+        }
     }
 
     /**

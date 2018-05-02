@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.flycode.healthbloom.R;
 import com.flycode.healthbloom.data.models.WeightMeasurement;
 
+import java.util.Calendar;
 import java.util.List;
 
 import lombok.Setter;
@@ -37,11 +38,11 @@ public class EntryListAdapter extends RecyclerView.Adapter<EntryListAdapter.View
         holder.tv_weight.setText(String.valueOf(w.Weight.get()));
         holder.tv_bmi.setText(String.valueOf(w.BMI.get()));
 
-        /*Calendar cal = Calendar.getInstance();
-        cal.setTime(w.Date);
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(w.Date.get());
 
         holder.tv_day.setText(String.valueOf(cal.get(Calendar.DAY_OF_MONTH)));
-        holder.tv_mon_yr.setText(String.valueOf(cal.get(Calendar.MONTH) + ", " + cal.get(Calendar.YEAR) ));*/
+        holder.tv_mon_yr.setText(String.valueOf(cal.get(Calendar.MONTH) + ", " + cal.get(Calendar.YEAR) ));
     }
 
     @Override

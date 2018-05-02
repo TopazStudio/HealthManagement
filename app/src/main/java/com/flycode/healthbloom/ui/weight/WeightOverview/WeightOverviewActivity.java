@@ -1,11 +1,13 @@
 package com.flycode.healthbloom.ui.weight.WeightOverview;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.TextView;
 
 import com.flycode.healthbloom.R;
@@ -20,16 +22,16 @@ import java.util.Objects;
 
 import javax.inject.Inject;
 
-public class WeightActivity
+public class WeightOverviewActivity
         extends BaseView
-        implements WeightContract.WeightView {
+        implements WeightOverviewContract.WeightView {
 
     @Inject
     GraphViewPagerAdapter graphViewPagerAdapter;
     @Inject
     EntryListAdapter entryListAdapter;
     @Inject
-    WeightContract.WeightPresenter<WeightContract.WeightView> presenter;
+    WeightOverviewContract.WeightPresenter<WeightOverviewContract.WeightView> presenter;
 
     private WeightActivityBinding binding;
 
@@ -103,7 +105,36 @@ public class WeightActivity
         entryListAdapter.setContext(this);
 
         //ASSIGN ADAPTER
+        if (binding.recyclerView.getAdapter() != null){
+            binding.recyclerView.swapAdapter(entryListAdapter,true);
+        }
         binding.recyclerView.setAdapter(entryListAdapter);
+    }
+
+    /**
+     * Called when a weight entry trigger is fired either from a fab button or other triggers
+     * */
+    public void onAddWeight(View view){
+        presenter.addWeight();
+    }
+
+    public void onUpdateWeight(View view){
+        presenter.onUpdateWeight(null);
+    }
+
+    /**
+     * On returning results from Child activity.
+     * */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if ((requestCode == currentRequestCode) && (resultCode == 1)){
+            //Refresh the graphs and entries
+            //TODO:Refresh graphs
+            showMessage("Saved Successfully");
+            presenter.getWeightMeasurements();
+        }
     }
 
     /**

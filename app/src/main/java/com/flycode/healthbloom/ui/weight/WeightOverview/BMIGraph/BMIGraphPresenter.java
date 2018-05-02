@@ -5,8 +5,8 @@ import android.support.annotation.NonNull;
 import com.flycode.healthbloom.data.models.WeightMeasurement;
 import com.flycode.healthbloom.data.models.WeightMeasurement_Table;
 import com.flycode.healthbloom.ui.base.BasePresenter;
+import com.flycode.healthbloom.utils.LineDataSetFix;
 import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.LineDataSet;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.raizlabs.android.dbflow.structure.database.transaction.QueryTransaction;
 import com.raizlabs.android.dbflow.structure.database.transaction.Transaction;
@@ -33,15 +33,14 @@ public class BMIGraphPresenter<V extends BMIGraphContract.BMIGraphView>
 
                     @Override
                     public void onListQueryResult(QueryTransaction transaction, @NonNull List<WeightMeasurement> tResult) {
-
                         //Form entries from WeightMeasurements
                         List<Entry> BMIEntries = new ArrayList<>();
-
                         for (WeightMeasurement data : tResult) {
-                            BMIEntries.add(new Entry(Objects.requireNonNull(data.Date).getTime(), data.BMI.get()));
+                            BMIEntries.add(new Entry(Objects.requireNonNull(data.Date.get()).getTime(), data.BMI.get()));
                         }
-
-                        getMvpView().setLineDataSet(new LineDataSet(BMIEntries, "BMI"));
+                        if (!BMIEntries.isEmpty() && BMIEntries.size() == tResult.size()) {
+                            getMvpView().setLineDataSet(new LineDataSetFix(BMIEntries, "BMI"));
+                        }
 
                     }
 

@@ -9,7 +9,7 @@
         android:layout_height="match_parent"
         android:background="@color/bg_dark"
         android:orientation="vertical"
-        tools:context=".ui.weight.WeightOverview.WeightActivity">
+        tools:context=".ui.weight.WeightOverview.WeightOverviewActivity">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view"
@@ -68,18 +68,18 @@
             </LinearLayout>
         </android.support.design.widget.AppBarLayout>
 
-
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom"
-            android:layout_margin="30dp"
-            android:background="@color/Primary"
-            app:elevation="3dp"
-            app:layout_anchor="@id/main_content"
-            app:layout_anchorGravity="bottom|right|end"
-            android:src="@drawable/ic_add" />
+            android:src="@drawable/ic_add"
+            android:layout_margin="16dp"
+            app:elevation="6dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:backgroundTint="@color/Primary"
+            android:onClick="onAddWeight"/>
 
     </android.support.constraint.ConstraintLayout>
 </layout>

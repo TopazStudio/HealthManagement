@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.NavUtils;
 import android.view.View;
 
 import java.util.Objects;
@@ -17,11 +18,28 @@ import dagger.android.support.DaggerFragment;
 public abstract class BaseFragment extends DaggerFragment implements MvpView {
     private BaseView baseActivity;
     private Dialog progressDialog;
+    public int currentRequestCode;
 
     @Override
     public void finishAndGoTo(Class<? extends Activity> next) {
         startActivity(new Intent(getActivity(),next));
         Objects.requireNonNull(getActivity()).finish();
+    }
+
+
+    @Override
+    public void finishAndGoToParent() {
+        NavUtils.navigateUpFromSameTask(getBaseActivity());
+    }
+
+    @Override
+    public void openForResult(Class<? extends Activity> next,int requestCode,@Nullable Bundle data) {
+        this.currentRequestCode = requestCode;
+        Intent i = new Intent(getContext(),next);
+        if (data != null){
+            i.putExtras(data);
+        }
+        startActivityForResult(i,requestCode);
     }
 
     @Override

@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.NavUtils;
 import android.widget.Toast;
 
 import dagger.android.support.DaggerAppCompatActivity;
@@ -12,6 +13,7 @@ import dagger.android.support.DaggerAppCompatActivity;
 public class BaseView extends DaggerAppCompatActivity implements MvpView{
     private Dialog progressDialog;
     private static final String TAG = BaseView.class.getSimpleName();
+    protected int currentRequestCode;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -21,8 +23,23 @@ public class BaseView extends DaggerAppCompatActivity implements MvpView{
 
     @Override
     public void finishAndGoTo(Class<? extends Activity> next) {
-            startActivity(new Intent(this,next));
-            finish();
+        startActivity(new Intent(this,next));
+        finish();
+    }
+
+    @Override
+    public void finishAndGoToParent() {
+        NavUtils.navigateUpFromSameTask(this);
+    }
+
+    @Override
+    public void openForResult(Class<? extends Activity> next,int requestCode,@Nullable Bundle data) {
+        this.currentRequestCode = requestCode;
+        Intent i = new Intent(this,next);
+        if (data != null){
+            i.putExtras(data);
+        }
+        startActivityForResult(i,requestCode);
     }
 
 

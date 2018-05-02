@@ -3,6 +3,8 @@ package com.flycode.healthbloom.data.models;
 import android.databinding.ObservableFloat;
 
 import com.flycode.healthbloom.data.db.Database;
+import com.flycode.healthbloom.data.models.CustomTypes.ObservableDate;
+import com.flycode.healthbloom.data.models.TypeConverters.ObservableDateConverter;
 import com.flycode.healthbloom.data.models.TypeConverters.ObservableFloatConverter;
 import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
@@ -32,6 +34,6 @@ public class WeightMeasurement extends BaseModel{
     @Column(typeConverter = ObservableFloatConverter.class)
     public ObservableFloat BMI = new ObservableFloat();
 
-    @Column()
-    public java.util.Date Date;
+    @Column(typeConverter = ObservableDateConverter.class)
+    public ObservableDate Date = new ObservableDate();
 }

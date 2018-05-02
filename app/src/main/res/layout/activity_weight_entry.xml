@@ -10,8 +10,11 @@
             type="com.flycode.healthbloom.data.models.WeightMeasurement"/>
     </data>
     <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/main_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/bg_dark"
+        android:orientation="vertical"
         tools:context=".ui.weight.WeightEntry.WeightEntryActivity">
 
         <android.support.design.widget.AppBarLayout
@@ -19,7 +22,7 @@
             android:layout_height="wrap_content"
             android:fitsSystemWindows="true"
             android:background="@color/PrimaryDark"
-            android:theme="@style/AppTheme.AppBarOverlay">
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
             <include
                 android:id="@+id/toolbar"
@@ -63,6 +66,19 @@
 
 
         </android.support.design.widget.AppBarLayout>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:src="@drawable/ic_tick"
+            android:layout_margin="16dp"
+            app:elevation="3dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:backgroundTint="@color/Primary"
+            android:onClick="onSave"/>
 
     </android.support.design.widget.CoordinatorLayout>
 </layout>

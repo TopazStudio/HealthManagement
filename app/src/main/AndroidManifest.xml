@@ -17,22 +17,21 @@
         <!-- SPLASH ACTIVITY -->
         <activity
             android:name=".ui.splash.SplashActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
 
         <!-- APP INIT MODULE -->
         <activity
             android:name=".ui.appInitialization.AppInitActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar"
-            android:windowSoftInputMode="stateHidden" />
+            android:windowSoftInputMode="stateHidden"/>
 
         <!-- WEIGHT MODULE -->
         <activity
-            android:name=".ui.weight.WeightOverview.WeightActivity"
+            android:name=".ui.weight.WeightOverview.WeightOverviewActivity"
             android:label="@string/weight_activity_label"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -42,8 +41,12 @@
         <activity
             android:name=".ui.weight.WeightEntry.WeightEntryActivity"
             android:label="@string/title_activity_weight_entry"
-            android:theme="@style/AppTheme">
-
+            android:theme="@style/AppTheme"
+            android:parentActivityName=".ui.weight.WeightOverview.WeightOverviewActivity">
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.weight.WeightOverview.WeightOverviewActivity" />
         </activity>
 
         <!-- HOME MODULE -->

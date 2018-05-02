@@ -1,18 +1,21 @@
 package com.flycode.healthbloom.ui.weight.WeightOverview;
 
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 
 import com.flycode.healthbloom.data.models.WeightMeasurement;
+import com.flycode.healthbloom.data.models.WeightMeasurement_Table;
 import com.flycode.healthbloom.ui.base.BasePresenter;
+import com.flycode.healthbloom.ui.weight.WeightEntry.WeightEntryActivity;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.raizlabs.android.dbflow.structure.database.transaction.QueryTransaction;
 import com.raizlabs.android.dbflow.structure.database.transaction.Transaction;
 
 import java.util.List;
 
-class WeightPresenter<V extends WeightContract.WeightView>
+class WeightOverviewPresenter<V extends WeightOverviewContract.WeightView>
         extends BasePresenter<V>
-        implements WeightContract.WeightPresenter<V>  {
+        implements WeightOverviewContract.WeightPresenter<V>  {
 
     /**
      * Fetches the Weight Entries from the local database asynchronously
@@ -23,7 +26,7 @@ class WeightPresenter<V extends WeightContract.WeightView>
     public void getWeightMeasurements() {
         SQLite.select()
                 .from(WeightMeasurement.class)
-//                .orderBy(WeightMeasurement_Table.Date,true)
+                .orderBy(WeightMeasurement_Table.Date,true)
                 .async()
                 .queryListResultCallback(new QueryTransaction.QueryResultListCallback<WeightMeasurement>() {
 
@@ -38,5 +41,23 @@ class WeightPresenter<V extends WeightContract.WeightView>
                 getMvpView().showError(error.getMessage());
             }
         }).execute();
+    }
+
+    /**
+     * Opens the WeightEntryActivity for results on adding a weight.
+     * */
+    @Override
+    public void addWeight() {
+        getMvpView().openForResult(WeightEntryActivity.class,1,null);
+    }
+
+    /**
+     * Opens the WeightEntryActivity for results on updating a weight.
+     * */
+    @Override
+    public void onUpdateWeight(WeightMeasurement weightMeasurement) {
+        Bundle bundle = new Bundle();
+        bundle.putInt("id",weightMeasurement.id);
+        getMvpView().openForResult(WeightEntryActivity.class,1,bundle);
     }
 }

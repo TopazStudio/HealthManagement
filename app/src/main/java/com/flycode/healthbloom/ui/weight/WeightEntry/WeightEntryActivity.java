@@ -1,16 +1,23 @@
 package com.flycode.healthbloom.ui.weight.WeightEntry;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
+import android.view.View;
 
 import com.flycode.healthbloom.R;
 import com.flycode.healthbloom.data.models.WeightMeasurement;
 import com.flycode.healthbloom.databinding.WeightEntryBinding;
 import com.flycode.healthbloom.ui.base.BaseView;
 
+import java.util.Objects;
+
 import javax.inject.Inject;
 
+//TODO: catch the back button and warn the user of losing data.
 public class WeightEntryActivity
         extends BaseView
         implements WeightEntryContract.WeightEntryView  {
@@ -28,7 +35,40 @@ public class WeightEntryActivity
         binding = DataBindingUtil.setContentView(this,R.layout.activity_weight_entry);
         binding.setWeightMeasurement(weightMeasurement);
         presenter.onAttach(this);
+
         setSupportActionBar((Toolbar) binding.toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+
+        init();
+    }
+
+    private void init(){
+        Intent i = getIntent();
+        //Determine if its a new entry
+        if(i.hasExtra("id")){
+            presenter.fetchWeightEntry(i.getIntExtra("id",1));
+        }
+    }
+
+    @Override
+    public void addUpdateWeightMeasurement(WeightMeasurement weightMeasurement){
+        //TODO: efficiently update the weightMeasurement model.
+        this.weightMeasurement = weightMeasurement;
+    }
+
+    public void onSave(View view){
+        presenter.onSave(weightMeasurement);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 

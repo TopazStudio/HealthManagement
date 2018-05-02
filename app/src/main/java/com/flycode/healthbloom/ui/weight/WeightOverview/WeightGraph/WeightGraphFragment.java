@@ -110,8 +110,6 @@ public class WeightGraphFragment
 
     @Override
     public void setLineDataSet(LineDataSet weightDataSet) {
-        chart.invalidate(); //refresh
-
         //SET DATA-SET COLORS
         weightDataSet.setCircleColorHole(Color.WHITE);
         weightDataSet.setCircleColor(Color.WHITE);
@@ -122,7 +120,13 @@ public class WeightGraphFragment
         weightDataSet.setFillColor(Color.argb(154,255,255,255));
 
         //SET CHART DATA
-        chart.setData(new LineData(weightDataSet));
+        if(chart.isEmpty()){
+            chart.setData(new LineData(weightDataSet));
+            chart.invalidate();
+        }else {
+            chart.clear();
+            chart.setData(new LineData(weightDataSet));
+        }
     }
 
     /**

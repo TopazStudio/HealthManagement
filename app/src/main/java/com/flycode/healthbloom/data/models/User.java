@@ -1,10 +1,12 @@
 package com.flycode.healthbloom.data.models;
 
+import android.databinding.ObservableFloat;
 import android.databinding.ObservableInt;
 
 import com.flycode.healthbloom.data.db.Database;
 import com.flycode.healthbloom.data.models.CustomTypes.ObservableFieldString;
 import com.flycode.healthbloom.data.models.TypeConverters.ObservableFieldStringConverter;
+import com.flycode.healthbloom.data.models.TypeConverters.ObservableFloatConverter;
 import com.flycode.healthbloom.data.models.TypeConverters.ObservableIntConverter;
 import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
@@ -31,9 +33,9 @@ public class User extends BaseModel{
     @Column(typeConverter = ObservableIntConverter.class)
     public ObservableInt Age = new ObservableInt();
 
-    @Column(typeConverter = ObservableIntConverter.class)
-    public ObservableInt InitWeight = new ObservableInt();
+    @Column(typeConverter = ObservableFloatConverter.class)
+    public ObservableFloat InitWeight = new ObservableFloat();
 
-    @Column(typeConverter = ObservableIntConverter.class)
-    public ObservableInt InitHeight = new ObservableInt();
+    @Column(typeConverter = ObservableFloatConverter.class)
+    public ObservableFloat InitHeight = new ObservableFloat();
 }

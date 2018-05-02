@@ -6,11 +6,13 @@ import com.flycode.healthbloom.ui.base.MvpView;
 
 import java.util.List;
 
-interface WeightContract {
+interface WeightOverviewContract {
     interface WeightView extends MvpView{
         void setWeightEntries(List<WeightMeasurement> weightEntries);
     }
-    interface WeightPresenter<V extends WeightContract.WeightView> extends MvpPresenter<V> {
+    interface WeightPresenter<V extends WeightOverviewContract.WeightView> extends MvpPresenter<V> {
         void getWeightMeasurements();
+        void addWeight();
+        void onUpdateWeight(WeightMeasurement weightMeasurement);
     }
 }
