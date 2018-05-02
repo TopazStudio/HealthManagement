@@ -18,12 +18,10 @@ import com.raizlabs.android.dbflow.structure.BaseModel;
  * */
 @Table(database = Database.class, name = "user" )
 public class User extends BaseModel{
-    @PrimaryKey
-    @Column(typeConverter = ObservableIntConverter.class)
-    public ObservableInt id = new ObservableInt();
+    @PrimaryKey(autoincrement = true)
+    @Column()
+    public int id;
 
-    //Removed generic type on ObservableField due to dbflow not working well with
-    //them.
     @Column(typeConverter = ObservableFieldStringConverter.class)
     public ObservableFieldString Fullname = new ObservableFieldString();
 

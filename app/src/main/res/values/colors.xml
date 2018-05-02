@@ -3,7 +3,7 @@
     <color name="colorAccent">#FFFFFF</color>
 
     <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#3F51B5</color>
+    <color name="colorPrimaryDark">#43439f</color>
 
     <!--App Main colors-->
     <color name="Primary">#5c9cfe</color>
@@ -19,6 +19,8 @@
     <color name="yellowDark">#a39625</color>
     <color name="green">#09f366</color>
     <color name="greenDark">#40a65d</color>
+    <color name="white">#FFFFFF</color>
+    <color name="lightGray">#ececec</color>
 
     <!--Dark tints-->
     <color name="bg_dark">#2d2d2d</color>

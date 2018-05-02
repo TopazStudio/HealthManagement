@@ -1,4 +1,4 @@
-package com.flycode.healthbloom.ui.weight;
+package com.flycode.healthbloom.ui.weight.WeightOverview;
 
 import android.content.Context;
 
@@ -16,5 +16,15 @@ public class WeightModule {
     WeightContract.WeightPresenter<WeightContract.WeightView>
     provideWeightPresenter() {
         return new WeightPresenter<>();
+    }
+
+    @Provides
+    GraphViewPagerAdapter provideGraphViewPagerAdapter(WeightActivity weightActivity) {
+        return new GraphViewPagerAdapter(weightActivity.getSupportFragmentManager());
+    }
+
+    @Provides
+    EntryListAdapter provideEntryListAdapter() {
+        return new EntryListAdapter();
     }
 }
