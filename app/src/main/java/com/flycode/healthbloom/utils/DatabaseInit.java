@@ -26,7 +26,7 @@ public class DatabaseInit {
             w.Weight.set((float) faker.number.between(60.34,100.00));
             w.Height.set((float) faker.number.between(60.34,100.00));
             w.BMI.set((float) faker.number.between(10.09,30.9));
-            w.Date.set(faker.date.between(new SimpleDateFormat("dd-M-yyyy").parse("12-11-2016")
+            w.setDate(faker.date.between(new SimpleDateFormat("dd-M-yyyy").parse("12-11-2016")
                     ,new SimpleDateFormat("dd-M-yyyy").parse("12-11-2018")));
             weightMeasermentList.add(w);
         }

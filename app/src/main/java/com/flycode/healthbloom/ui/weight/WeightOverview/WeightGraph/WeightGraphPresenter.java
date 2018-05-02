@@ -3,6 +3,7 @@ package com.flycode.healthbloom.ui.weight.WeightOverview.WeightGraph;
 import android.support.annotation.NonNull;
 
 import com.flycode.healthbloom.data.models.WeightMeasurement;
+import com.flycode.healthbloom.data.models.WeightMeasurement_Table;
 import com.flycode.healthbloom.ui.base.BasePresenter;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -25,7 +26,7 @@ public class WeightGraphPresenter<V extends WeightGraphContract.WeightGraphView>
     public void getPerDayLineDataSet() {
         SQLite.select()
                 .from(WeightMeasurement.class)
-//                .orderBy(WeightMeasurement_Table.Date,true)
+                .orderBy(WeightMeasurement_Table.Date,true)
                 .async()
                 .queryListResultCallback(new QueryTransaction.QueryResultListCallback<WeightMeasurement>() {
                     @Override
@@ -33,7 +34,7 @@ public class WeightGraphPresenter<V extends WeightGraphContract.WeightGraphView>
                         //Form entries from WeightMeasurements
                         List<Entry> weightEntries = new ArrayList<>();
                         for (WeightMeasurement data : tResult) {
-                            weightEntries.add(new Entry(Objects.requireNonNull(data.Date.get()).getTime(), data.Weight.get()));
+                            weightEntries.add(new Entry(Objects.requireNonNull(data.Date).getTime(), data.Weight.get()));
                         }
                         getMvpView().setLineDataSet(new LineDataSet(weightEntries, "Weight"));
                     }
@@ -58,7 +59,7 @@ public class WeightGraphPresenter<V extends WeightGraphContract.WeightGraphView>
                         //Form entries from WeightMeasurements
                         List<Entry> weightEntries = new ArrayList<>();
                         for (WeightMeasurement data : tResult) {
-                            weightEntries.add(new Entry(Objects.requireNonNull(data.Date.get()).getTime(), data.Weight.get()));
+                            weightEntries.add(new Entry(Objects.requireNonNull(data.Date).getTime(), data.Weight.get()));
                         }
                         getMvpView().setLineDataSet(new LineDataSet(weightEntries, "Weight"));
                     }

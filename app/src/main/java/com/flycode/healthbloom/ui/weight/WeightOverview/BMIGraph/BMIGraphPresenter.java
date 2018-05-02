@@ -3,6 +3,7 @@ package com.flycode.healthbloom.ui.weight.WeightOverview.BMIGraph;
 import android.support.annotation.NonNull;
 
 import com.flycode.healthbloom.data.models.WeightMeasurement;
+import com.flycode.healthbloom.data.models.WeightMeasurement_Table;
 import com.flycode.healthbloom.ui.base.BasePresenter;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -26,7 +27,7 @@ public class BMIGraphPresenter<V extends BMIGraphContract.BMIGraphView>
     public void getLineDataSet() {
         SQLite.select()
                 .from(WeightMeasurement.class)
-//                .orderBy(WeightMeasurement_Table.Date,true)
+                .orderBy(WeightMeasurement_Table.Date,true)
                 .async()
                 .queryListResultCallback(new QueryTransaction.QueryResultListCallback<WeightMeasurement>() {
 
@@ -37,7 +38,7 @@ public class BMIGraphPresenter<V extends BMIGraphContract.BMIGraphView>
                         List<Entry> BMIEntries = new ArrayList<>();
 
                         for (WeightMeasurement data : tResult) {
-                            BMIEntries.add(new Entry(Objects.requireNonNull(data.Date.get()).getTime(), data.BMI.get()));
+                            BMIEntries.add(new Entry(Objects.requireNonNull(data.Date).getTime(), data.BMI.get()));
                         }
 
                         getMvpView().setLineDataSet(new LineDataSet(BMIEntries, "BMI"));
