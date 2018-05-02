@@ -21,8 +21,8 @@ public class BaseView extends DaggerAppCompatActivity implements MvpView{
 
     @Override
     public void finishAndGoTo(Class<? extends Activity> next) {
-        startActivity(new Intent(this,next));
-        finish();
+            startActivity(new Intent(this,next));
+            finish();
     }
 
 
@@ -41,13 +41,15 @@ public class BaseView extends DaggerAppCompatActivity implements MvpView{
 
     @Override
     public void showMessage(String message) {
+        //TODO: implement a better way of showing messages
         if (message != null)
-            Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void showError(String message) {
+        //TODO: implement a better way of showing errors
         if (message != null)
-            Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 }

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="weight_data_filter">
+        <item>day</item>
+        <item>Month</item>
+    </string-array>
+</resources>

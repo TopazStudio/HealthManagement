@@ -10,16 +10,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <!-- BASE ACTIVITY -->
+        <activity android:name=".ui.base.BaseView" />
+
+        <!-- SPLASH ACTIVITY -->
         <activity
             android:name=".ui.splash.SplashActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".ui.base.BaseView" />
+            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
 
         <!-- APP INIT MODULE -->
         <activity
@@ -30,11 +28,24 @@
 
         <!-- WEIGHT MODULE -->
         <activity
-            android:name=".ui.weight.WeightActivity"
+            android:name=".ui.weight.WeightOverview.WeightActivity"
             android:label="@string/weight_activity_label"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat" />
-        <activity android:name=".ui.home.HomeActivity"></activity>
-    </application>
+            android:theme="@style/AppTheme">
 
+        </activity>
+        <activity
+            android:name=".ui.weight.WeightEntry.WeightEntryActivity"
+            android:label="@string/title_activity_weight_entry"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- HOME MODULE -->
+        <activity android:name=".ui.home.HomeActivity" />
+    </application>
 </manifest>
