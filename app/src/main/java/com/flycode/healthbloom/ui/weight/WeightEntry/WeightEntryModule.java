@@ -22,7 +22,7 @@ public class WeightEntryModule {
     @Provides
     WeightEntryContract.WeightEntryPresenter<WeightEntryContract.WeightEntryView>
     provideWeightEntryPresenter(WeightMeasurement weightMeasurement,Note note,List<Tag> tags) {
-        WeightEntryPresenter presenter = new WeightEntryPresenter<>();
+        WeightEntryPresenter<WeightEntryContract.WeightEntryView> presenter = new WeightEntryPresenter<>();
         presenter.setWeightMeasurement(weightMeasurement);
         presenter.setNote(note);
         presenter.setTags(tags);

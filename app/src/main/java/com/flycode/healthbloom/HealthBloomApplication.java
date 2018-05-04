@@ -8,7 +8,6 @@ import dagger.android.AndroidInjector;
 import dagger.android.DaggerApplication;
 
 public class HealthBloomApplication extends DaggerApplication {
-    public ApplicationComponent appComponent;
 
     @Override
     public void onCreate() {
@@ -21,7 +20,6 @@ public class HealthBloomApplication extends DaggerApplication {
     protected AndroidInjector<? extends DaggerApplication> applicationInjector() {
         ApplicationComponent appComponent =  DaggerApplicationComponent.builder().application(this).build();
         appComponent.inject(this);
-        this.appComponent = appComponent;
         return appComponent;
     }
 }

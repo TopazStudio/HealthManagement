@@ -10,12 +10,12 @@ import android.databinding.InverseBindingMethods;
 import com.flycode.healthbloom.customUI.WeightScalePicker;
 
 @BindingMethods({
-        @BindingMethod(type = WeightScalePicker.class, attribute = "custom:maximumAcceptedSize", method = "setMaximumAcceptedSize"),
-        @BindingMethod(type = WeightScalePicker.class, attribute = "custom:typeOfUnits", method = "setTypeOfUnits"),
-        @BindingMethod(type = WeightScalePicker.class, attribute = "custom:weight", method = "setWeight"),
+        @BindingMethod(type = WeightScalePicker.class, attribute = "maximumAcceptedSize", method = "setMaximumAcceptedSize"),
+        @BindingMethod(type = WeightScalePicker.class, attribute = "typeOfUnits", method = "setTypeOfUnits"),
+        @BindingMethod(type = WeightScalePicker.class, attribute = "weight", method = "setWeight"),
 })
 @InverseBindingMethods({
-        @InverseBindingMethod(type = WeightScalePicker.class, attribute = "custom:weight", method = "getWeight",event = "weightAttrChanged"),
+        @InverseBindingMethod(type = WeightScalePicker.class, attribute = "weight", method = "getWeight",event = "weightAttrChanged"),
 })
 public class WeightScalePickerBindingAdapter {
 
