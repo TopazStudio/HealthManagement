@@ -4,11 +4,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:custom="http://schemas.android.com/apk/res-auto">
+
     <data class="WeightEntryBinding">
         <variable
             name="weightMeasurement"
             type="com.flycode.healthbloom.data.models.WeightMeasurement"/>
+        <variable
+            name="note"
+            type="com.flycode.healthbloom.data.models.Note"/>
     </data>
+
     <android.support.design.widget.CoordinatorLayout
         android:id="@+id/main_content"
         android:layout_width="match_parent"
@@ -17,6 +22,220 @@
         android:orientation="vertical"
         tools:context=".ui.weight.WeightEntry.WeightEntryActivity">
 
+        <!--WEIGHT DETAILS-->
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:orientation="vertical"
+                    app:cardBackgroundColor="@color/lightGray"
+                    app:cardCornerRadius="4dp"
+                    app:cardElevation="3dp"
+                    app:contentPadding="10dp">
+
+                    <com.google.android.flexbox.FlexboxLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:baselineAligned="false"
+                        android:weightSum="100"
+                        app:showDividerHorizontal="beginning|middle|end">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:layout_flexGrow="1">
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:src="@drawable/ic_time"
+                                android:layout_gravity="center_horizontal"
+                                android:contentDescription="@string/time" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/time"
+                                android:textStyle="bold"
+                                android:textSize="12sp"
+                                android:textColor="@color/bg_dark"
+                                android:layout_gravity="center_horizontal"/>
+                            <TextView
+                                android:id="@+id/tv_time"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="10:00pm"
+                                android:textSize="15sp"
+                                android:textColor="@color/bg_dark"
+                                android:layout_gravity="center_horizontal"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:layout_flexGrow="1">
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:src="@drawable/ic_date"
+                                android:layout_gravity="center_horizontal"
+                                android:contentDescription="@string/date" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/date"
+                                android:textSize="12sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/bg_dark"
+                                android:layout_gravity="center_horizontal"/>
+                            <TextView
+                                android:id="@+id/tv_date"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="12/12/2018"
+                                android:textSize="15sp"
+                                android:textColor="@color/bg_dark"
+                                android:layout_gravity="center_horizontal"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:layout_flexGrow="1">
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:src="@drawable/ic_man_black"
+                                android:layout_gravity="center_horizontal"
+                                android:contentDescription="@string/height" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/height"
+                                android:textSize="12sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/bg_dark"
+                                android:layout_gravity="center_horizontal"/>
+                            <TextView
+                                android:id="@+id/tv_height"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="123ft"
+                                android:textSize="15sp"
+                                android:textColor="@color/bg_dark"
+                                android:layout_gravity="center_horizontal"/>
+                        </LinearLayout>
+
+                    </com.google.android.flexbox.FlexboxLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:orientation="vertical"
+                    app:cardBackgroundColor="@color/lightGray"
+                    app:cardCornerRadius="4dp"
+                    app:cardElevation="3dp"
+                    app:contentPadding="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/tags"
+                            android:textColor="@color/bg_dark"
+                            android:layout_marginBottom="5dp"
+                            android:textSize="12sp"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:baselineAligned="false">
+                            <ImageView
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:src="@drawable/tags"
+                                android:layout_gravity="start|center_vertical"
+                                android:contentDescription="@string/tags" />
+                            <com.pchmn.materialchips.ChipsInput
+                                android:id="@+id/chips_input"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/light_gray_inputfields"
+                                app:hint="Enter a name"
+                                app:maxRows="3"
+                                app:hintColor="@color/lightGray_inputs_hint"
+                                app:chip_deletable="true"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:orientation="vertical"
+                    app:cardBackgroundColor="@color/lightGray"
+                    app:cardCornerRadius="4dp"
+                    app:cardElevation="3dp"
+                    app:contentPadding="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/add_a_note"
+                            android:textColor="@color/bg_dark"
+                            android:layout_marginBottom="5dp"
+                            android:textSize="12sp"/>
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="100dp"
+                            android:gravity="start|top"
+                            android:hint="@string/weight_note_hint"
+                            android:text="@{note.Content}"
+                            android:textColor="@color/bg_dark"
+                            android:textColorHint="@color/lightGray_inputs_hint"
+                            android:background="@drawable/light_gray_inputfields"
+                            android:inputType="text" />
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+            </LinearLayout>
+
+        </android.support.v4.widget.NestedScrollView>
+
+        <!--WEIGHT ENTRY-->
         <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -26,13 +245,15 @@
 
             <include
                 android:id="@+id/toolbar"
-                layout="@layout/toolbar"/>
+                layout="@layout/toolbar"
+                app:layout_scrollFlags="scroll|enterAlwaysCollapsed"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="center">
+                android:gravity="center"
+                app:layout_scrollFlags="scroll|enterAlwaysCollapsed">
 
                 <EditText
                     android:id="@+id/ed_weight_entry"
@@ -61,12 +282,29 @@
                 android:orientation="horizontal"
                 custom:maximumAcceptedSize="300"
                 custom:typeOfUnits="Kgs"
-                custom:weight="@={weightMeasurement.Weight}">
+                custom:weight="@={weightMeasurement.Weight}"
+                app:layout_scrollFlags="scroll|enterAlwaysCollapsed">
             </com.flycode.healthbloom.customUI.WeightScalePicker>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/lightGray"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                app:layout_scrollFlags="scroll|enterAlwaysCollapsed">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:text="@string/details"
+                    android:textColor="@color/bg_dark"
+                    android:textSize="@dimen/app_init_text" />
+            </LinearLayout>
         </android.support.design.widget.AppBarLayout>
 
+        <!--SAVE BUTTON-->
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab_save"
             android:layout_width="wrap_content"

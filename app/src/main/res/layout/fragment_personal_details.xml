@@ -39,7 +39,7 @@
         <View
             android:layout_width="100dp"
             android:layout_height="1dp"
-            android:background="@color/lightGray_txt"
+            android:background="@color/app_init_lightGray_txt"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="@dimen/app_init_padding"/>
 
@@ -79,7 +79,7 @@
                     android:hint="@string/fullname_txt"
                     android:text="@={user.Fullname}"
                     android:textColor="@color/app_init_input_txt"
-                    android:textColorHint="@color/lightGray_txt"
+                    android:textColorHint="@color/app_init_lightGray_txt"
                     android:textSize="@dimen/app_init_text"
                     android:background="@drawable/app_init_inputfields"/>
             </LinearLayout>
@@ -121,7 +121,7 @@
                     android:inputType="text"
                     android:text="@={user.Age}"
                     android:textColor="@color/app_init_titles"
-                    android:textColorHint="@color/lightGray_txt"
+                    android:textColorHint="@color/app_init_lightGray_txt"
                     android:textSize="@dimen/app_init_text" />
 
             </LinearLayout>
@@ -195,7 +195,7 @@
         <View
             android:layout_width="100dp"
             android:layout_height="1dp"
-            android:background="@color/lightGray_txt"
+            android:background="@color/app_init_lightGray_txt"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="@dimen/app_init_padding"/>
 

@@ -43,7 +43,7 @@
                     android:layout_gravity="start"
                     android:layout_marginStart="28dp"
                     android:text="20"
-                    android:textColor="@color/lightGray_inputs_focused"
+                    android:textColor="@color/app_init_lightGray_inputs_focused"
                     android:textSize="30sp" />
 
                 <TextView
@@ -53,7 +53,7 @@
                     android:layout_gravity="start"
                     android:layout_marginStart="20dp"
                     android:text="Apr, 2018"
-                    android:textColor="@color/lightGray_inputs_focused"
+                    android:textColor="@color/app_init_lightGray_inputs_focused"
                     android:textSize="12sp" />
             </LinearLayout>
 

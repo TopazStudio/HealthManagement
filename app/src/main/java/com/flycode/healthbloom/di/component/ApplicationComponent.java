@@ -2,10 +2,12 @@ package com.flycode.healthbloom.di.component;
 
 import android.app.Application;
 
+import com.flycode.healthbloom.data.models.User;
 import com.flycode.healthbloom.di.module.ActivityBindingsModule;
 import com.flycode.healthbloom.di.module.AppModule;
 import com.flycode.healthbloom.di.module.DatabaseModule;
 
+import javax.inject.Named;
 import javax.inject.Singleton;
 
 import dagger.BindsInstance;
@@ -33,4 +35,7 @@ public interface ApplicationComponent extends AndroidInjector<DaggerApplication>
 
         ApplicationComponent build();
     }
+
+    @Named("default_user")
+    User provideDefaultUser();
 }

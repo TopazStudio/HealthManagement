@@ -38,7 +38,7 @@
         <View
             android:layout_width="100dp"
             android:layout_height="1dp"
-            android:background="@color/lightGray_txt"
+            android:background="@color/app_init_lightGray_txt"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="@dimen/app_init_padding"/>
 

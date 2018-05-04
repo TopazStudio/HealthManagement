@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorAccent">#FFFFFF</color>
+    <color name="colorAccent">#5c9cfe</color>
 
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#43439f</color>
@@ -24,9 +24,13 @@
 
     <!--Dark tints-->
     <color name="bg_dark">#2d2d2d</color>
-    <color name="lightGray_txt">#afafaf</color>
-    <color name="lightGray_inputs_focused">#616161</color>
-    <color name="lightGray_inputs_unfocused">#424242</color>
+    <color name="app_init_lightGray_txt">#afafaf</color>
+    <color name="app_init_lightGray_inputs_focused">#616161</color>
+    <color name="app_init_lightGray_inputs_unfocused">#424242</color>
+
+    <color name="lightGray_inputs">#d6d6d6</color>
+    <color name="lightGray_inputs_hint">#afafaf</color>
+
 
     <!--font color-->
     <color name="app_init_text">#afafaf</color>

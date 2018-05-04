@@ -4,7 +4,7 @@
         <shape
             android:shape="rectangle">
             <corners android:radius="2dp"/>
-            <solid android:color="@color/lightGray_inputs_focused"/>
+            <solid android:color="@color/app_init_lightGray_inputs_focused"/>
             <padding
                 android:right="5dp"
                 android:left="10dp"
@@ -19,7 +19,7 @@
         <shape
             android:shape="rectangle">
             <corners android:radius="2dp"/>
-            <solid android:color="@color/lightGray_inputs_unfocused"/>
+            <solid android:color="@color/app_init_lightGray_inputs_unfocused"/>
             <padding
                 android:right="5dp"
                 android:left="10dp"

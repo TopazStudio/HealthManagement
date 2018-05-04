@@ -62,4 +62,11 @@
     <string name="entries">Entries</string>
     <string name="title_activity_weight_entry">Add Your Weight</string>
     <string name="zero">0</string>
+    <string name="tags">Add a tag</string>
+    <string name="height">height</string>
+    <string name="date">date</string>
+    <string name="time">time</string>
+    <string name="details">Details</string>
+    <string name="add_a_note">Add a note</string>
+    <string name="weight_note_hint">How did you lose the weight?</string>
 </resources>

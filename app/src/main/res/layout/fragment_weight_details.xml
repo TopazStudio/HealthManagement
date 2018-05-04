@@ -39,7 +39,7 @@
             android:layout_height="1dp"
             android:layout_marginBottom="@dimen/app_init_padding"
             android:layout_marginTop="5dp"
-            android:background="@color/lightGray_txt" />
+            android:background="@color/app_init_lightGray_txt" />
 
         <!--WEIGHT INPUT-->
         <LinearLayout
@@ -118,7 +118,7 @@
             android:layout_height="1dp"
             android:layout_marginBottom="@dimen/app_init_padding"
             android:layout_marginTop="5dp"
-            android:background="@color/lightGray_txt" />
+            android:background="@color/app_init_lightGray_txt" />
 
         <!--INFO-->
         <TextView

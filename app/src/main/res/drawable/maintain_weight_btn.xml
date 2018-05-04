@@ -4,7 +4,7 @@
         <layer-list>
             <item>
                 <ripple
-                    android:color="@color/lightGray_inputs_unfocused"
+                    android:color="@color/app_init_lightGray_inputs_unfocused"
                     android:radius="10dp"/>
             </item>
             <item>
@@ -27,7 +27,7 @@
         <layer-list>
             <item>
                 <ripple
-                    android:color="@color/lightGray_inputs_unfocused"
+                    android:color="@color/app_init_lightGray_inputs_unfocused"
                     android:radius="10dp"/>
             </item>
             <item>
