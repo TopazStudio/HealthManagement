@@ -13,10 +13,12 @@ public class LineDataSetFix extends LineDataSet {
 
     @Override
     public Entry getEntryForIndex(int index) {
-        if (!(mValues.size() == index)){
+        if (mValues.size() > index){
             return mValues.isEmpty() ? null : mValues.get(index);
-        } else {
-            return mValues.isEmpty() ? null : mValues.get(index - 1);
+        }else {
+            //determine by how much
+            int byHowMuch = index - (mValues.size() - 1);
+            return mValues.isEmpty() ? null : mValues.get(index - byHowMuch);
         }
     }
 }

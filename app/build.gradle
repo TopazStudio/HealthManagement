@@ -69,4 +69,5 @@ dependencies {
     implementation 'com.android.support:cardview-v7:27.1.1'
     implementation 'com.google.android:flexbox:0.3.2'
     implementation 'com.github.pchmn:MaterialChipsInput:1.0.8'
+    implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
 }

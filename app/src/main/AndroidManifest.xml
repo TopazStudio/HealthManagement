@@ -2,6 +2,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.flycode.healthbloom">
 
+    <!--PERMISSIONS-->
+    <uses-feature
+        android:name="android.permission.CAMERA"
+        android:required="false"/>
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="18" />
+
+    <!--APPLICATION-->
     <application
         android:name=".HealthBloomApplication"
         android:allowBackup="true"
@@ -42,6 +51,7 @@
             android:name=".ui.weight.WeightEntry.WeightEntryActivity"
             android:label="@string/title_activity_weight_entry"
             android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
             android:parentActivityName=".ui.weight.WeightOverview.WeightOverviewActivity">
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data

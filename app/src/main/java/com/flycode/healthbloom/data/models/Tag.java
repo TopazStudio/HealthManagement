@@ -10,7 +10,6 @@ import com.flycode.healthbloom.data.models.CustomTypes.TagChip;
 import com.flycode.healthbloom.data.models.TypeConverters.ObservableFieldStringConverter;
 import com.flycode.healthbloom.data.models.TypeConverters.ObservableIntConverter;
 import com.raizlabs.android.dbflow.annotation.Column;
-import com.raizlabs.android.dbflow.annotation.ForeignKey;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
 import com.raizlabs.android.dbflow.structure.BaseModel;
@@ -29,9 +28,6 @@ public class Tag extends BaseModel implements TagChip{
 
     @Column(typeConverter = ObservableIntConverter.class)
     public ObservableInt Color = new ObservableInt();
-
-    @ForeignKey(stubbedRelationship = true)
-    WeightMeasurement weightMeasurement;
 
     @Override
     public Object getId() {

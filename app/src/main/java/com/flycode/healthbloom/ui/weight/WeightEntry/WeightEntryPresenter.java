@@ -1,35 +1,51 @@
 package com.flycode.healthbloom.ui.weight.WeightEntry;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 
 import com.flycode.healthbloom.data.models.Note;
 import com.flycode.healthbloom.data.models.Tag;
-import com.flycode.healthbloom.data.models.User;
 import com.flycode.healthbloom.data.models.WeightMeasurement;
-import com.flycode.healthbloom.data.models.WeightMeasurement_Table;
+import com.flycode.healthbloom.data.models.WeightMeasurement_Tag;
 import com.flycode.healthbloom.ui.base.BasePresenter;
+import com.flycode.healthbloom.utils.FileUtils;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
+import com.raizlabs.android.dbflow.structure.database.DatabaseWrapper;
+import com.raizlabs.android.dbflow.structure.database.transaction.ITransaction;
 import com.raizlabs.android.dbflow.structure.database.transaction.QueryTransaction;
 import com.raizlabs.android.dbflow.structure.database.transaction.Transaction;
 
-import java.util.Date;
+import java.io.InputStream;
+import java.util.Calendar;
 import java.util.List;
 
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 import lombok.Setter;
 
 public class WeightEntryPresenter<V extends WeightEntryContract.WeightEntryView>
         extends BasePresenter<V>
         implements WeightEntryContract.WeightEntryPresenter<V>   {
 
-    @Setter
-    User user;
+
     @Setter
     WeightMeasurement weightMeasurement;
     @Setter
     List<Tag> tags;
     @Setter
     Note note;
+    @Setter
+    Calendar entryCalendar;
+
+    private Bitmap imageBitmap;
+
 
     /**
      * Log the new Weight Measurement by the user
@@ -37,54 +53,89 @@ public class WeightEntryPresenter<V extends WeightEntryContract.WeightEntryView>
      * */
     @Override
     public void onSave() {
-        //TODO: better notification of registry and make async
-        //TODO: show loading screen with async database insertion
+        getMvpView().showLoading();
 
         //Add height.
         if (weightMeasurement.Height.get() == 0f){
             //No height specified therefore use the default
-            weightMeasurement.Height.set(user.InitHeight.get());
+            weightMeasurement.Height.set(defaultUser.InitHeight.get());
         }
+        weightMeasurement.Date.set(entryCalendar.getTime()); //Add date.
+        weightMeasurement.BMI.set(29.0f); //Add BMI  //TODO: implement BMI library to handle BMI calculations
+        note.weightMeasurement = weightMeasurement; //Add note
 
-        //Add date.
-        weightMeasurement.Date.set(new Date());
+        beginSaveTransaction();
+    }
 
-        //Add BMI
-        //TODO: implement BMI library to handle BMI calculations
-        weightMeasurement.BMI.set(29.0f);
+    @Override
+    public void onCaptureImageResult(final Intent data) {
+        getMvpView().showProgressBar();
+        getCompositeDisposable().add(Observable.create(new ObservableOnSubscribe<String>() {
+                    @Override
+                    public void subscribe(ObservableEmitter<String> emitter) throws Exception {
+                        imageBitmap = (Bitmap) data.getExtras().get("data");
+                        getMvpView().setPhotoProgress(100);
+                        emitter.onNext("complete");
+                    }
+                })
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<String>() {
+                    @Override
+                    public void accept(String String) throws Exception {
+                        getMvpView().setImageBitmap(imageBitmap);
+                        getMvpView().hideProgressBar();
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        getMvpView().showError(throwable.getMessage());
+                    }
+                })
+        );
+    }
 
-        if(weightMeasurement.save()){
-            getMvpView().showMessage("Successfully Saved");
-            getMvpView().finishAndGoToParent();
-        }else{
-            getMvpView().showError("Error in registry");
-        }
+    @Override
+    public void onPickerImageResult(final Intent data) {
+        getMvpView().showProgressBar();
+        getCompositeDisposable().add(
+                Observable.create(new ObservableOnSubscribe<String>() {
+                    @Override
+                    public void subscribe(ObservableEmitter<String> emitter) throws Exception {
+                        final Uri imageUri = data.getData();
+                        getMvpView().setPhotoProgress(30);
+
+                        InputStream imageStream = null;
+                        if (imageUri != null) {
+                            imageStream = getMvpView().getContentResolver().openInputStream(imageUri);
+                        }
+                        getMvpView().setPhotoProgress(50);
+
+                        imageBitmap = BitmapFactory.decodeStream(imageStream);
+                        getMvpView().setPhotoProgress(100);
+                        emitter.onNext("complete");
+                    }
+                })
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<String>() {
+                    @Override
+                    public void accept(String String) {
+                        getMvpView().setImageBitmap(imageBitmap);
+                        getMvpView().hideProgressBar();
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) {
+                        getMvpView().showError(throwable.getMessage());
+                    }
+                })
+        );
     }
 
     /**
-     * Fetch a WeightMeasurement model from the database with the specified id
-     *
+     * Fetches all users tags.
      * */
-    @Override
-    public void fetchWeightEntry(int id) {
-        SQLite.select()
-                .from(WeightMeasurement.class)
-                .where(WeightMeasurement_Table.id.eq(id))
-                .async()
-                .querySingleResultCallback(new QueryTransaction.QueryResultSingleCallback<WeightMeasurement>() {
-
-                    @Override
-                    public void onSingleQueryResult(QueryTransaction transaction, @Nullable WeightMeasurement w) {
-                        weightMeasurement = w;
-                    }
-                }).error(new Transaction.Error() {
-            @Override
-            public void onError(@NonNull Transaction transaction, @NonNull Throwable error) {
-                getMvpView().showError(error.getMessage());
-            }
-        }).execute();
-    }
-
     @Override
     public void fetchTags() {
         SQLite.select()
@@ -102,6 +153,52 @@ public class WeightEntryPresenter<V extends WeightEntryContract.WeightEntryView>
                 public void onError(@NonNull Transaction transaction, @NonNull Throwable error) {
                     getMvpView().showError(error.getMessage());
                 }
-            });
+            })
+            .execute();
+    }
+
+    /**
+     * Begin a transaction to save the models from Weight Entry Activity
+     *
+     * */
+    private void beginSaveTransaction() {
+        Transaction transaction = database.beginTransactionAsync(new ITransaction() {
+            @Override
+            public void execute(DatabaseWrapper databaseWrapper) {
+
+                //Save Photo
+                weightMeasurement.PhotoLocation = FileUtils.saveImage(imageBitmap,"/progress_photos");
+
+                //Save WeightMeasurement
+                weightMeasurement.save();
+
+                //Save Tags
+                for (Tag tag:tags) {
+                    WeightMeasurement_Tag weightMeasurementTag = new WeightMeasurement_Tag();
+                    weightMeasurementTag.setTag(tag);
+                    weightMeasurementTag.setWeightMeasurement(weightMeasurement);
+                    weightMeasurementTag.save();
+                }
+
+                //Save Note
+                note.save();
+            }
+        })
+        .success(new Transaction.Success() {
+            @Override
+            public void onSuccess(@NonNull Transaction transaction) {
+                getMvpView().hideLoading();
+                getMvpView().showMessage("Successfully Saved");
+                getMvpView().finishAndGoToParent();
+            }
+        })
+        .error(new Transaction.Error() {
+            @Override
+            public void onError(@NonNull Transaction transaction, @NonNull Throwable error) {
+                getMvpView().showError(error.getMessage());
+            }
+        })
+        .build();
+        transaction.execute();
     }
 }

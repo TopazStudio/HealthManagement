@@ -19,5 +19,5 @@ public class Note extends BaseModel {
     public ObservableFieldString Content = new ObservableFieldString();
 
     @ForeignKey(stubbedRelationship = true)
-    WeightMeasurement weightMeasurement;
+    public WeightMeasurement weightMeasurement;
 }

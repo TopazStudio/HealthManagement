@@ -28,8 +28,8 @@
     <color name="app_init_lightGray_inputs_focused">#616161</color>
     <color name="app_init_lightGray_inputs_unfocused">#424242</color>
 
-    <color name="lightGray_inputs">#d6d6d6</color>
-    <color name="lightGray_inputs_hint">#afafaf</color>
+    <color name="lightGray_inputs">#dedede</color>
+    <color name="lightGray_inputs_hint">#a1a1a1</color>
 
 
     <!--font color-->

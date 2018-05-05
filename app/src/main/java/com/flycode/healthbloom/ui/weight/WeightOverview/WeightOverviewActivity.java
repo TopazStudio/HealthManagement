@@ -16,6 +16,7 @@ import com.flycode.healthbloom.databinding.WeightActivityBinding;
 import com.flycode.healthbloom.ui.base.BaseView;
 import com.flycode.healthbloom.ui.weight.WeightOverview.BMIGraph.BMIGraphFragment;
 import com.flycode.healthbloom.ui.weight.WeightOverview.WeightGraph.WeightGraphFragment;
+import com.flycode.healthbloom.utils.DatabaseFaker;
 
 import java.util.List;
 import java.util.Objects;
@@ -32,6 +33,8 @@ public class WeightOverviewActivity
     EntryListAdapter entryListAdapter;
     @Inject
     WeightOverviewContract.WeightPresenter<WeightOverviewContract.WeightView> presenter;
+    @Inject
+    DatabaseFaker databaseFaker;
 
     private WeightActivityBinding binding;
 
@@ -52,8 +55,10 @@ public class WeightOverviewActivity
      * Setup the graphs
      * */
     private void init(){
-      setUpViewPager();
-      setUpRecyclerView();
+        setUpViewPager();
+        setUpRecyclerView();
+
+//        databaseFaker.fakeDefaultUser();
     }
 
     /**
