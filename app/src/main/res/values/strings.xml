@@ -73,4 +73,14 @@
     <string name="add_a_note">Add a note</string>
     <string name="weight_note_hint">How did you do it?</string>
     <string name="progress_photo_hint">Add a progress photo</string>
+
+    <!--Tags Activity-->
+    <string name="title_activity_tags">Tags</string>
+    <string name="add_a_tag">Add a tag</string>
+    <string name="tag_name_hint">name</string>
+    <string name="tag_description_hint">description</string>
+    <string name="tag_primary_color_hint">Set your primary colour</string>
+    <string name="tag_secondary_colour_hint">Set your secondary colour</string>
+    <string name="tag_primary_color_picker_title">Set your primary colour</string>
+    <string name="tag_secondary_color_picker_title">Set you secondary colour</string>
 </resources>

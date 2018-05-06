@@ -68,7 +68,7 @@ public class DatabaseFaker {
             Tag tag = new Tag();
             tag.Name.set(faker.lorem.characters(6));
             tag.Description.set(faker.lorem.paragraph(2));
-            tag.Color.set(faker.number.between(Color.WHITE,Color.BLACK));
+            tag.PrimaryColor.set(faker.number.between(Color.WHITE,Color.BLACK));
             tags.add(tag);
         }
 

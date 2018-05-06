@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data class="CustomTagEntryBinging">
+        <variable
+            name="tag"
+            type="com.flycode.healthbloom.data.models.Tag"/>
+    </data>
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <!--SUBTITLES-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/add_a_tag"
+                android:textSize="@dimen/app_init_subheadings"
+                android:textColor="@color/bg_dark"
+                android:layout_gravity="start"/>
+            <View
+                android:layout_width="100dp"
+                android:layout_height="1dp"
+                android:background="@color/bg_dark"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="@dimen/app_init_padding"/>
+
+            <!--TAG NAME INPUT-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:text="@string/tag_name_hint"
+                    android:textColor="@color/bg_dark"
+                    android:textSize="@dimen/app_init_fieldHintTitles"
+                    android:visibility="visible"/>
+
+                <EditText
+                    android:id="@+id/ed_tag_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/app_init_normal_input_height"
+                    android:inputType="text"
+                    android:text="@={tag.Name}"
+                    android:textSize="@dimen/app_init_text"
+                    android:background="@drawable/light_gray_inputfields"/>
+            </LinearLayout>
+
+            <!--TAG DESCRIPTION INPUT-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:text="@string/tag_description_hint"
+                    android:textColor="@color/bg_dark"
+                    android:textSize="@dimen/app_init_fieldHintTitles"
+                    android:visibility="visible"/>
+
+                <EditText
+                    android:id="@+id/ed_tag_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/app_init_normal_input_height"
+                    android:minHeight="200dp"
+                    android:inputType="textMultiLine"
+                    android:text="@={tag.Description}"
+                    android:textSize="@dimen/app_init_text"
+                    android:background="@drawable/light_gray_inputfields"/>
+            </LinearLayout>
+
+            <!--PRIMARY COLOR-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tag_primary_color_hint"
+                    android:textColor="@color/bg_dark"/>
+                <View
+                    android:id="@+id/primary_color_view"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="0dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@{tag.PrimaryColor}"/>
+            </LinearLayout>
+
+            <!--SECONDARY COLOR-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tag_secondary_colour_hint"
+                    android:textColor="@color/bg_dark"/>
+                <View
+                    android:id="@+id/secondary_color_view"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="0dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@{tag.SecondaryColor}"/>
+            </LinearLayout>
+            
+        </LinearLayout>
+
+    </android.support.constraint.ConstraintLayout>
+</layout>

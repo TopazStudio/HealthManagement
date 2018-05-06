@@ -7,6 +7,8 @@ import com.flycode.healthbloom.ui.home.HomeActivity;
 import com.flycode.healthbloom.ui.home.HomeModule;
 import com.flycode.healthbloom.ui.splash.SplashActivity;
 import com.flycode.healthbloom.ui.splash.SplashActivityModule;
+import com.flycode.healthbloom.ui.tags.TagsActivity;
+import com.flycode.healthbloom.ui.tags.TagsModule;
 import com.flycode.healthbloom.ui.weight.WeightEntry.WeightEntryActivity;
 import com.flycode.healthbloom.ui.weight.WeightEntry.WeightEntryModule;
 import com.flycode.healthbloom.ui.weight.WeightOverview.WeightOverviewActivity;
@@ -36,4 +38,8 @@ public abstract class ActivityBindingsModule {
     @PerActivity
     @ContributesAndroidInjector(modules = WeightEntryModule.class)
     abstract WeightEntryActivity weightEntryActivity();
+
+    @PerActivity
+    @ContributesAndroidInjector(modules = TagsModule.class)
+    abstract TagsActivity tagsActivity();
 }

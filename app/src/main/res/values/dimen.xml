@@ -14,4 +14,8 @@
     <dimen name="app_init_subheadings">18sp</dimen>
     <dimen name="app_init_text">15sp</dimen>
     <dimen name="app_init_fieldHintTitles">12sp</dimen>
+
+    <!--tags-->
+    <dimen name="tag_spacing">20dp</dimen>
+
 </resources>
