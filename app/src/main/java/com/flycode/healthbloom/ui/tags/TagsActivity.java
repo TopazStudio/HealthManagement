@@ -2,6 +2,7 @@ package com.flycode.healthbloom.ui.tags;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.Toolbar;
@@ -84,6 +85,7 @@ public class TagsActivity
             public void onClick(View v) {
                 new ColorChooserDialog.Builder(context,
                         R.string.tag_primary_color_picker_title)
+                        .accentMode(true)
                         .preselect(customTagEntryBinging.getTag().PrimaryColor.get())
                         .show(fragmentManager);
             }
@@ -94,6 +96,7 @@ public class TagsActivity
             public void onClick(View v) {
                 new ColorChooserDialog.Builder(context,
                         R.string.tag_secondary_color_picker_title)
+                        .accentMode(true)
                         .preselect(customTagEntryBinging.getTag().SecondaryColor.get())
                         .show(fragmentManager);
             }
@@ -128,6 +131,10 @@ public class TagsActivity
 
     public void onAddTag(View view){
         Tag tag = new Tag();
+        //Set default colours
+        tag.PrimaryColor.set(Color.WHITE);
+        tag.SecondaryColor.set(Color.LTGRAY);
+
         customTagEntryBinging.setTag(tag);
         customTagEntryDialog.show();
     }
