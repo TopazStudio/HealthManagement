@@ -1,4 +1,4 @@
-package com.flycode.healthbloom.ui.weight.WeightOverview;
+package com.flycode.healthbloom.utils.BMI;
 
 public class Height_Weight_Converter {
     //convert height

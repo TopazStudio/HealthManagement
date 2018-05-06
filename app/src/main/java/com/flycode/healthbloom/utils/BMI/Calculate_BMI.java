@@ -1,4 +1,4 @@
-package com.flycode.healthbloom.ui.weight.WeightOverview;
+package com.flycode.healthbloom.utils.BMI;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
