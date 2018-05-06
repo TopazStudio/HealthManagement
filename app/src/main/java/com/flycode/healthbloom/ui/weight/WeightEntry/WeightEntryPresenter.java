@@ -21,6 +21,7 @@ import com.raizlabs.android.dbflow.structure.database.transaction.Transaction;
 import java.io.InputStream;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Objects;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
@@ -72,23 +73,24 @@ public class WeightEntryPresenter<V extends WeightEntryContract.WeightEntryView>
         getMvpView().showProgressBar();
         getCompositeDisposable().add(Observable.create(new ObservableOnSubscribe<String>() {
                     @Override
-                    public void subscribe(ObservableEmitter<String> emitter) throws Exception {
-                        imageBitmap = (Bitmap) data.getExtras().get("data");
+                    public void subscribe(ObservableEmitter<String> emitter) {
+                        imageBitmap = (Bitmap) Objects.requireNonNull(data.getExtras()).get("data");
                         getMvpView().setPhotoProgress(100);
                         emitter.onNext("complete");
+                        emitter.onComplete();
                     }
                 })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<String>() {
                     @Override
-                    public void accept(String String) throws Exception {
+                    public void accept(String String) {
                         getMvpView().setImageBitmap(imageBitmap);
                         getMvpView().hideProgressBar();
                     }
                 }, new Consumer<Throwable>() {
                     @Override
-                    public void accept(Throwable throwable) throws Exception {
+                    public void accept(Throwable throwable) {
                         getMvpView().showError(throwable.getMessage());
                     }
                 })
@@ -114,6 +116,7 @@ public class WeightEntryPresenter<V extends WeightEntryContract.WeightEntryView>
                         imageBitmap = BitmapFactory.decodeStream(imageStream);
                         getMvpView().setPhotoProgress(100);
                         emitter.onNext("complete");
+                        emitter.onComplete();
                     }
                 })
                 .subscribeOn(Schedulers.io())

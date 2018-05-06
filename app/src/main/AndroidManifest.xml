@@ -2,15 +2,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.flycode.healthbloom">
 
-    <!--PERMISSIONS-->
+    <!-- PERMISSIONS -->
     <uses-feature
         android:name="android.permission.CAMERA"
-        android:required="false"/>
+        android:required="false" />
+
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="18" />
-
-    <!--APPLICATION-->
+    <!-- APPLICATION -->
     <application
         android:name=".HealthBloomApplication"
         android:allowBackup="true"
@@ -26,14 +26,14 @@
         <!-- SPLASH ACTIVITY -->
         <activity
             android:name=".ui.splash.SplashActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
 
         <!-- APP INIT MODULE -->
         <activity
             android:name=".ui.appInitialization.AppInitActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar"
-            android:windowSoftInputMode="stateHidden"/>
+            android:windowSoftInputMode="stateHidden" />
 
         <!-- WEIGHT MODULE -->
         <activity
@@ -41,18 +41,15 @@
             android:label="@string/weight_activity_label"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".ui.weight.WeightEntry.WeightEntryActivity"
             android:label="@string/title_activity_weight_entry"
+            android:parentActivityName=".ui.weight.WeightOverview.WeightOverviewActivity"
             android:theme="@style/AppTheme"
-            android:windowSoftInputMode="stateHidden"
-            android:parentActivityName=".ui.weight.WeightOverview.WeightOverviewActivity">
+            android:windowSoftInputMode="stateHidden">
+
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -61,5 +58,16 @@
 
         <!-- HOME MODULE -->
         <activity android:name=".ui.home.HomeActivity" />
+        <activity
+            android:name=".ui.tags.TagsActivity"
+            android:label="@string/title_activity_tags"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
+
 </manifest>

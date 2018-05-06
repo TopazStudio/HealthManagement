@@ -6,5 +6,5 @@ package com.flycode.healthbloom.data.db;
         foreignKeyConstraintsEnforced = true)
 public class Database {
     public static final String NAME = "Health_Upgrade";
-    public static final int VERSION = 1;
+    public static final int VERSION = 2;
 }

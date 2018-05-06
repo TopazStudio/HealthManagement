@@ -6,16 +6,16 @@ import android.net.Uri;
 
 import com.flycode.healthbloom.data.db.Database;
 import com.flycode.healthbloom.data.models.CustomTypes.ObservableFieldString;
-import com.flycode.healthbloom.data.models.CustomTypes.TagChip;
 import com.flycode.healthbloom.data.models.TypeConverters.ObservableFieldStringConverter;
 import com.flycode.healthbloom.data.models.TypeConverters.ObservableIntConverter;
+import com.pchmn.materialchips.model.ChipInterface;
 import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 
 @Table(database = Database.class, name = "tags" )
-public class Tag extends BaseModel implements TagChip{
+public class Tag extends BaseModel implements ChipInterface {
     @PrimaryKey(autoincrement = true)
     @Column
     public int id;
@@ -27,7 +27,10 @@ public class Tag extends BaseModel implements TagChip{
     public ObservableFieldString Description = new ObservableFieldString();
 
     @Column(typeConverter = ObservableIntConverter.class)
-    public ObservableInt Color = new ObservableInt();
+    public ObservableInt PrimaryColor = new ObservableInt();
+
+    @Column(typeConverter = ObservableIntConverter.class)
+    public ObservableInt SecondaryColor = new ObservableInt();
 
     @Override
     public Object getId() {
@@ -52,10 +55,5 @@ public class Tag extends BaseModel implements TagChip{
     @Override
     public String getInfo() {
         return Description.get();
-    }
-
-    @Override
-    public int getColor() {
-        return Color.get();
     }
 }
