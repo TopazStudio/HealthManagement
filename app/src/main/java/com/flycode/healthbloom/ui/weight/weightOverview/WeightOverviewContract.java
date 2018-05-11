@@ -1,4 +1,4 @@
-package com.flycode.healthbloom.ui.weight.WeightOverview;
+package com.flycode.healthbloom.ui.weight.weightOverview;
 
 import com.flycode.healthbloom.data.models.WeightMeasurement;
 import com.flycode.healthbloom.ui.base.MvpPresenter;

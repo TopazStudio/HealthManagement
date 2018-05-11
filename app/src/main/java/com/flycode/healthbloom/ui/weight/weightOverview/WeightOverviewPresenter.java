@@ -1,4 +1,4 @@
-package com.flycode.healthbloom.ui.weight.WeightOverview;
+package com.flycode.healthbloom.ui.weight.weightOverview;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -6,7 +6,7 @@ import android.support.annotation.NonNull;
 import com.flycode.healthbloom.data.models.WeightMeasurement;
 import com.flycode.healthbloom.data.models.WeightMeasurement_Table;
 import com.flycode.healthbloom.ui.base.BasePresenter;
-import com.flycode.healthbloom.ui.weight.WeightEntry.WeightEntryActivity;
+import com.flycode.healthbloom.ui.weight.weightEntry.WeightEntryActivity;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.raizlabs.android.dbflow.structure.database.transaction.QueryTransaction;
 import com.raizlabs.android.dbflow.structure.database.transaction.Transaction;

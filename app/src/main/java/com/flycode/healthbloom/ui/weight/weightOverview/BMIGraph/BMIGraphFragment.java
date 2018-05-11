@@ -1,4 +1,4 @@
-package com.flycode.healthbloom.ui.weight.WeightOverview.BMIGraph;
+package com.flycode.healthbloom.ui.weight.weightOverview.BMIGraph;
 
 
 import android.graphics.Color;

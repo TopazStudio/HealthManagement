@@ -1,4 +1,4 @@
-package com.flycode.healthbloom.ui.weight.WeightEntry;
+package com.flycode.healthbloom.ui.weight.weightEntry;
 
 import android.content.Intent;
 import android.graphics.Bitmap;

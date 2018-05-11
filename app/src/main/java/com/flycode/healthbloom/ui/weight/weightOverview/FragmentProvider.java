@@ -1,10 +1,10 @@
-package com.flycode.healthbloom.ui.weight.WeightOverview;
+package com.flycode.healthbloom.ui.weight.weightOverview;
 
 import com.flycode.healthbloom.di.scope.PerFragment;
-import com.flycode.healthbloom.ui.weight.WeightOverview.BMIGraph.BMIGraphFragment;
-import com.flycode.healthbloom.ui.weight.WeightOverview.BMIGraph.BMIGraphModule;
-import com.flycode.healthbloom.ui.weight.WeightOverview.WeightGraph.WeightGraphFragment;
-import com.flycode.healthbloom.ui.weight.WeightOverview.WeightGraph.WeightGraphModule;
+import com.flycode.healthbloom.ui.weight.weightOverview.BMIGraph.BMIGraphFragment;
+import com.flycode.healthbloom.ui.weight.weightOverview.BMIGraph.BMIGraphModule;
+import com.flycode.healthbloom.ui.weight.weightOverview.WeightGraph.WeightGraphFragment;
+import com.flycode.healthbloom.ui.weight.weightOverview.WeightGraph.WeightGraphModule;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;

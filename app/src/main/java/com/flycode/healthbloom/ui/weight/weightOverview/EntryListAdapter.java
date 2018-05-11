@@ -1,4 +1,4 @@
-package com.flycode.healthbloom.ui.weight.WeightOverview;
+package com.flycode.healthbloom.ui.weight.weightOverview;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

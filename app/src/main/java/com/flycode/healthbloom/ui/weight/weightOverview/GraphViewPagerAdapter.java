@@ -1,4 +1,4 @@
-package com.flycode.healthbloom.ui.weight.WeightOverview;
+package com.flycode.healthbloom.ui.weight.weightOverview;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

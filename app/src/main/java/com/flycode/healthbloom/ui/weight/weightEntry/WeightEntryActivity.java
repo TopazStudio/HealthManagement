@@ -1,4 +1,4 @@
-package com.flycode.healthbloom.ui.weight.WeightEntry;
+package com.flycode.healthbloom.ui.weight.weightEntry;
 
 import android.Manifest;
 import android.app.DatePickerDialog;
@@ -26,7 +26,6 @@ import com.flycode.healthbloom.data.models.Tag;
 import com.flycode.healthbloom.data.models.WeightMeasurement;
 import com.flycode.healthbloom.databinding.WeightEntryBinding;
 import com.flycode.healthbloom.ui.base.BaseView;
-import com.flycode.healthbloom.utils.DatabaseFaker;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -45,8 +44,6 @@ public class WeightEntryActivity
     WeightEntryContract.WeightEntryPresenter<WeightEntryContract.WeightEntryView> presenter;
     @Inject
     WeightMeasurement weightMeasurement;
-    @Inject
-    DatabaseFaker databaseFaker;
     @Inject
     List<Tag> tags;
     @Inject
@@ -89,10 +86,6 @@ public class WeightEntryActivity
 
         binding.progressPhotoProgressBar.setProgress(0);
         binding.progressPhotoProgressBar.setMax(100);
-
-//        databaseFaker.fakeTags();
-//        databaseFaker.fakeDefaultUser();
-//        checkImagePermissions();
 
         //TODO: send the whole weightMeasurement instead of having to requery the database
         //Determine if its a new entry

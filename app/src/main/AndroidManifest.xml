@@ -10,6 +10,7 @@
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="18" />
+
     <!-- APPLICATION -->
     <application
         android:name=".HealthBloomApplication"
@@ -19,9 +20,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <!-- BASE ACTIVITY -->
-        <activity android:name=".ui.base.BaseView" />
 
         <!-- SPLASH ACTIVITY -->
         <activity
@@ -37,30 +35,27 @@
 
         <!-- WEIGHT MODULE -->
         <activity
-            android:name=".ui.weight.WeightOverview.WeightOverviewActivity"
+            android:name=".ui.weight.weightOverview.WeightOverviewActivity"
             android:label="@string/weight_activity_label"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme">
-
-        </activity>
+            android:theme="@style/AppTheme"/>
         <activity
-            android:name=".ui.weight.WeightEntry.WeightEntryActivity"
+            android:name=".ui.weight.weightEntry.WeightEntryActivity"
             android:label="@string/title_activity_weight_entry"
-            android:parentActivityName=".ui.weight.WeightOverview.WeightOverviewActivity"
+            android:parentActivityName=".ui.weight.weightOverview.WeightOverviewActivity"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.weight.WeightOverview.WeightOverviewActivity" />
+                android:value=".ui.weight.weightOverview.WeightOverviewActivity" />
         </activity>
 
         <!-- HOME MODULE -->
-        <activity android:name=".ui.home.HomeActivity" />
         <activity
-            android:name=".ui.tags.TagsActivity"
-            android:label="@string/title_activity_tags"
+            android:name=".ui.home.HomeActivity"
+            android:label="@string/home_activity_title"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -68,6 +63,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!--TAG MODULE-->
+        <activity
+            android:name=".ui.tags.TagsActivity"
+            android:label="@string/title_activity_tags"
+            android:theme="@style/AppTheme">
+
+        </activity>
+
+        <!--FOOD AND NUTRITION MODULE-->
+        <activity
+            android:name=".ui.foodNutrition.foodNutritionOverview.FoodNutritionOverviewActivity"
+            android:label="@string/title_activity_food_nutrition_overview"
+            android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>

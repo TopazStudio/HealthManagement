@@ -1,4 +1,4 @@
-package com.flycode.healthbloom.ui.weight.WeightOverview;
+package com.flycode.healthbloom.ui.weight.weightOverview;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -13,9 +13,9 @@ import android.widget.TextView;
 import com.flycode.healthbloom.R;
 import com.flycode.healthbloom.data.models.WeightMeasurement;
 import com.flycode.healthbloom.databinding.WeightActivityBinding;
-import com.flycode.healthbloom.ui.base.BaseView;
-import com.flycode.healthbloom.ui.weight.WeightOverview.BMIGraph.BMIGraphFragment;
-import com.flycode.healthbloom.ui.weight.WeightOverview.WeightGraph.WeightGraphFragment;
+import com.flycode.healthbloom.ui.base.BaseViewWithNav;
+import com.flycode.healthbloom.ui.weight.weightOverview.BMIGraph.BMIGraphFragment;
+import com.flycode.healthbloom.ui.weight.weightOverview.WeightGraph.WeightGraphFragment;
 import com.flycode.healthbloom.utils.DatabaseFaker;
 
 import java.util.List;
@@ -24,7 +24,7 @@ import java.util.Objects;
 import javax.inject.Inject;
 
 public class WeightOverviewActivity
-        extends BaseView
+        extends BaseViewWithNav
         implements WeightOverviewContract.WeightView {
 
     @Inject
@@ -33,21 +33,30 @@ public class WeightOverviewActivity
     EntryListAdapter entryListAdapter;
     @Inject
     WeightOverviewContract.WeightPresenter<WeightOverviewContract.WeightView> presenter;
-    @Inject
-    DatabaseFaker databaseFaker;
 
-    private WeightActivityBinding binding;
+    private WeightActivityBinding weightActivityBinding;
 
     /**
-     * Initialize data-binding on the activities layout and attach the presenter.
+     * Initialize data-weightActivityBinding on the activities layout and attach the presenter.
      *
      * */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_weight);
-        setSupportActionBar((Toolbar) binding.toolbar);
+
+        //ADD CONTENT
+        weightActivityBinding = DataBindingUtil.inflate(getLayoutInflater(),
+                R.layout.activity_weight_overview,null,false);
+        baseActivityBinding.contentFrame.addView(weightActivityBinding.getRoot());
+
+        //PRESENTER
         presenter.onAttach(this);
+
+        //TOOLBAR
+        setSupportActionBar((Toolbar) weightActivityBinding.toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+
+        //INIT
         init();
     }
 
@@ -57,8 +66,6 @@ public class WeightOverviewActivity
     private void init(){
         setUpViewPager();
         setUpRecyclerView();
-
-//        databaseFaker.fakeDefaultUser();
     }
 
     /**
@@ -69,17 +76,17 @@ public class WeightOverviewActivity
         graphViewPagerAdapter.addFragment(new WeightGraphFragment(),"Weight Graph");
         graphViewPagerAdapter.addFragment(new BMIGraphFragment(),"BMI Graph");
 
-        binding.viewPager.setAdapter(graphViewPagerAdapter);
-        binding.tabLayout.setupWithViewPager(binding.viewPager);
+        weightActivityBinding.viewPager.setAdapter(graphViewPagerAdapter);
+        weightActivityBinding.tabLayout.setupWithViewPager(weightActivityBinding.viewPager);
 
         //Set Custom TextView for TabLayout.
-        for (int i = 0; i < binding.tabLayout.getTabCount(); i++) {
+        for (int i = 0; i < weightActivityBinding.tabLayout.getTabCount(); i++) {
             //noinspection ConstantConditions
             TextView tv = (TextView) LayoutInflater.from(this).inflate(R.layout.tab_layout_custom_view,null);
-            Objects.requireNonNull(binding.tabLayout.getTabAt(i)).setCustomView(tv);
+            Objects.requireNonNull(weightActivityBinding.tabLayout.getTabAt(i)).setCustomView(tv);
 
         }
-        binding.viewPager.setOffscreenPageLimit(1);
+        weightActivityBinding.viewPager.setOffscreenPageLimit(1);
     }
 
     /**
@@ -91,8 +98,8 @@ public class WeightOverviewActivity
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
 
         //CONFIGURE
-        binding.recyclerView.setHasFixedSize(true);
-        binding.recyclerView.setLayoutManager(layoutManager);
+        weightActivityBinding.recyclerView.setHasFixedSize(true);
+        weightActivityBinding.recyclerView.setLayoutManager(layoutManager);
 
         //FETCH DATA
         //TODO: show loading while data is being fetched.
@@ -110,10 +117,10 @@ public class WeightOverviewActivity
         entryListAdapter.setContext(this);
 
         //ASSIGN ADAPTER
-        if (binding.recyclerView.getAdapter() != null){
-            binding.recyclerView.swapAdapter(entryListAdapter,true);
+        if (weightActivityBinding.recyclerView.getAdapter() != null){
+            weightActivityBinding.recyclerView.swapAdapter(entryListAdapter,true);
         }
-        binding.recyclerView.setAdapter(entryListAdapter);
+        weightActivityBinding.recyclerView.setAdapter(entryListAdapter);
     }
 
     /**

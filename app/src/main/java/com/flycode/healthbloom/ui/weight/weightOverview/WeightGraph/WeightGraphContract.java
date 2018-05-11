@@ -1,4 +1,4 @@
-package com.flycode.healthbloom.ui.weight.WeightOverview.WeightGraph;
+package com.flycode.healthbloom.ui.weight.weightOverview.WeightGraph;
 
 import com.flycode.healthbloom.ui.base.MvpPresenter;
 import com.flycode.healthbloom.ui.base.MvpView;

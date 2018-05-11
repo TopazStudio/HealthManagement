@@ -2,7 +2,7 @@ package com.flycode.healthbloom.ui.appInitialization;
 
 import com.flycode.healthbloom.data.models.User;
 import com.flycode.healthbloom.ui.base.BasePresenter;
-import com.flycode.healthbloom.ui.weight.WeightOverview.WeightOverviewActivity;
+import com.flycode.healthbloom.ui.weight.weightOverview.WeightOverviewActivity;
 
 public class AppInitPresenter<V extends AppInitContract.AppInitView>
         extends BasePresenter<V>
