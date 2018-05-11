@@ -6,6 +6,6 @@
     android:layout_height="wrap_content"
     android:background="@color/PrimaryDark"
     android:minHeight="?attr/actionBarSize"
-    app:titleTextColor="#fff">
+    android:theme="@style/AppTheme.AppBarOverlay">
 
 </android.support.v7.widget.Toolbar>
