@@ -22,12 +22,18 @@ public class SplashActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //SET CONTENT
         setContentView(R.layout.activity_splash);
+
+        //PRESENTER
         presenter.onAttach(this);
-        onInit();
+
+        //INIT
+        init();
     }
 
-    public void onInit() {
+    public void init() {
         presenter.startCounting();
     }
 

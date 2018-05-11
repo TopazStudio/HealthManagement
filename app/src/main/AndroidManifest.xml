@@ -24,26 +24,29 @@
         <!-- SPLASH ACTIVITY -->
         <activity
             android:name=".ui.splash.SplashActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <!-- APP INIT MODULE -->
         <activity
             android:name=".ui.appInitialization.AppInitActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
 
         <!-- WEIGHT MODULE -->
         <activity
             android:name=".ui.weight.weightOverview.WeightOverviewActivity"
             android:label="@string/weight_activity_label"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"/>
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".ui.weight.weightEntry.WeightEntryActivity"
             android:label="@string/title_activity_weight_entry"
+            android:screenOrientation="portrait"
             android:parentActivityName=".ui.weight.weightOverview.WeightOverviewActivity"
-            android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
@@ -55,28 +58,20 @@
         <!-- HOME MODULE -->
         <activity
             android:name=".ui.home.HomeActivity"
-            android:label="@string/home_activity_title"
-            android:theme="@style/AppTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:screenOrientation="portrait"
+            android:label="@string/home_activity_title"/>
 
         <!--TAG MODULE-->
         <activity
             android:name=".ui.tags.TagsActivity"
-            android:label="@string/title_activity_tags"
-            android:theme="@style/AppTheme">
-
-        </activity>
+            android:screenOrientation="portrait"
+            android:label="@string/title_activity_tags"/>
 
         <!--FOOD AND NUTRITION MODULE-->
         <activity
             android:name=".ui.foodNutrition.foodNutritionOverview.FoodNutritionOverviewActivity"
-            android:label="@string/title_activity_food_nutrition_overview"
-            android:theme="@style/AppTheme"/>
+            android:screenOrientation="portrait"
+            android:label="@string/title_activity_food_nutrition_overview"/>
     </application>
 
 </manifest>

@@ -4,6 +4,7 @@ import android.os.CountDownTimer;
 
 import com.flycode.healthbloom.ui.appInitialization.AppInitActivity;
 import com.flycode.healthbloom.ui.base.BasePresenter;
+import com.flycode.healthbloom.ui.home.HomeActivity;
 
 public class SplashPresenter<V extends SplashContract.SplashMvpView>
         extends BasePresenter<V>
@@ -22,8 +23,15 @@ public class SplashPresenter<V extends SplashContract.SplashMvpView>
 
             @Override
             public void onFinish() {
-                getMvpView().finishAndGoTo(AppInitActivity.class);
+                if (isUserRegistered())
+                    getMvpView().finishAndGoTo(HomeActivity.class);
+                else
+                    getMvpView().finishAndGoTo(AppInitActivity.class);
             }
         }.start();
+    }
+
+    private boolean isUserRegistered(){
+        return defaultUser != null;
     }
 }

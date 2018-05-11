@@ -5,16 +5,8 @@
     android:id="@+id/rootView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/blue_app_bg"
+    android:background="@drawable/app_splash_screen"
     tools:context=".ui.splash.SplashActivity">
-
-    <View
-        android:layout_width="335dp"
-        android:layout_height="164dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="144dp"
-        android:background="@drawable/app_name" />
 
     <TextView
         android:id="@+id/textView"
@@ -24,6 +16,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp"
         android:text="@string/lower_string"
+        android:textColor="@color/white"
         android:textAlignment="center"
         android:textSize="15sp" />
 </RelativeLayout>
