@@ -83,4 +83,19 @@
     <string name="tag_secondary_colour_hint">Set your secondary colour</string>
     <string name="tag_primary_color_picker_title">Set your primary colour</string>
     <string name="tag_secondary_color_picker_title">Set you secondary colour</string>
+
+    <string name="title_activity_food_nutrition_overview">Food And Nutrition</string>
+
+    <!--Home Activity-->
+    <string name="home_overview_page">HOME OVERVIEW PAGE</string>
+    <string name="home_navigation_item">Home</string>
+    <string name="weight_navigation_item">Weight</string>
+    <string name="food_navigation_item">Food And Nutrition</string>
+    <string name="exit_navigation_item">Exit</string>
+    <string name="settings_navigation_item">Settings</string>
+    <string name="tags_navigation_item">Tags</string>
+    <string name="navigation_close">Close</string>
+    <string name="navigation_open">Open</string>
+    <string name="home_activity_title">Overview</string>
+
 </resources>

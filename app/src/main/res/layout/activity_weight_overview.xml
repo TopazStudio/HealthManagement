@@ -9,7 +9,7 @@
         android:layout_height="match_parent"
         android:background="@color/bg_dark"
         android:orientation="vertical"
-        tools:context=".ui.weight.WeightOverview.WeightOverviewActivity">
+        tools:context=".ui.weight.weightOverview.WeightOverviewActivity">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view"

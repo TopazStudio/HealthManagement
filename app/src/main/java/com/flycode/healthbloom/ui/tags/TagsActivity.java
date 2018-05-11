@@ -17,14 +17,15 @@ import com.flycode.healthbloom.R;
 import com.flycode.healthbloom.data.models.Tag;
 import com.flycode.healthbloom.databinding.CustomTagEntryBinging;
 import com.flycode.healthbloom.databinding.TagsActivityBinding;
-import com.flycode.healthbloom.ui.base.BaseView;
+import com.flycode.healthbloom.ui.base.BaseViewWithNav;
 
 import java.util.List;
+import java.util.Objects;
 
 import javax.inject.Inject;
 
 public class TagsActivity
-        extends BaseView
+        extends BaseViewWithNav
         implements TagsContract.TagsView,ColorChooserDialog.ColorCallback {
 
     @Inject
@@ -32,7 +33,7 @@ public class TagsActivity
     @Inject
     TagsAdapter tagsAdapter;
 
-    private TagsActivityBinding binding;
+    private TagsActivityBinding tagsActivityBinding;
     private CustomTagEntryBinging customTagEntryBinging;
     private MaterialDialog customTagEntryDialog;
 
@@ -40,10 +41,20 @@ public class TagsActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_tags);
-        presenter.onAttach(this);
-        setSupportActionBar((Toolbar) binding.toolbar);
 
+        //ADD CONTENT
+        tagsActivityBinding = DataBindingUtil.inflate(getLayoutInflater(),
+                R.layout.activity_tags,null,false);
+        baseActivityBinding.contentFrame.addView(tagsActivityBinding.getRoot());
+
+        //PRESENTER
+        presenter.onAttach(this);
+
+        //TOOLBAR
+        setSupportActionBar((Toolbar) tagsActivityBinding.toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+
+        //INIT
         init();
     }
 
@@ -108,8 +119,8 @@ public class TagsActivity
                 .setMaxViewsInRow(3)
                 .setOrientation(ChipsLayoutManager.HORIZONTAL)
                 .build();
-        binding.chipsRecyclerView.setLayoutManager(chipsLayoutManager);
-        binding.chipsRecyclerView.addItemDecoration(
+        tagsActivityBinding.chipsRecyclerView.setLayoutManager(chipsLayoutManager);
+        tagsActivityBinding.chipsRecyclerView.addItemDecoration(
                 new SpacingItemDecoration(getResources().getDimensionPixelOffset(R.dimen.tag_spacing),
                 getResources().getDimensionPixelOffset(R.dimen.tag_spacing)));
 
@@ -126,7 +137,7 @@ public class TagsActivity
                 presenter.deleteTag(tag);
             }
         });
-        binding.chipsRecyclerView.setAdapter(tagsAdapter);
+        tagsActivityBinding.chipsRecyclerView.setAdapter(tagsAdapter);
     }
 
     public void onAddTag(View view){

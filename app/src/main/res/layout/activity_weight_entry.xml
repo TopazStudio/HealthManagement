@@ -20,7 +20,7 @@
         android:layout_height="match_parent"
         android:background="@color/bg_dark"
         android:orientation="vertical"
-        tools:context=".ui.weight.WeightEntry.WeightEntryActivity">
+        tools:context=".ui.weight.weightEntry.WeightEntryActivity">
 
         <!--WEIGHT DETAILS-->
         <android.support.v4.widget.NestedScrollView

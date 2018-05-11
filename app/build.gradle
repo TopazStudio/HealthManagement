@@ -72,4 +72,5 @@ dependencies {
     implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
     implementation 'com.afollestad.material-dialogs:commons:0.9.5.0'
     implementation 'com.beloo.widget:ChipsLayoutManager:0.3.7@aar'
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
 }

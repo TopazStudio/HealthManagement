@@ -3,16 +3,18 @@ package com.flycode.healthbloom.di.module;
 import com.flycode.healthbloom.di.scope.PerActivity;
 import com.flycode.healthbloom.ui.appInitialization.AppInitActivity;
 import com.flycode.healthbloom.ui.appInitialization.AppInitModule;
+import com.flycode.healthbloom.ui.foodNutrition.foodNutritionOverview.FoodNutritionOverviewActivity;
+import com.flycode.healthbloom.ui.foodNutrition.foodNutritionOverview.FoodNutritionOverviewModule;
 import com.flycode.healthbloom.ui.home.HomeActivity;
 import com.flycode.healthbloom.ui.home.HomeModule;
 import com.flycode.healthbloom.ui.splash.SplashActivity;
 import com.flycode.healthbloom.ui.splash.SplashActivityModule;
 import com.flycode.healthbloom.ui.tags.TagsActivity;
 import com.flycode.healthbloom.ui.tags.TagsModule;
-import com.flycode.healthbloom.ui.weight.WeightEntry.WeightEntryActivity;
-import com.flycode.healthbloom.ui.weight.WeightEntry.WeightEntryModule;
-import com.flycode.healthbloom.ui.weight.WeightOverview.WeightOverviewActivity;
-import com.flycode.healthbloom.ui.weight.WeightOverview.WeightOverviewModule;
+import com.flycode.healthbloom.ui.weight.weightEntry.WeightEntryActivity;
+import com.flycode.healthbloom.ui.weight.weightEntry.WeightEntryModule;
+import com.flycode.healthbloom.ui.weight.weightOverview.WeightOverviewActivity;
+import com.flycode.healthbloom.ui.weight.weightOverview.WeightOverviewModule;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -28,7 +30,7 @@ public abstract class ActivityBindingsModule {
     abstract AppInitActivity appInitActivity();
 
     @PerActivity
-    @ContributesAndroidInjector(modules = {WeightOverviewModule.class, com.flycode.healthbloom.ui.weight.WeightOverview.FragmentProvider.class})
+    @ContributesAndroidInjector(modules = {WeightOverviewModule.class, com.flycode.healthbloom.ui.weight.weightOverview.FragmentProvider.class})
     abstract WeightOverviewActivity weightActivity();
 
     @PerActivity
@@ -42,4 +44,8 @@ public abstract class ActivityBindingsModule {
     @PerActivity
     @ContributesAndroidInjector(modules = TagsModule.class)
     abstract TagsActivity tagsActivity();
+
+    @PerActivity
+    @ContributesAndroidInjector(modules = FoodNutritionOverviewModule.class)
+    abstract FoodNutritionOverviewActivity foodNutritionOverviewActivity();
 }
