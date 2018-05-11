@@ -3,6 +3,7 @@ package com.flycode.healthbloom.ui.weight.weightOverview;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -16,7 +17,6 @@ import com.flycode.healthbloom.databinding.WeightActivityBinding;
 import com.flycode.healthbloom.ui.base.BaseViewWithNav;
 import com.flycode.healthbloom.ui.weight.weightOverview.BMIGraph.BMIGraphFragment;
 import com.flycode.healthbloom.ui.weight.weightOverview.WeightGraph.WeightGraphFragment;
-import com.flycode.healthbloom.utils.DatabaseFaker;
 
 import java.util.List;
 import java.util.Objects;
@@ -64,8 +64,10 @@ public class WeightOverviewActivity
      * Setup the graphs
      * */
     private void init(){
+        //FETCH DATA
+        presenter.getWeightMeasurements();
+
         setUpViewPager();
-        setUpRecyclerView();
     }
 
     /**
@@ -90,31 +92,26 @@ public class WeightOverviewActivity
     }
 
     /**
-     * Configures the recycler view and calls for data fetching from the
-     * activities presenter
-     *
-     * */
-    private void setUpRecyclerView(){
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-
-        //CONFIGURE
-        weightActivityBinding.recyclerView.setHasFixedSize(true);
-        weightActivityBinding.recyclerView.setLayoutManager(layoutManager);
-
-        //FETCH DATA
-        //TODO: show loading while data is being fetched.
-        presenter.getWeightMeasurements();
-    }
-
-    /**
      * Called after weight measurement models are retrieved from the database.
      * The recycler view is then initialized with the data.
      *
      * */
     public void setWeightEntries(List<WeightMeasurement> weightEntries){
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+
+        //CONFIGURE
+        weightActivityBinding.recyclerView.setHasFixedSize(true);
+        weightActivityBinding.recyclerView.setLayoutManager(layoutManager);
+
         //ENTER DATA
         entryListAdapter.setListItems(weightEntries);
         entryListAdapter.setContext(this);
+
+        // SET NO SCROLLING BEHAVIOUR WHEN ITEMS ARE LITTLE
+        /*CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams)
+                weightActivityBinding.recyclerView.getLayoutParams();
+        params.setBehavior(new ShouldScrolledBehaviour(layoutManager,entryListAdapter));
+        weightActivityBinding.recyclerView.setLayoutParams(params);*/
 
         //ASSIGN ADAPTER
         if (weightActivityBinding.recyclerView.getAdapter() != null){
