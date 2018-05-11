@@ -2,7 +2,7 @@ package com.flycode.healthbloom.ui.appInitialization;
 
 import com.flycode.healthbloom.data.models.User;
 import com.flycode.healthbloom.ui.base.BasePresenter;
-import com.flycode.healthbloom.ui.weight.weightOverview.WeightOverviewActivity;
+import com.flycode.healthbloom.ui.home.HomeActivity;
 
 public class AppInitPresenter<V extends AppInitContract.AppInitView>
         extends BasePresenter<V>
@@ -14,7 +14,7 @@ public class AppInitPresenter<V extends AppInitContract.AppInitView>
         //TODO: show loading screen with async database insertion
         if(user.save()){
             getMvpView().showMessage("Successfully registered");
-            getMvpView().finishAndGoTo(WeightOverviewActivity.class);
+            getMvpView().finishAndGoTo(HomeActivity.class);
         }else{
             getMvpView().showError("Error in registry");
         }
