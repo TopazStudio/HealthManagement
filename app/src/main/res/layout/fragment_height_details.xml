@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:custom="http://schemas.android.com/apk/res-auto">
     <data class="HeightDetailsBinding">
         <import type="java.lang.String"/>
         <variable
@@ -13,6 +13,7 @@
         android:background="@color/bg_dark"
         android:orientation="vertical"
         android:padding="@dimen/app_init_padding"
+        android:paddingEnd="5dp"
         tools:context=".ui.appInitialization.HeightDetails.HeightDetailsFragment">
 
         <!--TITLE-->
@@ -43,65 +44,81 @@
 
         <!--HEIGHT INPUT-->
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
             android:orientation="horizontal">
 
-            <ImageView
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_gravity="start|center_vertical"
-                android:contentDescription="@string/your_weight"
-                android:paddingEnd="20dp"
-                android:paddingStart="0dp"
-                android:src="@drawable/ic_003_gym" />
-
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="180dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
+                android:layout_marginBottom="30dp"
                 android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="start"
-                    android:layout_marginBottom="5dp"
-                    android:text="@string/height_input_hint"
-                    android:textColor="@color/Primary"
-                    android:textSize="@dimen/app_init_fieldHintTitles"
-                    android:visibility="visible" />
+                <ImageView
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_gravity="start|center_vertical"
+                    android:contentDescription="@string/your_weight"
+                    android:paddingEnd="20dp"
+                    android:paddingStart="0dp"
+                    android:src="@drawable/ic_003_gym" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:orientation="horizontal">
 
-                    <EditText
-                        android:id="@+id/txt_height"
-                        android:layout_width="90dp"
-                        android:layout_height="60dp"
-                        android:background="@drawable/app_init_inputfields"
-                        android:hint="@string/weight_height_hint"
-                        android:inputType="number"
-                        android:text="@={user.InitHeight}"
-                        android:textAlignment="textEnd"
-                        android:textColor="@color/app_init_input_txt"
-                        android:textColorHint="@color/app_init_input_txt"
-                        android:textSize="40sp" />
-                    <!--TODO: implement scrollable unit selector-->
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginEnd="0dp"
-                        android:layout_marginStart="5dp"
-                        android:text="@string/ft"
-                        android:textColor="#fff"
-                        android:textSize="@dimen/units_label_size" />
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:layout_marginBottom="5dp"
+                            android:text="@string/height_input_hint"
+                            android:textColor="@color/Primary"
+                            android:textSize="@dimen/app_init_fieldHintTitles"
+                            android:visibility="visible" />
+
+                        <EditText
+                            android:id="@+id/txt_height"
+                            android:layout_width="110dp"
+                            android:layout_height="60dp"
+                            android:background="@drawable/app_init_inputfields"
+                            android:hint="@string/weight_height_hint"
+                            android:inputType="number"
+                            android:text="@={user.InitHeight}"
+                            android:textAlignment="textEnd"
+                            android:textColor="@color/app_init_input_txt"
+                            android:textColorHint="@color/app_init_input_txt"
+                            android:textSize="40sp" />
+
+                    </LinearLayout>
+
+                    <com.wx.wheelview.widget.WheelView
+                        android:id="@+id/height_units_picker"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="15dp"
+                        android:layout_gravity="center_vertical"/>
                 </LinearLayout>
             </LinearLayout>
+
+            <com.flycode.healthbloom.customUI.HeightScalePicker
+                android:id="@+id/weight_scale_picker"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginStart="10dp"
+                custom:maximumAcceptedSize="200"
+                custom:typeOfUnits="@{user.InitHeightUnits}"
+                custom:mHeight="@={user.InitHeight}"
+                custom:pointerBgColor="@color/Primary" />
         </LinearLayout>
 
     </LinearLayout>

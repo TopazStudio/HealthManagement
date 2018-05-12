@@ -2,11 +2,11 @@ package com.flycode.healthbloom.ui.weight.weightOverview;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.flycode.healthbloom.R;
@@ -23,6 +23,8 @@ public class EntryListAdapter extends RecyclerView.Adapter<EntryListAdapter.View
     private List<WeightMeasurement> listItems;
     @Setter
     private Context context;
+    @Setter
+    private OnCardViewClicked onCardViewClicked;
 
     @NonNull
     @Override
@@ -34,15 +36,25 @@ public class EntryListAdapter extends RecyclerView.Adapter<EntryListAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        WeightMeasurement w = listItems.get(position);
+        final WeightMeasurement w = listItems.get(position);
         holder.tv_weight.setText(String.valueOf(w.Weight.get()));
         holder.tv_bmi.setText(String.valueOf(w.BMI.get()));
+
+        holder.tv_weight_units.setText("kg(s)");
+        holder.tv_bmi_units.setText("kg/m");
 
         Calendar cal = Calendar.getInstance();
         cal.setTime(w.Date.get());
 
         holder.tv_day.setText(String.valueOf(cal.get(Calendar.DAY_OF_MONTH)));
         holder.tv_mon_yr.setText(String.valueOf(cal.get(Calendar.MONTH) + ", " + cal.get(Calendar.YEAR) ));
+
+        holder.card_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onCardViewClicked.onClicked(w);
+            }
+        });
     }
 
     @Override
@@ -55,7 +67,9 @@ public class EntryListAdapter extends RecyclerView.Adapter<EntryListAdapter.View
         TextView tv_mon_yr;
         TextView tv_weight;
         TextView tv_bmi;
-        ImageView progress_pic;
+        TextView tv_weight_units;
+        TextView tv_bmi_units;
+        CardView card_view;
 
 
         ViewHolder(View itemView) {
@@ -65,6 +79,13 @@ public class EntryListAdapter extends RecyclerView.Adapter<EntryListAdapter.View
             tv_mon_yr = (TextView) itemView.findViewById(R.id.tv_mon_yr);
             tv_weight = (TextView) itemView.findViewById(R.id.tv_weight);
             tv_bmi = (TextView) itemView.findViewById(R.id.tv_bmi);
+            tv_weight_units = (TextView) itemView.findViewById(R.id.tv_weight_units);
+            tv_bmi_units = (TextView) itemView.findViewById(R.id.tv_bmi_units);
+            card_view = (CardView) itemView.findViewById(R.id.card_view);
         }
+    }
+
+    interface OnCardViewClicked{
+        void onClicked(WeightMeasurement weightMeasurement);
     }
 }

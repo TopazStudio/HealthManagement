@@ -11,6 +11,7 @@ import com.flycode.healthbloom.data.models.Tag;
 import com.flycode.healthbloom.data.models.WeightMeasurement;
 import com.flycode.healthbloom.data.models.WeightMeasurement_Tag;
 import com.flycode.healthbloom.ui.base.BasePresenter;
+import com.flycode.healthbloom.utils.BMI.BMICalculator;
 import com.flycode.healthbloom.utils.FileUtils;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.raizlabs.android.dbflow.structure.database.DatabaseWrapper;
@@ -46,7 +47,8 @@ public class WeightEntryPresenter<V extends WeightEntryContract.WeightEntryView>
     Calendar entryCalendar;
 
     private Bitmap imageBitmap;
-
+    @Setter
+    private boolean doImageSave = false;
 
     /**
      * Log the new Weight Measurement by the user
@@ -56,14 +58,29 @@ public class WeightEntryPresenter<V extends WeightEntryContract.WeightEntryView>
     public void onSave() {
         getMvpView().showLoading();
 
-        //Add height.
-        if (weightMeasurement.Height.get() == 0f){
-            //No height specified therefore use the default
-            weightMeasurement.Height.set(defaultUser.InitHeight.get());
+        //SAVE IMAGE
+        String imagePath = null;
+        if (doImageSave) {
+            imagePath = FileUtils.saveImage(imageBitmap, "/progress_photos");
+
+            if (imagePath == null) {
+                getMvpView().hideLoading();
+                getMvpView().showError("Error saving your progress photo. Please try again.");
+                return;
+            }
         }
+        else imagePath = null;
+
+        weightMeasurement.PhotoLocation.set(imagePath); //Add photo location
+
         weightMeasurement.Date.set(entryCalendar.getTime()); //Add date.
-        weightMeasurement.BMI.set(29.0f); //Add BMI  //TODO: implement BMI library to handle BMI calculations
-        note.weightMeasurement = weightMeasurement; //Add note
+
+        BMICalculator bmiCalculator = new BMICalculator();
+        bmiCalculator.setHeight(weightMeasurement.Height.get(),weightMeasurement.HeightUnits.get());
+        bmiCalculator.setWeight(weightMeasurement.Weight.get(),weightMeasurement.WeightUnits.get());
+        weightMeasurement.BMI.set(bmiCalculator.calculateBMI()); //Add BMI
+
+        weightMeasurement.note = note; //Add note
 
         beginSaveTransaction();
     }
@@ -86,6 +103,7 @@ public class WeightEntryPresenter<V extends WeightEntryContract.WeightEntryView>
                     @Override
                     public void accept(String String) {
                         getMvpView().setImageBitmap(imageBitmap);
+                        doImageSave = true;
                         getMvpView().hideProgressBar();
                     }
                 }, new Consumer<Throwable>() {
@@ -125,6 +143,7 @@ public class WeightEntryPresenter<V extends WeightEntryContract.WeightEntryView>
                     @Override
                     public void accept(String String) {
                         getMvpView().setImageBitmap(imageBitmap);
+                        doImageSave = true;
                         getMvpView().hideProgressBar();
                     }
                 }, new Consumer<Throwable>() {
@@ -169,9 +188,6 @@ public class WeightEntryPresenter<V extends WeightEntryContract.WeightEntryView>
             @Override
             public void execute(DatabaseWrapper databaseWrapper) {
 
-                //Save Photo
-                weightMeasurement.PhotoLocation = FileUtils.saveImage(imageBitmap,"/progress_photos");
-
                 //Save WeightMeasurement
                 weightMeasurement.save();
 
@@ -198,6 +214,7 @@ public class WeightEntryPresenter<V extends WeightEntryContract.WeightEntryView>
         .error(new Transaction.Error() {
             @Override
             public void onError(@NonNull Transaction transaction, @NonNull Throwable error) {
+                getMvpView().hideLoading();
                 getMvpView().showError(error.getMessage());
             }
         })

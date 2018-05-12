@@ -31,7 +31,12 @@ public class SplashPresenter<V extends SplashContract.SplashMvpView>
         }.start();
     }
 
+    /**
+     * Check if default user has an id.
+     * If not then the user is not registered.
+     *
+     * */
     private boolean isUserRegistered(){
-        return defaultUser != null;
+        return defaultUser.id != 0;
     }
 }

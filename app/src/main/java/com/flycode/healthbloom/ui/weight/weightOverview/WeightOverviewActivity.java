@@ -3,9 +3,7 @@ package com.flycode.healthbloom.ui.weight.weightOverview;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -107,6 +105,14 @@ public class WeightOverviewActivity
         entryListAdapter.setListItems(weightEntries);
         entryListAdapter.setContext(this);
 
+        //SET ON_CARD_VIEW_CLICKED_LISTENER
+        entryListAdapter.setOnCardViewClicked(new EntryListAdapter.OnCardViewClicked() {
+            @Override
+            public void onClicked(WeightMeasurement weightMeasurement) {
+                presenter.onUpdateWeight(weightMeasurement);
+            }
+        });
+
         // SET NO SCROLLING BEHAVIOUR WHEN ITEMS ARE LITTLE
         /*CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams)
                 weightActivityBinding.recyclerView.getLayoutParams();
@@ -127,10 +133,6 @@ public class WeightOverviewActivity
         presenter.addWeight();
     }
 
-    public void onUpdateWeight(View view){
-        presenter.onUpdateWeight(null);
-    }
-
     /**
      * On returning results from Child activity.
      * */
@@ -140,7 +142,6 @@ public class WeightOverviewActivity
 
         if ((requestCode == currentRequestCode) && (resultCode == 1)){
             //Refresh the graphs and entries
-            //TODO:Refresh graphs
             showMessage("Saved Successfully");
             presenter.getWeightMeasurements();
         }

@@ -20,19 +20,16 @@ public class DatabaseModule {
         return FlowManager.getDatabase(Database.class);
     }
 
-/*    @Provides
-    @Singleton
-    public DatabaseFaker provideDatabaseFaker(DatabaseDefinition database){
-        return new DatabaseFaker(database);
-    }*/
-
     @Provides
     @Singleton
     @Named("default_user")
     public User provideDefaultUser(){
-        return SQLite.select()
-                .from(User.class)
-                .querySingle();
+        User user = SQLite.select()
+                    .from(User.class)
+                    .querySingle();
+
+        if(user != null) return user;
+        else return new User();
     }
 
 }

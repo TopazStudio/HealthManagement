@@ -20,6 +20,7 @@
     <color name="green">#09f366</color>
     <color name="greenDark">#40a65d</color>
     <color name="white">#FFFFFF</color>
+    <color name="transparent">#00ffffff</color>
     <color name="lightGray">#ececec</color>
 
     <!--Dark tints-->

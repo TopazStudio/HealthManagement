@@ -5,6 +5,18 @@
         <item>Month</item>
     </string-array>
 
+    <string-array name="weight_units">
+        <item>kg(s)</item>
+        <item>lb(s)</item>
+        <item>oz(s)</item>
+    </string-array>
+
+    <string-array name="height_units">
+        <item>m(s)</item>
+        <item>in(s)</item>
+        <item>ft</item>
+    </string-array>
+
     <string-array name="uploadImage">
         <item>Pick from gallery</item>
         <item>Take a photo</item>

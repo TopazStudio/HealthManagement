@@ -7,6 +7,7 @@ import com.flycode.healthbloom.data.models.WeightMeasurement;
 import com.flycode.healthbloom.data.models.WeightMeasurement_Table;
 import com.flycode.healthbloom.ui.base.BasePresenter;
 import com.flycode.healthbloom.ui.weight.weightEntry.WeightEntryActivity;
+import com.google.gson.Gson;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.raizlabs.android.dbflow.structure.database.transaction.QueryTransaction;
 import com.raizlabs.android.dbflow.structure.database.transaction.Transaction;
@@ -57,7 +58,8 @@ class WeightOverviewPresenter<V extends WeightOverviewContract.WeightView>
     @Override
     public void onUpdateWeight(WeightMeasurement weightMeasurement) {
         Bundle bundle = new Bundle();
-        bundle.putInt("id",weightMeasurement.id);
+        bundle.putString(WeightEntryActivity.UPDATE_WEIGHT_MEASUREMENT,
+                new Gson().toJson(weightMeasurement));
         getMvpView().openForResult(WeightEntryActivity.class,1,bundle);
     }
 }

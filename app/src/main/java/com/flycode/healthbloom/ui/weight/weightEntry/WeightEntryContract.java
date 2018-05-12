@@ -20,6 +20,7 @@ public interface WeightEntryContract {
     }
     interface WeightEntryPresenter<V extends WeightEntryContract.WeightEntryView> extends MvpPresenter<V> {
         void onSave();
+        void setDoImageSave(boolean doSave);
         void onCaptureImageResult(Intent data);
         void onPickerImageResult(Intent data);
         void fetchTags();

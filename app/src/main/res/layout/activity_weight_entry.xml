@@ -6,6 +6,7 @@
     xmlns:custom="http://schemas.android.com/apk/res-auto">
 
     <data class="WeightEntryBinding">
+        <import type="java.lang.String"/>
         <variable
             name="weightMeasurement"
             type="com.flycode.healthbloom.data.models.WeightMeasurement"/>
@@ -45,20 +46,17 @@
                     android:orientation="vertical"
                     android:layout_marginTop="?attr/actionBarSize">
 
-                    <LinearLayout
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="130dp"
                         android:orientation="horizontal"
-                        android:gravity="center"
                         app:layout_scrollFlags="scroll|enterAlwaysCollapsed">
 
                         <EditText
                             android:id="@+id/ed_weight_entry"
                             android:layout_width="wrap_content"
-                            android:layout_height="80dp"
-                            android:layout_gravity="center"
-                            android:layout_marginBottom="20dp"
-                            android:layout_marginTop="20dp"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
                             android:gravity="center"
                             android:hint="@string/zero"
                             android:inputType="number"
@@ -66,11 +64,13 @@
                             android:text="@={weightMeasurement.Weight}"
                             android:textSize="80sp" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/kg_s" />
-                    </LinearLayout>
+                        <com.wx.wheelview.widget.WheelView
+                            android:id="@+id/weight_units_picker"
+                            android:layout_width="100dp"
+                            android:layout_height="match_parent"
+                            android:layout_centerVertical="true"
+                            android:layout_toEndOf="@+id/ed_weight_entry" />
+                    </RelativeLayout>
 
                     <com.flycode.healthbloom.customUI.WeightScalePicker
                         android:id="@+id/weight_scale_picker"
@@ -78,8 +78,9 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         custom:maximumAcceptedSize="300"
-                        custom:typeOfUnits="Kgs"
-                        custom:weight="@={weightMeasurement.Weight}"
+                        custom:typeOfUnits="@{weightMeasurement.WeightUnits}"
+                        custom:mWeight="@={weightMeasurement.Weight}"
+                        custom:bgColor="@color/PrimaryDark"
                         app:layout_scrollFlags="scroll|enterAlwaysCollapsed">
                     </com.flycode.healthbloom.customUI.WeightScalePicker>
 
@@ -228,7 +229,7 @@
                                 android:id="@+id/tv_height"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="123ft"
+                                android:text="@{String.valueOf(weightMeasurement.Height) + weightMeasurement.HeightUnits}"
                                 android:textSize="15sp"
                                 android:textColor="@color/bg_dark"
                                 android:layout_gravity="center_horizontal"/>

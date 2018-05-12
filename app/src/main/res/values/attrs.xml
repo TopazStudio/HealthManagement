@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="WeightScalePicker">
+    <declare-styleable name="ScalePicker">
         <attr name="maximumAcceptedSize" format="integer"/>
         <attr name="typeOfUnits" format="string"/>
-        <attr name="weight" format="string"/>
+        <attr name="mWeight" format="string"/>
+        <attr name="mHeight" format="string"/>
+        <attr name="bgColor" format="string"/>
+        <attr name="pointerBgColor" format="string"/>
     </declare-styleable>
 </resources>

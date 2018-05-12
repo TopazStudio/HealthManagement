@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
     <data class="WeightDetailsBinding">
         <import type="java.lang.String"/>
         <variable
@@ -8,6 +8,7 @@
     </data>
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
+        xmlns:custom="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/bg_dark"
@@ -59,28 +60,28 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="start"
-                    android:layout_marginBottom="5dp"
-                    android:text="@string/weight_input_hint"
-                    android:textColor="@color/Primary"
-                    android:textSize="@dimen/app_init_fieldHintTitles"
-                    android:visibility="visible" />
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_marginBottom="5dp"
+                        android:text="@string/weight_input_hint"
+                        android:textColor="@color/Primary"
+                        android:textSize="@dimen/app_init_fieldHintTitles"
+                        android:visibility="visible" />
 
                     <EditText
                         android:id="@+id/txt_weight"
-                        android:layout_width="90dp"
+                        android:layout_width="110dp"
                         android:layout_height="60dp"
                         android:background="@drawable/app_init_inputfields"
                         android:hint="@string/weight_height_hint"
@@ -90,19 +91,31 @@
                         android:textColor="@color/app_init_input_txt"
                         android:textColorHint="@color/app_init_input_txt"
                         android:textSize="40sp" />
-                    <!--TODO: implement scrollable unit selector-->
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginEnd="5dp"
-                        android:layout_marginStart="5dp"
-                        android:text="@string/kg_s"
-                        android:textColor="#fff"
-                        android:textSize="@dimen/units_label_size" />
+
                 </LinearLayout>
+
+                <com.wx.wheelview.widget.WheelView
+                    android:id="@+id/weight_units_picker"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="15dp"
+                    android:layout_gravity="center_vertical"/>
+
             </LinearLayout>
+
         </LinearLayout>
+
+        <com.flycode.healthbloom.customUI.WeightScalePicker
+            android:id="@+id/weight_scale_picker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="30dp"
+            custom:maximumAcceptedSize="300"
+            custom:typeOfUnits="@{user.InitWeightUnits}"
+            custom:mWeight="@={user.InitWeight}"
+            custom:pointerBgColor="@color/Primary">
+        </com.flycode.healthbloom.customUI.WeightScalePicker>
 
         <!--WEIGHT GOALS-->
         <!--SUBTITLE-->
@@ -228,8 +241,8 @@
                     android:textColorHint="@color/app_init_text"
                     android:textSize="20sp" />
 
-                <!--TODO: implement scrollable unit selector-->
                 <TextView
+                    android:id="@+id/target_weight_units"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"

@@ -4,12 +4,15 @@ import android.content.Context;
 
 import com.flycode.healthbloom.data.models.Note;
 import com.flycode.healthbloom.data.models.Tag;
+import com.flycode.healthbloom.data.models.User;
 import com.flycode.healthbloom.data.models.WeightMeasurement;
 import com.flycode.healthbloom.di.scope.PerActivity;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+
+import javax.inject.Named;
 
 import dagger.Module;
 import dagger.Provides;
@@ -37,8 +40,11 @@ public class WeightEntryModule {
 
     @Provides
     @PerActivity
-    WeightMeasurement provideWeightMeasurement(){
-        return new WeightMeasurement();
+    WeightMeasurement provideWeightMeasurement(@Named("default_user") User user){
+        WeightMeasurement weightMeasurement = new WeightMeasurement();
+        weightMeasurement.Height.set(user.InitHeight.get());
+        weightMeasurement.HeightUnits.set(user.InitHeightUnits.get());
+        return weightMeasurement;
     }
 
     @Provides

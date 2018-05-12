@@ -13,6 +13,10 @@ public class AppInitPresenter<V extends AppInitContract.AppInitView>
         //TODO: better notification of registry and make async
         //TODO: show loading screen with async database insertion
         if(user.save()){
+
+            //SET DEFAULT USER
+            defaultUser = user;
+
             getMvpView().showMessage("Successfully registered");
             getMvpView().finishAndGoTo(HomeActivity.class);
         }else{

@@ -36,6 +36,12 @@ public class User extends BaseModel{
     @Column(typeConverter = ObservableFloatConverter.class)
     public ObservableFloat InitWeight = new ObservableFloat();
 
+    @Column(typeConverter = ObservableFieldStringConverter.class)
+    public ObservableFieldString InitWeightUnits = new ObservableFieldString("kg(s)");
+
     @Column(typeConverter = ObservableFloatConverter.class)
     public ObservableFloat InitHeight = new ObservableFloat();
+
+    @Column(typeConverter = ObservableFieldStringConverter.class)
+    public ObservableFieldString InitHeightUnits = new ObservableFieldString("m(s)");
 }

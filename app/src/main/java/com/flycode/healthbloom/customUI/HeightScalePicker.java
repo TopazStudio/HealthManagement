@@ -15,33 +15,32 @@ import com.flycode.healthbloom.utils.MathUtils;
 import lombok.Getter;
 import lombok.Setter;
 
-public class WeightScalePicker extends FrameLayout{
+public class HeightScalePicker extends FrameLayout {
     @Getter
     private int maximumAcceptedSize;
     @Getter
-    private String typeOfUnits = "kg(s)"; //TODO: get default string from weight_unit array
+    private String typeOfUnits = "kg(s)"; //TODO: get default string from height_unit array
     @Getter
-    private float mWeight;
+    private float mHeight;
     @Getter @Setter
     private String backgroundColor = "#00ffffff";
     @Getter @Setter
     private String pointerBackgroundColor = "#ffffff";
 
     @Setter
-    private OnWeightChangedListener onWeightChangedListener;
+    private HeightScalePicker.OnHeightChangedListener onHeightChangedListener;
 
     private Context context;
     private ScaleAdapter scaleAdapter;
     private RecyclerView mRecyclerView;
     private View pointer;
-    private WeightScaleSpacer weightScaleSpacer = new WeightScaleSpacer();
-    private final int pointerHeight = (int) (getResources().getDisplayMetrics().density * 150);
-    private final int pointerWidth = (int) (getResources().getDisplayMetrics().density * 3);
-    private final int pointerBottomMargin = (int) (getResources().getDisplayMetrics().density * 10);
+    private HeightScaleSpacer heightScaleSpacer = new HeightScaleSpacer();
+    private final int pointerHeight = (int) (getResources().getDisplayMetrics().density * 3);
+    private final int pointerWidth = (int) (getResources().getDisplayMetrics().density * 150);
     float distance = 0;
-    int oneUnitWidth;
+    int oneUnitHeight;
 
-    public WeightScalePicker(Context context, AttributeSet attrs) {
+    public HeightScalePicker(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
 
@@ -54,7 +53,7 @@ public class WeightScalePicker extends FrameLayout{
             maximumAcceptedSize = a.getInt(R.styleable.ScalePicker_maximumAcceptedSize, 200);
             typeOfUnits = a.getString(R.styleable.ScalePicker_typeOfUnits) != null
                     ? a.getString(R.styleable.ScalePicker_typeOfUnits):  typeOfUnits;
-            mWeight = a.getFloat(R.styleable.ScalePicker_mWeight,0f);
+            mHeight = a.getFloat(R.styleable.ScalePicker_mWeight,0f);
             backgroundColor = a.getString(R.styleable.ScalePicker_bgColor) != null
                     ? a.getString(R.styleable.ScalePicker_bgColor):  backgroundColor;
             pointerBackgroundColor = a.getString(R.styleable.ScalePicker_pointerBgColor) != null
@@ -66,15 +65,15 @@ public class WeightScalePicker extends FrameLayout{
         // Create our internal recycler view and add it to the parent frame layout
         mRecyclerView = new RecyclerView(context);
         mRecyclerView.setLayoutManager(
-                new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
+                new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
 
         //SCALE ADAPTER
-        scaleAdapter = new ScaleAdapter(context,ScaleAdapter.HORIZONTAL_ORIENTATION);
+        scaleAdapter = new ScaleAdapter(context,ScaleAdapter.VERTICAL_ORIENTATION);
         scaleAdapter.setBackgroundColor(Color.parseColor(backgroundColor));
         scaleAdapter.setMaximumSize(maximumAcceptedSize);
         scaleAdapter.setTypeOfUnit(typeOfUnits);
         mRecyclerView.setAdapter(scaleAdapter);
-        mRecyclerView.addItemDecoration(weightScaleSpacer);
+        mRecyclerView.addItemDecoration(heightScaleSpacer);
 
         mRecyclerView.setHorizontalScrollBarEnabled(false);
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener(){
@@ -84,12 +83,12 @@ public class WeightScalePicker extends FrameLayout{
             public void onScrolled(RecyclerView recyclerView, int dx, int dy){
                 super.onScrolled(recyclerView, dx, dy);
 
-                distance += dx;
+                distance += dy;
 
-                if (oneUnitWidth != 0)
-                    mWeight = MathUtils.round(distance / oneUnitWidth,1);
-                if(onWeightChangedListener != null)
-                    onWeightChangedListener.OnWeightChanged(mWeight,typeOfUnits);
+                if (oneUnitHeight != 0)
+                    mHeight = MathUtils.round(distance / oneUnitHeight,1);
+                if(onHeightChangedListener != null)
+                    onHeightChangedListener.OnHeightChanged(mHeight,typeOfUnits);
             }
         });
 
@@ -113,19 +112,21 @@ public class WeightScalePicker extends FrameLayout{
 
         if (changed) {
             // Layout the spacers now that we are measured
-            final int width = getWidth();
-            int itemOffset = width / 2;
+            final int height = getHeight();
+            int itemOffset = height / 2;
 
-            weightScaleSpacer.setOffset(itemOffset);
+            //SET UP SPACERS
+            heightScaleSpacer.setOffset(itemOffset);
 
+            //SET UP POINTER
             FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) pointer.getLayoutParams();
-            layoutParams.setMargins(itemOffset, 0,0,0);
+            layoutParams.setMargins(0,itemOffset, 0,0);
             pointer.setLayoutParams(layoutParams);
 
             //GET ONE UNIT LENGTH
             View view = mRecyclerView.getChildAt(1);
             if(view != null)
-                oneUnitWidth = view.getWidth();
+                oneUnitHeight = view.getHeight();
         }
     }
     /**
@@ -148,15 +149,15 @@ public class WeightScalePicker extends FrameLayout{
         scaleAdapter.notifyDataSetChanged();
     }
 
-    public void setMWeight(float mWeight) {
-        this.mWeight = mWeight;
-        mRecyclerView.scrollTo((int) (mWeight * oneUnitWidth),0);
+    public void setMHeight(float mHeight) {
+        this.mHeight = mHeight;
+        mRecyclerView.scrollTo((int) (mHeight * oneUnitHeight),0);
     }
 
     /**
-     * Interface for listening to changes in weight.
+     * Interface for listening to changes in height.
      * */
-    public interface OnWeightChangedListener{
-        void OnWeightChanged(float mWeight,String typeOfUnits);
+    public interface OnHeightChangedListener{
+        void OnHeightChanged(float mHeight,String typeOfUnits);
     }
 }
