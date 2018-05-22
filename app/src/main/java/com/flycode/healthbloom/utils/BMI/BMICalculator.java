@@ -10,14 +10,14 @@ public class BMICalculator {
      * */
     public void setHeight(float value, String unit){
         switch (unit){
-            case "m(s)": //meters
-                Height = value;
-                break;
-            case "in(s)": //Inches
-                Height = UnitConverter.convert_from_inches_to_metres(value);
+            case "cm(s)": //centimeters
+                Height = UnitConverter.convert_from_centimeters_to_metres(value);
                 break;
             case "ft": //feet
                 Height = UnitConverter.convert_from_feat_to_metres(value);
+                break;
+            case "in(s)": //Inches
+                Height = UnitConverter.convert_from_inches_to_metres(value);
                 break;
         }
     }
@@ -33,6 +33,9 @@ public class BMICalculator {
             case "lb(s)": //pounds
                 Weight = UnitConverter.convert_from_pounds_to_kilograms(value);
                 break;
+            case "st": //stone
+                Height = UnitConverter.convert_from_stone_to_kilograms(value);
+                break;
         }
     }
 
@@ -41,7 +44,7 @@ public class BMICalculator {
 
         if (Height != 0 && Weight != 0) {
 
-            //calulate bmi
+            //calulate bmi (kg/m^2)
             return Weight / (Height * Height);
         }else{
             return 0;

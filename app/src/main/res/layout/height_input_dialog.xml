@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data class="CustomHeightDialogBinding">
+        <variable
+            name="user"
+            type="com.flycode.healthbloom.data.models.User"/>
+    </data>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:custom="http://schemas.android.com/apk/res-auto"
+        android:padding="20dp"
+        android:orientation="vertical">
+
+        <!--HEIGHT DETAILS-->
+        <!--SUBTITLE-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:text="Change Your Height"
+            android:textColor="@color/app_init_titles"
+            android:textSize="@dimen/app_init_subheadings" />
+        <View
+            android:layout_width="100dp"
+            android:layout_height="1dp"
+            android:layout_marginBottom="@dimen/app_init_padding"
+            android:layout_marginTop="5dp"
+            android:background="@color/app_init_lightGray_txt" />
+
+        <!--HEIGHT INPUT-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_gravity="start|center_vertical"
+                    android:contentDescription="@string/your_weight"
+                    android:paddingEnd="20dp"
+                    android:paddingStart="0dp"
+                    android:src="@drawable/ic_003_gym" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:layout_marginBottom="5dp"
+                            android:text="@string/height_input_hint"
+                            android:textColor="@color/Primary"
+                            android:textSize="@dimen/app_init_fieldHintTitles"
+                            android:visibility="visible" />
+
+                        <EditText
+                            android:id="@+id/txt_height"
+                            android:layout_width="110dp"
+                            android:layout_height="60dp"
+                            android:background="@drawable/app_init_inputfields"
+                            android:hint="@string/weight_height_hint"
+                            android:inputType="number"
+                            android:text="@={user.InitHeight}"
+                            android:textAlignment="textEnd"
+                            android:textColor="@color/app_init_input_txt"
+                            android:textColorHint="@color/app_init_input_txt"
+                            android:textSize="40sp" />
+
+                    </LinearLayout>
+
+                    <com.wx.wheelview.widget.WheelView
+                        android:id="@+id/height_units_picker"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="15dp"
+                        android:layout_gravity="center_vertical"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <com.flycode.healthbloom.customUI.HeightScalePicker
+                android:id="@+id/height_scale_picker"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginStart="10dp"
+                custom:maximumAcceptedSize="200"
+                custom:typeOfUnits="@{user.InitHeightUnits}"
+                custom:mHeight="@={user.InitHeight}"
+                custom:pointerBgColor="@color/Primary" />
+        </LinearLayout>
+    </LinearLayout>
+</layout>

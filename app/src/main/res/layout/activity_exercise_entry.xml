@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="ExerciseEntryBinding"/>
+
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/main_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ui.exercise.exerciseEntry.ExerciseEntryActivity">
+
+        <!--STEP COUNTER-->
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            android:background="@color/PrimaryDark"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <android.support.design.widget.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:contentScrim="?attr/colorPrimaryDark"
+                app:titleEnabled="false"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_collapseMode="parallax"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="?attr/actionBarSize">
+
+                    <!--STEP COUNTER-->
+                    <RelativeLayout
+                        android:layout_width="260dp"
+                        android:layout_height="260dp"
+                        android:layout_gravity="center_horizontal">
+
+                        <com.flycode.healthbloom.customUI.StepCounter.Circle
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginTop="0dp"
+                            app:circleColor="@color/white"
+                            app:radius="127"
+                            app:strokeWidth="3" />
+
+                        <LinearLayout
+                            android:id="@+id/steps_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tv_steps"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/_0"
+                                android:textColor="@color/white"
+                                android:textColorHint="@color/white"
+                                android:textStyle="bold"
+                                android:textSize="70sp" />
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                app:srcCompat="@drawable/footsteps_silhouette"
+                                android:contentDescription="@string/steps" />
+
+                            <TextView
+                                android:id="@+id/steps_hint"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/steps_counter_hint"
+                                android:textColor="@color/white"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:id="@+id/tv_duration"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:hint="00:00:00"
+                                android:textColor="@color/white"
+                                android:textColorHint="@color/white"
+                                android:textSize="40sp" />
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                app:srcCompat="@drawable/ic_time_light"
+                                android:contentDescription="@string/steps" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/duration_hint"
+                                android:textColor="@color/white"
+                                android:textSize="12sp"/>
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                    <FrameLayout
+                        android:layout_width="80dp"
+                        android:layout_height="80dp">
+                        <ImageView
+                            android:id="@+id/play_or_pause_btn"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_play_circle_outline"
+                            android:contentDescription="@string/play_or_pause_btn"
+                            android:clickable="true"
+                            android:onClick="onPauseOrPlay"/>
+                        <ProgressBar
+                            android:id="@+id/binding_progress_bar"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:indeterminate="true"
+                            android:indeterminateTintMode="src_atop"
+                            android:indeterminateTint="@color/white"
+                            android:padding="10dp"
+                            android:visibility="gone"/>
+                    </FrameLayout>
+                </LinearLayout>
+
+                <include
+                    android:id="@+id/toolbar"
+                    layout="@layout/toolbar"/>
+
+            </android.support.design.widget.CollapsingToolbarLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/lightGray"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:text="@string/details"
+                    android:textColor="@color/bg_dark"
+                    android:textSize="@dimen/app_init_text" />
+            </LinearLayout>
+
+        </android.support.design.widget.AppBarLayout>
+
+        <!--EXERCISE DETAILS-->
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:orientation="vertical"
+                    app:cardBackgroundColor="@color/lightGray"
+                    app:cardCornerRadius="4dp"
+                    app:cardElevation="3dp"
+                    app:contentPadding="10dp">
+
+                    <com.google.android.flexbox.FlexboxLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:baselineAligned="false"
+                        android:weightSum="100"
+                        app:showDividerHorizontal="beginning|middle|end">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center"
+                            app:layout_flexGrow="1">
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_marginEnd="5dp"
+                                android:src="@drawable/ic_fire_black"
+                                android:contentDescription="@string/time" />
+                            <TextView
+                                android:id="@+id/tv_calories"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="5dp"
+                                android:textStyle="bold"
+                                android:textSize="50sp"
+                                android:textColor="@color/bg_dark"/>
+                            <TextView
+                                android:id="@+id/tv_calories_units"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12sp"
+                                android:textColor="@color/bg_dark"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center"
+                            app:layout_flexGrow="1">
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_marginEnd="5dp"
+                                android:src="@drawable/ic_road"
+                                android:contentDescription="@string/time" />
+                            <TextView
+                                android:id="@+id/tv_distance"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="5dp"
+                                android:textStyle="bold"
+                                android:textSize="50sp"
+                                android:textColor="@color/bg_dark"/>
+                            <TextView
+                                android:id="@+id/tv_distance_units"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12sp"
+                                android:textColor="@color/bg_dark"/>
+                        </LinearLayout>
+
+
+                    </com.google.android.flexbox.FlexboxLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:orientation="vertical"
+                    app:cardBackgroundColor="@color/lightGray"
+                    app:cardCornerRadius="4dp"
+                    app:cardElevation="3dp"
+                    app:contentPadding="10dp">
+
+                    <fragment
+                        android:id="@+id/map"
+                        android:name="com.google.android.gms.maps.SupportMapFragment"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        tools:context=".ui.exercise.exerciseEntry.ExerciseEntryActivity" />
+
+                </android.support.v7.widget.CardView>
+
+            </LinearLayout>
+
+        </android.support.v4.widget.NestedScrollView>
+
+        <!--FINISH BUTTON-->
+        <FrameLayout
+            android:id="@+id/finish_btn_frame"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:elevation="6dp"
+            android:background="@color/lightGray"
+            android:visibility="gone"
+            android:layout_gravity="bottom"
+            app:layout_constraintBottom_toBottomOf="parent">
+            <Button
+                android:id="@+id/finish_btn"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:text="@string/finish_btn"
+                android:textColor="@color/white"
+                android:background="@color/red"
+                android:textSize="20sp"
+                android:padding="5dp"
+                android:onClick="onFinish"
+                android:layout_gravity="center"/>
+        </FrameLayout>
+
+    </android.support.design.widget.CoordinatorLayout>
+</layout>

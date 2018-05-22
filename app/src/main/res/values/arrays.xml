@@ -8,14 +8,26 @@
     <string-array name="weight_units">
         <item>kg(s)</item>
         <item>lb(s)</item>
-        <item>oz(s)</item>
+        <item>st</item>
     </string-array>
 
+    <integer-array name="weight_units_limits">
+        <item>300</item>
+        <item>661</item>
+        <item>42</item>
+    </integer-array>
+
     <string-array name="height_units">
-        <item>m(s)</item>
-        <item>in(s)</item>
+        <item>cm(s)</item>
         <item>ft</item>
+        <item>in(s)</item>
     </string-array>
+
+    <integer-array name="height_units_limits">
+        <item>250</item>
+        <item>9</item>
+        <item>98</item>
+    </integer-array>
 
     <string-array name="uploadImage">
         <item>Pick from gallery</item>

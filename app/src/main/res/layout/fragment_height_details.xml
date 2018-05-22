@@ -110,7 +110,7 @@
             </LinearLayout>
 
             <com.flycode.healthbloom.customUI.HeightScalePicker
-                android:id="@+id/weight_scale_picker"
+                android:id="@+id/height_scale_picker"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:orientation="vertical"

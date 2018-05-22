@@ -12,6 +12,7 @@ import com.flycode.healthbloom.R;
 import com.flycode.healthbloom.data.models.User;
 import com.flycode.healthbloom.databinding.BaseActivityBinding;
 import com.flycode.healthbloom.databinding.BaseNavDrawerHeadingBindings;
+import com.flycode.healthbloom.ui.exercise.exerciseOverview.ExerciseOverviewActivity;
 import com.flycode.healthbloom.ui.foodNutrition.foodNutritionOverview.FoodNutritionOverviewActivity;
 import com.flycode.healthbloom.ui.home.HomeActivity;
 import com.flycode.healthbloom.ui.tags.TagsActivity;
@@ -72,6 +73,9 @@ public class BaseViewWithNav
                 break;
             case R.id.food_module_menu_item:
                 finishAndGoTo(FoodNutritionOverviewActivity.class);
+                break;
+            case R.id.exercise_module_menu_item:
+                finishAndGoTo(ExerciseOverviewActivity.class);
                 break;
             case R.id.tags_menu_item:
                 finishAndGoTo(TagsActivity.class);

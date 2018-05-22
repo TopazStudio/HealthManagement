@@ -22,10 +22,10 @@
             android:id="@+id/base_nav_view"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:background="@color/bg_dark"
+            android:background="@color/white"
             android:layout_gravity="start"
-            app:itemTextColor="@color/lightGray"
-            app:itemIconTint="@color/lightGray"
+            app:itemTextColor="@color/bg_dark"
+            app:itemIconTint="@color/bg_dark"
             app:menu="@menu/base_navigation_drawer_menu">
 
         </android.support.design.widget.NavigationView>

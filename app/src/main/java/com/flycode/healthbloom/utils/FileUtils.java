@@ -38,4 +38,9 @@ public class FileUtils {
             return null;
         }
     }
+
+    public static boolean deleteImage(String imagePath) {
+        File file = new File(imagePath);
+        return file.exists() && file.delete();
+    }
 }

@@ -13,6 +13,7 @@ import com.flycode.healthbloom.data.models.WeightMeasurement_Tag;
 import com.flycode.healthbloom.ui.base.BasePresenter;
 import com.flycode.healthbloom.utils.BMI.BMICalculator;
 import com.flycode.healthbloom.utils.FileUtils;
+import com.flycode.healthbloom.utils.MathUtils;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.raizlabs.android.dbflow.structure.database.DatabaseWrapper;
 import com.raizlabs.android.dbflow.structure.database.transaction.ITransaction;
@@ -61,15 +62,29 @@ public class WeightEntryPresenter<V extends WeightEntryContract.WeightEntryView>
         //SAVE IMAGE
         String imagePath = null;
         if (doImageSave) {
-            imagePath = FileUtils.saveImage(imageBitmap, "/progress_photos");
 
+            //DELETE PREVIOUS IMAGE
+            if (weightMeasurement.PhotoLocation.get() != null)
+                if (FileUtils.deleteImage(weightMeasurement.PhotoLocation.get())) {
+                    getMvpView().hideLoading();
+                    getMvpView().showError("Error saving your progress photo. Please try again.");
+                    return;
+                }
+
+            //SAVE NEW IMAGE
+            imagePath = FileUtils.saveImage(imageBitmap, "/progress_photos");
             if (imagePath == null) {
                 getMvpView().hideLoading();
                 getMvpView().showError("Error saving your progress photo. Please try again.");
                 return;
             }
         }
-        else imagePath = null;
+        else{
+            //if it already had it save the one it had.
+            if (weightMeasurement.PhotoLocation.get() != null)
+                imagePath = weightMeasurement.PhotoLocation.get();
+            else imagePath = null;
+        }
 
         weightMeasurement.PhotoLocation.set(imagePath); //Add photo location
 
@@ -78,7 +93,7 @@ public class WeightEntryPresenter<V extends WeightEntryContract.WeightEntryView>
         BMICalculator bmiCalculator = new BMICalculator();
         bmiCalculator.setHeight(weightMeasurement.Height.get(),weightMeasurement.HeightUnits.get());
         bmiCalculator.setWeight(weightMeasurement.Weight.get(),weightMeasurement.WeightUnits.get());
-        weightMeasurement.BMI.set(bmiCalculator.calculateBMI()); //Add BMI
+        weightMeasurement.BMI.set(MathUtils.round(bmiCalculator.calculateBMI(),1)); //Add BMI
 
         weightMeasurement.note = note; //Add note
 

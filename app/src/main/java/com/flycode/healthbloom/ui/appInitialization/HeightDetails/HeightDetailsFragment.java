@@ -27,6 +27,7 @@ public class HeightDetailsFragment extends DaggerFragment {
     User user;
 
     private HeightDetailsBinding binding;
+    private int[] heightLimits;
 
     public HeightDetailsFragment() {
         // Required empty public constructor
@@ -57,6 +58,7 @@ public class HeightDetailsFragment extends DaggerFragment {
     @SuppressWarnings("unchecked")
     private void setUpHeightUnitsSpinner(){
         List<String> data = Arrays.asList(getResources().getStringArray(R.array.height_units));
+        heightLimits = getResources().getIntArray(R.array.height_units_limits);
 
         binding.heightUnitsPicker.setWheelAdapter(new ArrayWheelAdapter(getContext())); // text data source
         binding.heightUnitsPicker.setSkin(WheelView.Skin.None);
@@ -77,6 +79,8 @@ public class HeightDetailsFragment extends DaggerFragment {
             @Override
             public void onItemSelected(int position, Object o) {
                 user.InitHeightUnits.set((String) o);
+                binding.heightScalePicker.setMaximumAcceptedSize(heightLimits[position]);
+
             }
         });
     }

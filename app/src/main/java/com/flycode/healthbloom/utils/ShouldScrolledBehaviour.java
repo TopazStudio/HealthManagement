@@ -1,8 +1,9 @@
-package com.flycode.healthbloom.ui.weight.weightOverview;
+package com.flycode.healthbloom.utils;
 
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -12,9 +13,9 @@ import android.view.View;
  */
 public class ShouldScrolledBehaviour extends AppBarLayout.ScrollingViewBehavior {
     private LinearLayoutManager mLayoutManager;
-    private EntryListAdapter mAdapter;
+    private RecyclerView.Adapter mAdapter;
 
-    public ShouldScrolledBehaviour(LinearLayoutManager layoutManager, EntryListAdapter adapter) {
+    public ShouldScrolledBehaviour(LinearLayoutManager layoutManager, RecyclerView.Adapter adapter) {
         super();
         this.mLayoutManager = layoutManager;
         this.mAdapter = adapter;

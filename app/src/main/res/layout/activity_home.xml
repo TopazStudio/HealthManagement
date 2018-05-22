@@ -3,37 +3,109 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-    <data class="HomeActivityBinding"/>
+
+    <data class="HomeActivityBinding" />
+
     <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <android.support.v4.widget.NestedScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+        </android.support.v4.widget.NestedScrollView>
 
-            </android.support.v4.widget.NestedScrollView>
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay">
 
-            <android.support.design.widget.AppBarLayout
-                android:layout_width="match_parent"
+            <include
+                android:id="@+id/toolbar"
+                layout="@layout/toolbar"
+                app:layout_scrollFlags="scroll|enterAlways" />
+
+
+        </android.support.design.widget.AppBarLayout>
+
+        <!--FAB NAVIGATION-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="bottom|end"
+            android:gravity="end"
+            android:layout_margin="@dimen/fab_margin">
+
+            <LinearLayout
+                android:id="@+id/steps_fab_layout"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:theme="@style/AppTheme.AppBarOverlay">
+                android:layout_marginBottom="20dp"
+                android:layout_marginEnd="10dp"
+                android:visibility="gone"
+                android:orientation="horizontal">
 
-                <include
-                    layout="@layout/toolbar"
-                    android:id="@+id/toolbar"
-                    app:layout_scrollFlags="scroll|enterAlways"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="5dp"
+                    android:background="@color/lightGray"
+                    android:padding="5dp"
+                    android:text="@string/fab_steps"
+                    android:textColor="@color/bg_dark"
+                    android:textSize="15sp" />
 
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/fab_steps"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:onClick="onAddSteps"
+                    app:fabSize="mini"
+                    app:srcCompat="@drawable/footsteps_silhouette" />
+            </LinearLayout>
 
-            </android.support.design.widget.AppBarLayout>
+            <LinearLayout
+                android:id="@+id/weight_fab_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginEnd="10dp"
+                android:visibility="gone"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="5dp"
+                    android:background="@color/lightGray"
+                    android:padding="5dp"
+                    android:text="@string/fab_weight"
+                    android:textColor="@color/bg_dark"
+                    android:textSize="15sp" />
+
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/fab_weight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:onClick="onAddWeight"
+                    app:fabSize="mini"
+                    app:srcCompat="@drawable/ic_weight_scale" />
+            </LinearLayout>
 
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/fab_add"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom|end"
-                android:layout_margin="@dimen/fab_margin"
+                android:clickable="true"
+                android:onClick="onFabAdd"
                 app:srcCompat="@drawable/ic_add" />
+        </LinearLayout>
 
-        </android.support.design.widget.CoordinatorLayout>
+    </android.support.design.widget.CoordinatorLayout>
 </layout>

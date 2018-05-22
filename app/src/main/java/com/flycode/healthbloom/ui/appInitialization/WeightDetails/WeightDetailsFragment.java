@@ -26,6 +26,7 @@ public class WeightDetailsFragment extends DaggerFragment {
     User user;
 
     private WeightDetailsBinding binding;
+    private int[] weightLimits;
 
     public WeightDetailsFragment(){
 
@@ -57,6 +58,8 @@ public class WeightDetailsFragment extends DaggerFragment {
     @SuppressWarnings("unchecked")
     private void setUpWeightUnitsSpinner(){
         List<String> data = Arrays.asList(getResources().getStringArray(R.array.weight_units));
+        weightLimits = getResources().getIntArray(R.array.weight_units_limits);
+
 
         binding.weightUnitsPicker.setWheelAdapter(new ArrayWheelAdapter(getContext())); // text data source
         binding.weightUnitsPicker.setSkin(WheelView.Skin.None);
@@ -78,6 +81,8 @@ public class WeightDetailsFragment extends DaggerFragment {
             public void onItemSelected(int position, Object o) {
                 user.InitWeightUnits.set((String) o);
                 binding.targetWeightUnits.setText((String) o);
+                binding.weightScalePicker.setMaximumAcceptedSize(weightLimits[position]);
+
             }
         });
     }

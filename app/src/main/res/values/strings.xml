@@ -98,4 +98,30 @@
     <string name="navigation_open">Open</string>
     <string name="home_activity_title">Overview</string>
 
+    <!--Exercise Activity-->
+    <string name="title_activity_exercise_entry">Step Counter</string>
+    <string name="steps_counter_hint">Steps</string>
+    <string name="fab_steps">Start tracking your steps</string>
+    <string name="fab_weight">Log your weight</string>
+    <string name="steps">steps</string>
+    <string name="Time">Time</string>
+    <string name="play_or_pause_btn">play or pause</string>
+    <string name="duration_hint">Duration</string>
+    <string name="_0">0</string>
+    <string name="kcal_s">kcal(s)</string>
+    <string name="km_s">km(s)</string>
+    <string name="title_activity_steps_counter">Map</string>
+    <string name="title_activity_exercise_overview">Exercise Overview</string>
+    <string name="calories_header">Calories Burnt</string>
+    <string name="distance">Distance</string>
+    <string name="finish_btn">FINISH</string>
+    <string name="exercise_navigation_item">Exercise</string>
+
+
+    <!--Notifications -->
+    <string name="step_counter_notification_id">1</string>
+    <string name="step_counter_notification_channel">Exercise</string>
+    <string name="step_counter_notification_hint">Tracking your steps</string>
+
+
 </resources>

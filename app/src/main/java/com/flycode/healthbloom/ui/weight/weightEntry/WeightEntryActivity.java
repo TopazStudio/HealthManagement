@@ -20,11 +20,14 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
 
+import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.flycode.healthbloom.R;
 import com.flycode.healthbloom.data.models.Note;
 import com.flycode.healthbloom.data.models.Tag;
+import com.flycode.healthbloom.data.models.User;
 import com.flycode.healthbloom.data.models.WeightMeasurement;
+import com.flycode.healthbloom.databinding.CustomHeightDialogBinding;
 import com.flycode.healthbloom.databinding.WeightEntryBinding;
 import com.flycode.healthbloom.ui.base.BaseView;
 import com.google.gson.Gson;
@@ -40,6 +43,7 @@ import java.util.Locale;
 import java.util.Objects;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 //TODO: catch the back button and warn the user of losing data.
 public class WeightEntryActivity
@@ -56,6 +60,9 @@ public class WeightEntryActivity
     Note note;
     @Inject
     Calendar entryCalendar;
+    @Inject
+    @Named("default_user")
+    User user;
 
     private static final String TAG = WeightEntryActivity.class.getSimpleName();
 
@@ -63,22 +70,32 @@ public class WeightEntryActivity
     private static final int CAPTURE_PHOTO = 2;
     private static final int PERMISSION_REQUEST_CODE = 3;
     public static final String UPDATE_WEIGHT_MEASUREMENT = "w";
+    private int[] weightLimits;
+    private MaterialDialog customHeightDialog;
 
     private DatePickerDialog.OnDateSetListener dateSetListener;
     private TimePickerDialog.OnTimeSetListener timeSetListener;
 
     private WeightEntryBinding binding;
+    private CustomHeightDialogBinding customHeightDialogBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_weight_entry);
 
+        //BIND CONTENT
+        binding = DataBindingUtil.setContentView(this,R.layout.activity_weight_entry);
+        binding.setWeightMeasurement(weightMeasurement);
+        binding.setNote(note);
+
+        //PRESENTER
         presenter.onAttach(this);
 
+        //TOOLBAR
         setSupportActionBar((Toolbar) binding.toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
+        //INIT
         init();
     }
 
@@ -92,29 +109,70 @@ public class WeightEntryActivity
         //Determine if its an update
         Intent i = getIntent();
         if(i.hasExtra(UPDATE_WEIGHT_MEASUREMENT)){
-            weightMeasurement = new Gson()
-                    .fromJson(i.getStringExtra(UPDATE_WEIGHT_MEASUREMENT),WeightMeasurement.class);
+            mapWeightMeasurement(new Gson()
+                    .fromJson(i.getStringExtra(UPDATE_WEIGHT_MEASUREMENT),WeightMeasurement.class));
             Picasso.get()
                     .load(weightMeasurement.PhotoLocation.get())
                     .placeholder(R.drawable.image_placeholder)
                     .error(R.drawable.image_placeholder) //TODO: find error placeholder image
                     .into(binding.progressPhoto);
-            note = weightMeasurement.note;
+            mapNote(weightMeasurement.note);
             entryCalendar.setTime(weightMeasurement.Date.get());
         }
-
-        //BIND DATA TO UI
-        binding.setWeightMeasurement(weightMeasurement);
-        binding.setNote(note);
 
         //CONFIGURE UI
         setTime();
         setDate();
         setOnDateSetListener();
         setOnTimeSetListener();
+        setupHeightDialog();
         setUpWeightUnitsSpinner();
+        setUpHeightUnitsSpinner();
         binding.progressPhotoProgressBar.setProgress(0);
         binding.progressPhotoProgressBar.setMax(100);
+    }
+
+    private void mapWeightMeasurement(WeightMeasurement weightMeasurement){
+        this.weightMeasurement.id = weightMeasurement.id;
+        this.weightMeasurement.Height.set(weightMeasurement.Height.get());
+        this.weightMeasurement.HeightUnits.set(weightMeasurement.HeightUnits.get());
+
+        this.weightMeasurement.Weight.set(weightMeasurement.Weight.get());
+        this.weightMeasurement.WeightUnits.set(weightMeasurement.WeightUnits.get());
+//        binding.weightUnitsPicker.setSelection();
+
+        this.weightMeasurement.BMI.set(weightMeasurement.BMI.get());
+        this.weightMeasurement.Date.set(weightMeasurement.Date.get());
+        this.weightMeasurement.PhotoLocation.set(weightMeasurement.PhotoLocation.get());
+        this.weightMeasurement.note = weightMeasurement.note;
+    }
+
+    private void mapNote(Note note){
+        this.note.id = note.id;
+        this.note.Content.set(note.Content.get());
+    }
+
+    private void setupHeightDialog(){
+        customHeightDialogBinding = DataBindingUtil.inflate(getLayoutInflater(),
+                R.layout.height_input_dialog  ,null,false);
+        customHeightDialogBinding.setUser(user);
+
+        customHeightDialog = new MaterialDialog.Builder(this)
+                .customView(customHeightDialogBinding.getRoot(),true)
+                .positiveText(android.R.string.ok)
+                .negativeText(android.R.string.cancel)
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        weightMeasurement.Height.set(customHeightDialogBinding.getUser().InitHeight.get());
+                        weightMeasurement.HeightUnits.set(customHeightDialogBinding.getUser().InitHeightUnits.get());
+                    }
+                })
+                .build();
+    }
+
+    public void showHeightDialog(View view){
+        customHeightDialog.show();
     }
 
     /**
@@ -144,6 +202,7 @@ public class WeightEntryActivity
     @SuppressWarnings("unchecked")
     private void setUpWeightUnitsSpinner(){
         List<String> data = Arrays.asList(getResources().getStringArray(R.array.weight_units));
+        weightLimits = getResources().getIntArray(R.array.weight_units_limits);
 
         binding.weightUnitsPicker.setWheelAdapter(new ArrayWheelAdapter(this)); // text data source
         binding.weightUnitsPicker.setSkin(WheelView.Skin.None);
@@ -165,6 +224,37 @@ public class WeightEntryActivity
             @Override
             public void onItemSelected(int position, Object o) {
                 weightMeasurement.WeightUnits.set((String) o);
+                binding.weightScalePicker.setMaximumAcceptedSize(weightLimits[position]);
+            }
+        });
+    }
+
+    @SuppressWarnings("unchecked")
+    private void setUpHeightUnitsSpinner(){
+        List<String> data = Arrays.asList(getResources().getStringArray(R.array.height_units));
+        final int[] heightLimits = getResources().getIntArray(R.array.height_units_limits);
+
+        customHeightDialogBinding.heightUnitsPicker.setWheelAdapter(new ArrayWheelAdapter(this)); // text data source
+        customHeightDialogBinding.heightUnitsPicker.setSkin(WheelView.Skin.None);
+        customHeightDialogBinding.heightUnitsPicker.setLoop(false);
+        customHeightDialogBinding.heightUnitsPicker.setWheelSize(data.size());
+        customHeightDialogBinding.heightUnitsPicker.setSelection(0);
+        customHeightDialogBinding.heightUnitsPicker.setWheelData(data);
+
+        WheelView.WheelViewStyle style = new WheelView.WheelViewStyle();
+        style.selectedTextSize = 20;
+        style.textSize = 12;
+        style.selectedTextColor = Color.WHITE;
+        style.textColor = Color.LTGRAY;
+        style.backgroundColor = Color.TRANSPARENT;
+        customHeightDialogBinding.heightUnitsPicker.setStyle(style);
+
+        customHeightDialogBinding.heightUnitsPicker.setOnWheelItemSelectedListener(new WheelView.OnWheelItemSelectedListener() {
+            @Override
+            public void onItemSelected(int position, Object o) {
+                user.InitHeightUnits.set((String) o);
+                customHeightDialogBinding.heightScalePicker.setMaximumAcceptedSize(heightLimits[position]);
+
             }
         });
     }
