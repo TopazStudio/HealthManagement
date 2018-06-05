@@ -2,6 +2,7 @@ package com.flycode.healthbloom.ui.base;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.IBinder;
 import android.os.PowerManager;
 import android.support.annotation.Nullable;
@@ -37,15 +38,15 @@ public class BaseService extends DaggerService implements MvpService{
             serviceEventReceiver.onError(error);
     }
 
-    public void sendOnFinish(boolean success){
+    public void sendOnFinish(boolean success, Bundle data){
         if(serviceEventReceiver != null)
-            serviceEventReceiver.onFinish(success);
+            serviceEventReceiver.onFinish(success,data);
     }
 
     public interface ServiceEventReceiver {
         void onError(String error);
         void onSuccess(String message);
-        void onFinish(boolean success);
+        void onFinish(boolean success,Bundle data);
     }
 
     protected void wakeLock(boolean get) {

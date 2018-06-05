@@ -9,6 +9,8 @@ import com.flycode.healthbloom.ui.appInitialization.AppInitModule;
 import com.flycode.healthbloom.ui.exercise.exerciseEntry.ExerciseEntryActivity;
 import com.flycode.healthbloom.ui.exercise.exerciseOverview.ExerciseOverviewActivity;
 import com.flycode.healthbloom.ui.exercise.exerciseOverview.ExerciseOverviewModule;
+import com.flycode.healthbloom.ui.exercise.exerciseView.ExerciseViewActivity;
+import com.flycode.healthbloom.ui.exercise.exerciseView.ExerciseViewModule;
 import com.flycode.healthbloom.ui.foodNutrition.foodNutritionOverview.FoodNutritionOverviewActivity;
 import com.flycode.healthbloom.ui.foodNutrition.foodNutritionOverview.FoodNutritionOverviewModule;
 import com.flycode.healthbloom.ui.home.HomeActivity;
@@ -66,4 +68,8 @@ public abstract class ActivityBindingsModule {
     @PerActivity
     @ContributesAndroidInjector(modules = ExerciseOverviewModule.class)
     abstract ExerciseOverviewActivity exerciseOverviewActivity();
+
+    @PerActivity
+    @ContributesAndroidInjector(modules = {ExerciseViewModule.class,com.flycode.healthbloom.ui.exercise.exerciseView.FragmentProvider.class})
+    abstract ExerciseViewActivity exerciseViewActivity();
 }

@@ -30,7 +30,7 @@ public class TagsAdapter extends RecyclerView.Adapter<TagsAdapter.ViewHolder>{
     private OnTagClickedListener onTagClickedListener;
 
 
-    TagsAdapter(Context context) {
+    public TagsAdapter(Context context) {
         this.context = context;
         this.tagList = new ArrayList<>();
     }
@@ -64,7 +64,8 @@ public class TagsAdapter extends RecyclerView.Adapter<TagsAdapter.ViewHolder>{
         holder.chip_view.setOnDeleteClicked(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onTagDeletedListener.onTagDeleted(currentTag);
+                if (onTagDeletedListener != null)
+                    onTagDeletedListener.onTagDeleted(currentTag);
             }
         });
 
@@ -72,7 +73,8 @@ public class TagsAdapter extends RecyclerView.Adapter<TagsAdapter.ViewHolder>{
         holder.chip_view.setOnChipClicked(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onTagClickedListener.onTagClicked(currentTag);
+                if (onTagClickedListener != null)
+                    onTagClickedListener.onTagClicked(currentTag);
             }
         });
 

@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -23,12 +25,13 @@ import javax.inject.Inject;
 
 public class WeightOverviewActivity
         extends BaseViewWithNav
-        implements WeightOverviewContract.WeightView {
+        implements WeightOverviewContract.WeightView,
+        WeightItemSwipeBehaviour.ItemSwipeDeleteListener{
 
     @Inject
     GraphViewPagerAdapter graphViewPagerAdapter;
     @Inject
-    EntryListAdapter entryListAdapter;
+    WeightEntryListAdapter weightEntryListAdapter;
     @Inject
     WeightOverviewContract.WeightPresenter<WeightOverviewContract.WeightView> presenter;
 
@@ -102,11 +105,11 @@ public class WeightOverviewActivity
         weightActivityBinding.recyclerView.setLayoutManager(layoutManager);
 
         //ENTER DATA
-        entryListAdapter.setListItems(weightEntries);
-        entryListAdapter.setContext(this);
+        weightEntryListAdapter.setListItems(weightEntries);
+        weightEntryListAdapter.setContext(this);
 
         //SET ON_CARD_VIEW_CLICKED_LISTENER
-        entryListAdapter.setOnCardViewClicked(new EntryListAdapter.OnCardViewClicked() {
+        weightEntryListAdapter.setOnCardViewClicked(new WeightEntryListAdapter.OnCardViewClicked() {
             @Override
             public void onClicked(WeightMeasurement weightMeasurement) {
                 presenter.onUpdateWeight(weightMeasurement);
@@ -114,16 +117,21 @@ public class WeightOverviewActivity
         });
 
         // SET NO SCROLLING BEHAVIOUR WHEN ITEMS ARE LITTLE
-        /*CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams)
+       /* CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams)
                 weightActivityBinding.recyclerView.getLayoutParams();
-        params.setBehavior(new ShouldScrolledBehaviour(layoutManager,entryListAdapter));
+        params.setBehavior(new ShouldScrolledBehaviour(layoutManager,weightEntryListAdapter));
         weightActivityBinding.recyclerView.setLayoutParams(params);*/
+
+        //ATTACH DELETE SWIPE
+        new ItemTouchHelper(
+                new WeightItemSwipeBehaviour(0,ItemTouchHelper.RIGHT,this)
+        ).attachToRecyclerView(weightActivityBinding.recyclerView);
 
         //ASSIGN ADAPTER
         if (weightActivityBinding.recyclerView.getAdapter() != null){
-            weightActivityBinding.recyclerView.swapAdapter(entryListAdapter,true);
+            weightActivityBinding.recyclerView.swapAdapter(weightEntryListAdapter,true);
         }
-        weightActivityBinding.recyclerView.setAdapter(entryListAdapter);
+        weightActivityBinding.recyclerView.setAdapter(weightEntryListAdapter);
     }
 
     /**
@@ -155,5 +163,12 @@ public class WeightOverviewActivity
     protected void onDestroy() {
         super.onDestroy();
         presenter.onDetach();
+    }
+
+    @Override
+    public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction, int position) {
+        //todo: WARN THE USER
+        //todo: Delete step
+        weightEntryListAdapter.removeItem(position);
     }
 }

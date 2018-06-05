@@ -1,4 +1,4 @@
-package com.flycode.healthbloom.utils;
+package com.flycode.healthbloom.utils.RecyclerViewUtils;
 
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;

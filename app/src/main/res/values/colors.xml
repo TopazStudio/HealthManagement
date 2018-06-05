@@ -24,6 +24,7 @@
     <color name="lightGray">#ececec</color>
 
     <!--Dark tints-->
+    <color name="bg_gray">#c4c4c4</color>
     <color name="bg_dark">#2d2d2d</color>
     <color name="app_init_lightGray_txt">#afafaf</color>
     <color name="app_init_lightGray_inputs_focused">#616161</color>

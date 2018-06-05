@@ -13,7 +13,6 @@ import com.flycode.healthbloom.data.models.User;
 import com.flycode.healthbloom.databinding.BaseActivityBinding;
 import com.flycode.healthbloom.databinding.BaseNavDrawerHeadingBindings;
 import com.flycode.healthbloom.ui.exercise.exerciseOverview.ExerciseOverviewActivity;
-import com.flycode.healthbloom.ui.foodNutrition.foodNutritionOverview.FoodNutritionOverviewActivity;
 import com.flycode.healthbloom.ui.home.HomeActivity;
 import com.flycode.healthbloom.ui.tags.TagsActivity;
 import com.flycode.healthbloom.ui.weight.weightOverview.WeightOverviewActivity;
@@ -71,9 +70,9 @@ public class BaseViewWithNav
             case R.id.weight_module_menu_item:
                 finishAndGoTo(WeightOverviewActivity.class);
                 break;
-            case R.id.food_module_menu_item:
+            /*case R.id.food_module_menu_item:
                 finishAndGoTo(FoodNutritionOverviewActivity.class);
-                break;
+                break;*/
             case R.id.exercise_module_menu_item:
                 finishAndGoTo(ExerciseOverviewActivity.class);
                 break;
@@ -85,6 +84,24 @@ public class BaseViewWithNav
                 break;
         }
         return true;
+    }
+
+    private void toggleDrawer(){
+        if (baseActivityBinding.baseDrawerLayout.isDrawerOpen(baseActivityBinding.baseNavView)){
+            baseActivityBinding.baseDrawerLayout.closeDrawer(baseActivityBinding.baseNavView);
+        }else baseActivityBinding.baseDrawerLayout.openDrawer(baseActivityBinding.baseNavView);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                toggleDrawer();
+                return true;
+            default:
+                // Do nothing
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 }

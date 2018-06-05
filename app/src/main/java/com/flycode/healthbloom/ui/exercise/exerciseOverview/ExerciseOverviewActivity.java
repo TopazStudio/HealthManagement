@@ -5,14 +5,16 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 
 import com.flycode.healthbloom.R;
 import com.flycode.healthbloom.data.models.Steps;
 import com.flycode.healthbloom.databinding.ExerciseOverviewBinding;
 import com.flycode.healthbloom.ui.base.BaseViewWithNav;
-import com.flycode.healthbloom.utils.ShouldScrolledBehaviour;
+import com.flycode.healthbloom.utils.RecyclerViewUtils.ShouldScrolledBehaviour;
 
 import java.util.List;
 import java.util.Objects;
@@ -21,7 +23,7 @@ import javax.inject.Inject;
 
 public class ExerciseOverviewActivity
         extends BaseViewWithNav
-        implements ExerciseOverviewContract.ExerciseOverviewView {
+        implements ExerciseOverviewContract.ExerciseOverviewView,ItemSwipeBehaviour.ItemSwipeDeleteListener {
 
     @Inject
     ExerciseEntryListAdapter exerciseEntryListAdapter;
@@ -33,6 +35,8 @@ public class ExerciseOverviewActivity
     public static final int ADD_STEPS_REQUEST_CODE = 1;
     public static final int VIEW_STEPS_REQUEST_CODE = 2;
     public static final String STEPS_VIEW_EXTRA = "steps";
+
+    /*############################### ACTIVITY CALLBACKS ################################*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +56,32 @@ public class ExerciseOverviewActivity
         //INIT
         init();
     }
+
+    /**
+     * On returning results from Child activity.
+     * */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if ((requestCode == ADD_STEPS_REQUEST_CODE) && (resultCode == RESULT_OK)){
+            presenter.getSteps();
+        }else {
+            showError("Sorry. Something went wrong. Please try again.");
+        }
+    }
+
+    /**
+     * Detaches the presenter from the activity.
+     *
+     * */
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        presenter.onDetach();
+    }
+
+    /*############################### ACTIVITY LOGIC ################################*/
 
     private void init(){
         //FETCH DATA
@@ -88,12 +118,19 @@ public class ExerciseOverviewActivity
         params.setBehavior(new ShouldScrolledBehaviour(layoutManager,exerciseEntryListAdapter));
         exerciseOverviewBinding.recyclerView.setLayoutParams(params);
 
+        //ATTACH DELETE SWIPE
+        new ItemTouchHelper(
+                new ItemSwipeBehaviour(0,ItemTouchHelper.RIGHT,this)
+        ).attachToRecyclerView(exerciseOverviewBinding.recyclerView);
+
         //ASSIGN ADAPTER
         if (exerciseOverviewBinding.recyclerView.getAdapter() != null){
             exerciseOverviewBinding.recyclerView.swapAdapter(exerciseEntryListAdapter,true);
         }
         exerciseOverviewBinding.recyclerView.setAdapter(exerciseEntryListAdapter);
     }
+
+    /*############################### UI CALLBACKS ################################*/
 
     /**
      * Called when a weight entry trigger is fired either from a fab button or other triggers
@@ -102,29 +139,12 @@ public class ExerciseOverviewActivity
         presenter.addSteps();
     }
 
-    /**
-     * On returning results from Child activity.
-     * */
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+    /*############################### SWIPE LISTENER ################################*/
 
-        if ((requestCode == ADD_STEPS_REQUEST_CODE) && (resultCode == RESULT_OK)){
-            //Refresh the graphs and entries
-            showMessage("Saved Successfully");
-            presenter.getSteps();
-        }else {
-            showError("Sorry. Something went wrong. Please try again.");
-        }
-    }
-
-    /**
-     * Detaches the presenter from the activity.
-     *
-     * */
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        presenter.onDetach();
+    public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction, int position) {
+        //todo: WARN THE USER
+        //todo: Delete step
+        exerciseEntryListAdapter.removeItem(position);
     }
 }

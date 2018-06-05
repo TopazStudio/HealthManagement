@@ -24,7 +24,7 @@ public class WeightOverviewModule {
     }
 
     @Provides
-    EntryListAdapter provideEntryListAdapter() {
-        return new EntryListAdapter();
+    WeightEntryListAdapter provideWeightEntryListAdapter() {
+        return new WeightEntryListAdapter();
     }
 }

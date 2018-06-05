@@ -13,7 +13,6 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.NavUtils;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,6 +24,7 @@ import com.flycode.healthbloom.databinding.ExerciseEntryBinding;
 import com.flycode.healthbloom.services.stepCounter.StepCounterService;
 import com.flycode.healthbloom.ui.base.BaseViewWithNav;
 import com.flycode.healthbloom.ui.exercise.exerciseOverview.ExerciseOverviewActivity;
+import com.flycode.healthbloom.ui.exercise.exerciseView.ExerciseViewActivity;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.maps.GoogleMap;
@@ -116,7 +116,7 @@ public class ExerciseEntryActivity
         switch (item.getItemId()) {
             // Respond to the action bar's Up/Home button
             case android.R.id.home:
-                NavUtils.navigateUpFromSameTask(this);
+                finishAndGoTo(ExerciseOverviewActivity.class);
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -299,9 +299,10 @@ public class ExerciseEntryActivity
     }
 
     @Override
-    public void onFinish(boolean success) {
+    public void onFinish(boolean success,Bundle data) {
         if (success){
-            finishAndGoTo(ExerciseOverviewActivity.class);
+            openForResult(ExerciseViewActivity.class,
+                    ExerciseOverviewActivity.VIEW_STEPS_REQUEST_CODE,data);
         }
     }
 

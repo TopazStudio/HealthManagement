@@ -7,17 +7,19 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.flycode.healthbloom.R;
 import com.flycode.healthbloom.data.models.WeightMeasurement;
+import com.google.android.flexbox.FlexboxLayout;
 
 import java.util.Calendar;
 import java.util.List;
 
 import lombok.Setter;
 
-public class EntryListAdapter extends RecyclerView.Adapter<EntryListAdapter.ViewHolder>{
+public class WeightEntryListAdapter extends RecyclerView.Adapter<WeightEntryListAdapter.ViewHolder>{
 
     @Setter
     private List<WeightMeasurement> listItems;
@@ -69,6 +71,9 @@ public class EntryListAdapter extends RecyclerView.Adapter<EntryListAdapter.View
         TextView tv_bmi;
         TextView tv_weight_units;
         TextView tv_bmi_units;
+
+        public FlexboxLayout view_foreground;
+        LinearLayout view_background;
         CardView card_view;
 
 
@@ -81,8 +86,20 @@ public class EntryListAdapter extends RecyclerView.Adapter<EntryListAdapter.View
             tv_bmi = (TextView) itemView.findViewById(R.id.tv_bmi);
             tv_weight_units = (TextView) itemView.findViewById(R.id.tv_weight_units);
             tv_bmi_units = (TextView) itemView.findViewById(R.id.tv_bmi_units);
+            view_foreground = (FlexboxLayout) itemView.findViewById(R.id.view_foreground);
+            view_background = (LinearLayout) itemView.findViewById(R.id.view_background);
             card_view = (CardView) itemView.findViewById(R.id.card_view);
         }
+    }
+
+    public void removeItem(int position) {
+        listItems.remove(position);
+        notifyItemRemoved(position);
+    }
+
+    public void restoreItem(WeightMeasurement weightMeasurement, int position) {
+        listItems.add(position, weightMeasurement);
+        notifyItemInserted(position);
     }
 
     interface OnCardViewClicked{

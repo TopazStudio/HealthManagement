@@ -17,7 +17,7 @@ import com.raizlabs.android.dbflow.structure.BaseModel;
 
 @Table(database = Database.class, name = "steps" )
 @ManyToMany(referencedTable = Tag.class)
-public class    Steps extends BaseModel{
+public class Steps extends BaseModel{
     @PrimaryKey(autoincrement = true)
     @Column()
     public int id;

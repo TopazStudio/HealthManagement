@@ -1,9 +1,13 @@
 package com.flycode.healthbloom.services.stepCounter;
 
+import android.os.Bundle;
+
 import com.flycode.healthbloom.data.models.Steps;
 import com.flycode.healthbloom.trackers.DurationTracker;
 import com.flycode.healthbloom.trackers.TrackerComponentCollection;
 import com.flycode.healthbloom.ui.base.BaseServicePresenter;
+import com.flycode.healthbloom.ui.exercise.exerciseOverview.ExerciseOverviewActivity;
+import com.google.gson.Gson;
 
 import lombok.Setter;
 
@@ -33,7 +37,10 @@ public class StepCounterPresenter<V extends StepCounterContract.StepCounterServi
         if (steps.save()){
             if (stepCounterService != null){
                 stepCounterService.sendSuccess("Successfully registered");
-                stepCounterService.sendOnFinish(true);
+
+                Bundle bundle = new Bundle();
+                bundle.putString(ExerciseOverviewActivity.STEPS_VIEW_EXTRA,new Gson().toJson(steps,Steps.class));
+                stepCounterService.sendOnFinish(true,bundle);
                 stepCounterService.stopSelf();
             }
         }else{

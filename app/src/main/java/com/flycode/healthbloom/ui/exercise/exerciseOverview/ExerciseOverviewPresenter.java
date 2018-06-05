@@ -7,6 +7,7 @@ import com.flycode.healthbloom.data.models.Steps;
 import com.flycode.healthbloom.data.models.Steps_Table;
 import com.flycode.healthbloom.ui.base.BasePresenter;
 import com.flycode.healthbloom.ui.exercise.exerciseEntry.ExerciseEntryActivity;
+import com.flycode.healthbloom.ui.exercise.exerciseView.ExerciseViewActivity;
 import com.google.gson.Gson;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.raizlabs.android.dbflow.structure.database.transaction.QueryTransaction;
@@ -54,14 +55,14 @@ public class ExerciseOverviewPresenter<V extends ExerciseOverviewContract.Exerci
     }
 
     /**
-     * Opens the WeightEntryActivity for results on updating a weight.
+     * Opens the ExerciseViewActivity for updating the steps.
      * */
     @Override
     public void onViewSteps(Steps steps) {
         Bundle bundle = new Bundle();
         bundle.putString(ExerciseOverviewActivity.STEPS_VIEW_EXTRA,
                 new Gson().toJson(steps));
-        getMvpView().openForResult(ExerciseEntryActivity.class,
-                ExerciseOverviewActivity.VIEW_STEPS_REQUEST_CODE,null/*bundle*/);
+        getMvpView().openForResult(ExerciseViewActivity.class,
+                ExerciseOverviewActivity.VIEW_STEPS_REQUEST_CODE,bundle);
     }
 }

@@ -210,6 +210,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginEnd="5dp"
+                                android:hint="@string/_0"
+                                android:textColorHint="@color/bg_dark"
                                 android:textStyle="bold"
                                 android:textSize="50sp"
                                 android:textColor="@color/bg_dark"/>
@@ -238,6 +240,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginEnd="5dp"
+                                android:hint="@string/_0"
+                                android:textColorHint="@color/bg_dark"
                                 android:textStyle="bold"
                                 android:textSize="50sp"
                                 android:textColor="@color/bg_dark"/>
