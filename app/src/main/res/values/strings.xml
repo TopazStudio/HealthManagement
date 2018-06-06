@@ -137,6 +137,30 @@
     <string name="heart_details_title">Heart Rate Details</string>
     <string name="heart_rate_max">Heart Rate (Max)</string>
     <string name="avg_heart_rate">Avg. Heart Rate</string>
+    <string name="sunday">sun</string>
+    <string name="monday">Mon</string>
+    <string name="tuesday">Tue</string>
+    <string name="wednesday">Wed</string>
+    <string name="thursday">Thur</string>
+    <string name="friday">Fri</string>
+    <string name="saturday">Sat</string>
+    <string name="calories">Calories</string>
+    <string name="intake">Intake</string>
+    <string name="kcal">Kcal</string>
+    <string name="_2300">2300</string>
+    <string name="outtake">Outtake</string>
+    <string name="total">Total</string>
+    <string name="_60">60%</string>
+    <string name="goal_78kg_s">Goal: 78kg(s)</string>
+    <string name="_80">80</string>
+    <string name="_24_9">24.9</string>
+    <string name="recommended">Recommended:</string>
+    <string name="_2_ltr_s_3_ltr_s">2 ltr(s) - 3 ltr(s)</string>
+    <string name="goal_2_ltr_s">Goal: 2 ltr(s)</string>
+    <string name="water_intake">Water Intake</string>
+    <string name="ltr_s">ltr(s)</string>
+    <string name="_730">730</string>
+    <string name="_800">800</string>
 
 
 </resources>
